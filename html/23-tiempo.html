@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8iu-qx7nh0ycn">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>2.3. Tiempo | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/relate/relate.js"></script><link rel="stylesheet" href="../idevices/relate/relate.css">
+<script src="../idevices/complete/complete.js"></script><link rel="stylesheet" href="../idevices/complete/complete.css">
+<script src="../libs/jquery-ui/jquery-ui.min.js"> </script>
+<script src="../libs/jquery-ui/jquery-ui.min.js"> </script>
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8iu-qx7nh0ycn" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li class="active"> <a href="../html/23-tiempo.html" class="active no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8iu-qx7nh0ycn" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">2.3. Tiempo</h1></div>
+</header><div id="page-content-page-moskc8iu-qx7nh0ycn" class="page-content">
+<article id="20260323172955FJNYBZ" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737JKFROR" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737JKFROR&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>El tiempo es una magnitud física con la que medimos la duración o separación de acontecimientos, y nos permite ordenar los sucesos en secuencias. Junto con la longitud, es sin duda la magnitud "más cercana", aunque también la que quizás encierre más secretos y provoque más fantasías, y este filón lo ha aprovechado tanto la literatura como el cine, con títulos como <em>La máquina del tiempo</em>, <em>In time</em> o <em>Al filo del mañana</em>.</p>
+<table border="0" align="center" cellpadding="15">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737JKFROR/medida6.jpg" width="350" height="271" alt="Cartel de la película La máquina del tiempo" title="Cartel de la película La máquina del tiempo"></td>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737JKFROR/in-time.jpg" width="191" height="273" alt=""><br></td>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737JKFROR/alfilodelmanana-1.jpg" width="190" height="272" alt=""><br></td>
+<td style="text-align: center; border: 1px solid #ffffff;"><br></td>
+<td style="text-align: center; border: 1px solid #ffffff;"><br></td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955GEPXTI" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades de tiempo.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737DZWLGH" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737DZWLGH&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 99.9703%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">La unidad de tiempo básica es el <span style="color: #007932;"><strong>segundo</strong></span> (<span style="color: #007932;"><strong>s</strong></span>).</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;">Es una unidad de tiempo muy pequeña, por lo que cuando utilicemos intervalos de tiempo muy grandes, es mejor utilizar otras unidades de medida.</p>
+<p style="text-align: justify;">El tiempo es una magnitud que en lo que se refiere a múltiplos es algo peculiar (en submúltiplos funciona igual que las anteriores), ya que no sigue el formato de decimal, sino el sexagesimal, es decir, para pasar de una unidad a la siguiente dividimos por 60 en vez de por 10.</p>
+<p style="text-align: justify;">Por ejemplo, si queremos saber cuántos minutos es un segundo multiplicamos por 60.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955FXFPSP" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cambio entre unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737GNRDYG" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737GNRDYG&quot;}">
+<div class="exe-text-template">
+    <p><strong>¿Cómo se cambian de unidades de tiempo?</strong></p>
+<p><img src="../content/resources/escalera-de-conversion-de-tiempo.png" style="display: block; margin-left: auto; margin-right: auto;" width="75%" height="50" /></p>
+</div>
+</div>
+</div>
+</article><article id="block-mwmmqixf-hwabl8beo" class="box caja-naranja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_practica2.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Practica.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795037089874-duaht234p" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795037089874-duaht234p&quot;}">
+<div class="exe-text-template">
+    <style>
+        /* Blindaje de estilos contra el CSS global de eXeLearning */
+        #tutor-tiempo-naranja * { box-sizing: border-box; }
+
+        #tutor-tiempo-naranja .tmp-header {
+            font-size: 1.4rem !important;
+            font-weight: 800 !important;
+            color: #9a3412 !important;
+            margin-bottom: 18px !important;
+            border-bottom: 2px dashed #fdba74 !important;
+            padding-bottom: 10px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-box {
+            background-color: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 10px !important;
+            padding: 22px !important;
+        }
+
+        /* Tarjeta de enunciado */
+        #tutor-tiempo-naranja .tmp-enunciado-card {
+            background-color: #ffffff !important;
+            border: 2px solid #fdba74 !important;
+            border-radius: 8px !important;
+            padding: 18px 22px !important;
+            font-size: 1.7rem !important;
+            font-weight: 800 !important;
+            color: #431407 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 12px !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.06) !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-unidad-destacada {
+            color: #ea580c !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-instruccion {
+            font-size: 0.98rem !important;
+            color: #7c2d12 !important;
+            margin-bottom: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Zona de respuesta */
+        #tutor-tiempo-naranja .tmp-input-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 16px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-label-sol {
+            background-color: #ffedd5 !important;
+            color: #9a3412 !important;
+            border: 1px solid #fdba74 !important;
+            padding: 8px 14px !important;
+            border-radius: 6px !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+        }
+
+        #tutor-tiempo-naranja input.tmp-input {
+            width: 170px !important;
+            height: 42px !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            border: 2px solid #f97316 !important;
+            border-radius: 6px !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            outline: none !important;
+            padding: 4px 10px !important;
+        }
+        #tutor-tiempo-naranja input.tmp-input:focus {
+            border-color: #c2410c !important;
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2) !important;
+        }
+
+        /* Botones blindados con DIV */
+        #tutor-tiempo-naranja .tmp-btn {
+            background-color: #ea580c !important;
+            color: #ffffff !important;
+            padding: 9px 20px !important;
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25) !important;
+        }
+        #tutor-tiempo-naranja .tmp-btn:hover {
+            background-color: #c2410c !important;
+        }
+
+        /* Mensaje de acierto */
+        #tutor-tiempo-naranja .tmp-ok-banner {
+            display: none;
+            background-color: #ffedd5 !important;
+            border-left: 5px solid #ea580c !important;
+            color: #9a3412 !important;
+            padding: 14px 18px !important;
+            border-radius: 6px !important;
+            font-size: 1.15rem !important;
+            font-weight: 700 !important;
+            margin-top: 15px !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+        }
+
+        /* Panel de ayuda con Ruta de Conversión Lineal */
+        #tutor-tiempo-naranja .tmp-ayuda-panel {
+            display: none;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+            margin-top: 15px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-sol-titulo {
+            font-size: 1.25rem !important;
+            font-weight: 800 !important;
+            color: #c2410c !important;
+            margin-bottom: 6px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-sol-operacion {
+            font-size: 1.4rem !important;
+            font-weight: 800 !important;
+            color: #0369a1 !important;
+            margin-bottom: 8px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-sol-sub {
+            font-size: 0.95rem !important;
+            color: #475569 !important;
+            margin-bottom: 16px !important;
+            font-style: italic !important;
+        }
+
+        /* Cadena visual de nodos y saltos */
+        #tutor-tiempo-naranja .tmp-ruta-container {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+            background-color: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 8px !important;
+            padding: 16px !important;
+            margin-bottom: 14px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-nodo {
+            background-color: #ffffff !important;
+            border: 2px solid #fdba74 !important;
+            color: #431407 !important;
+            padding: 8px 14px !important;
+            border-radius: 8px !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+            text-align: center !important;
+            min-width: 72px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-nodo.extremo {
+            background-color: #ffedd5 !important;
+            border: 2.5px solid #ea580c !important;
+            color: #c2410c !important;
+            font-weight: 800 !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-salto-flecha {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            padding: 0 4px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-salto-badge {
+            background-color: #ea580c !important;
+            color: #ffffff !important;
+            font-size: 0.9rem !important;
+            font-weight: 800 !important;
+            padding: 2px 8px !important;
+            border-radius: 12px !important;
+            margin-bottom: 2px !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-salto-linea {
+            color: #ea580c !important;
+            font-size: 1.3rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+        }
+
+        #tutor-tiempo-naranja .tmp-explicacion-pasos {
+            background-color: #fff7ed !important;
+            border-left: 4px solid #f97316 !important;
+            padding: 10px 14px !important;
+            border-radius: 4px !important;
+            font-size: 1.05rem !important;
+            color: #431407 !important;
+            line-height: 1.5 !important;
+        }
+    </style>
+<div id="tutor-tiempo-naranja" style="width: 100%; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; user-select: none;">
+<div class="tmp-header">Cambio de unidades de tiempo</div>
+<div class="tmp-box"><!-- Enunciado -->
+<div class="tmp-enunciado-card"><span id="tmp-val-origen">2,5</span> <span id="tmp-uni-origen" class="tmp-unidad-destacada">h</span> <span>=</span> <span style="display: inline-block; min-width: 80px; border-bottom: 2px dashed #fdba74; text-align: center; color: #ea580c;" id="tmp-hueco-preview">?</span> <span id="tmp-uni-destino" class="tmp-unidad-destacada">s</span></div>
+<div class="tmp-instruccion">Escribe la solución sin ceros innecesarios y pulsa Intro (o haz clic en Comprobar).</div>
+<!-- Entrada de solución -->
+<div class="tmp-input-row"><span class="tmp-label-sol">Solución</span> <input type="text" id="tmp-input-sol" class="tmp-input" autocomplete="off" placeholder="Ej: 9000" />
+<div role="button" id="tmp-btn-comprobar" class="tmp-btn" tabindex="0">Comprobar</div>
+</div>
+<!-- Banner de acierto -->
+<div id="tmp-ok-banner" class="tmp-ok-banner"><span>¡Correcto! Has realizado bien la conversión de tiempo.</span>
+<div role="button" id="tmp-btn-siguiente-ok" class="tmp-btn" tabindex="0">Otro ejercicio</div>
+</div>
+<!-- Panel de ayuda visual con ruta lineal de factores -->
+<div id="tmp-ayuda-panel" class="tmp-ayuda-panel">
+<div class="tmp-sol-titulo">Solución:</div>
+<div id="tmp-sol-operacion" class="tmp-sol-operacion"></div>
+<div class="tmp-sol-sub">Observa la ruta de conversión entre unidades para ver por cuánto multiplicamos o dividimos:</div>
+<div id="tmp-ruta-container" class="tmp-ruta-container"><!-- Nodos y arcos generados por JS --></div>
+<div id="tmp-explicacion-pasos" class="tmp-explicacion-pasos"></div>
+</div>
+</div>
+<script>
+    (function() {
+        // Escala ordenada de mayor a menor y factor respecto a la unidad inmediatamente inferior
+        const unidades = [
+            { sim: 'siglos', nombre: 'siglos',               factorSiguiente: 10 },  // 1 siglo = 10 décadas
+            { sim: 'décadas',nombre: 'décadas',              factorSiguiente: 10 },  // 1 década = 10 años
+            { sim: 'años',   nombre: 'años',                 factorSiguiente: 365 }, // 1 año = 365 días
+            { sim: 'd',      nombre: 'días',                 factorSiguiente: 24 },  // 1 día = 24 horas
+            { sim: 'h',      nombre: 'horas',                factorSiguiente: 60 },  // 1 hora = 60 minutos
+            { sim: 'min',    nombre: 'minutos',              factorSiguiente: 60 },  // 1 minuto = 60 segundos
+            { sim: 's',      nombre: 'segundos',             factorSiguiente: 10 },  // 1 s = 10 ds
+            { sim: 'ds',     nombre: 'décimas de segundo',   factorSiguiente: 10 },  // 1 ds = 10 cs
+            { sim: 'cs',     nombre: 'centésimas de segundo',factorSiguiente: 10 },  // 1 cs = 10 ms
+            { sim: 'ms',     nombre: 'milisegundos',         factorSiguiente: 1 }
+        ];
+
+        let ejercicioActual = {};
+
+        const elValOrigen = document.getElementById('tmp-val-origen');
+        const elUniOrigen = document.getElementById('tmp-uni-origen');
+        const elUniDestino = document.getElementById('tmp-uni-destino');
+        const elHuecoPreview = document.getElementById('tmp-hueco-preview');
+        const inpSol = document.getElementById('tmp-input-sol');
+        const btnComprobar = document.getElementById('tmp-btn-comprobar');
+        const okBanner = document.getElementById('tmp-ok-banner');
+        const btnSiguienteOk = document.getElementById('tmp-btn-siguiente-ok');
+        const ayudaPanel = document.getElementById('tmp-ayuda-panel');
+        const elSolOperacion = document.getElementById('tmp-sol-operacion');
+        const elRutaContainer = document.getElementById('tmp-ruta-container');
+        const elExplicacion = document.getElementById('tmp-explicacion-pasos');
+
+        function formatearES(num) {
+            let limpio = parseFloat(num.toPrecision(12));
+            let str = limpio.toFixed(10).replace(/\.?0+$/, '');
+            return str.replace('.', ',');
+        }
+
+        function esDecimalExacto(num) {
+            // Verifica que el resultado no sea un decimal periódico largo (máximo 4 decimales significativos)
+            let redondeado = Math.round(num * 100000) / 100000;
+            return Math.abs(num - redondeado) < 1e-11;
+        }
+
+        function generarEjercicio() {
+            inpSol.value = '';
+            inpSol.style.borderColor = '#f97316';
+            inpSol.style.backgroundColor = '#ffffff';
+            elHuecoPreview.innerText = '?';
+            okBanner.style.setProperty('display', 'none', 'important');
+            ayudaPanel.style.setProperty('display', 'none', 'important');
+
+            let idxOrigen, idxDestino, salto, factorTotal, valorOrigen, solucionNum;
+            let valido = false;
+
+            while (!valido) {
+                idxOrigen = Math.floor(Math.random() * unidades.length);
+                // Saltos de 1 a 3 pasos para nivel básico
+                salto = Math.floor(Math.random() * 7) - 3;
+                if (salto === 0 || (idxOrigen + salto < 0) || (idxOrigen + salto >= unidades.length)) continue;
+
+                idxDestino = idxOrigen + salto;
+
+                // Calcular factor total multiplicando los factores intermedios
+                factorTotal = 1;
+                let minIdx = Math.min(idxOrigen, idxDestino);
+                let maxIdx = Math.max(idxOrigen, idxDestino);
+                for (let i = minIdx; i < maxIdx; i++) {
+                    factorTotal *= unidades[i].factorSiguiente;
+                }
+
+                // Evitar factores gigantescos (ej: siglos a días = 36500 está bien, pero limitar a <= 100000)
+                if (factorTotal > 100000) continue;
+
+                if (salto > 0) {
+                    // Multiplicar (pasar a unidad más pequeña)
+                    let tieneDec = Math.random() < 0.45;
+                    let base = Math.floor(Math.random() * 25) + 1;
+                    valorOrigen = tieneDec ? parseFloat((base + [0.5, 0.2, 0.25, 0.1][Math.floor(Math.random()*4)]).toFixed(2)) : base;
+                    solucionNum = valorOrigen * factorTotal;
+                    valido = true;
+                } else {
+                    // Dividir (pasar a unidad más grande): elegimos un múltiplo amigable del factorTotal
+                    let multiplicadores = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 10, 12, 20];
+                    let mult = multiplicadores[Math.floor(Math.random() * multiplicadores.length)];
+                    valorOrigen = factorTotal * mult;
+                    solucionNum = valorOrigen / factorTotal;
+                    if (esDecimalExacto(valorOrigen) && esDecimalExacto(solucionNum) && valorOrigen <= 500000) {
+                        valido = true;
+                    }
+                }
+            }
+
+            solucionNum = parseFloat(solucionNum.toPrecision(12));
+
+            ejercicioActual = {
+                idxOrigen: idxOrigen,
+                idxDestino: idxDestino,
+                salto: salto,
+                valorOrigen: valorOrigen,
+                factorTotal: factorTotal,
+                solucionNum: solucionNum,
+                solucionStr: formatearES(solucionNum)
+            };
+
+            elValOrigen.innerText = formatearES(valorOrigen);
+            elUniOrigen.innerText = unidades[idxOrigen].sim;
+            elUniDestino.innerText = unidades[idxDestino].sim;
+
+            setTimeout(() => inpSol.focus(), 50);
+        }
+
+        function mostrarAyuda() {
+            const idxOrig = ejercicioActual.idxOrigen;
+            const idxDest = ejercicioActual.idxDestino;
+            const baja = ejercicioActual.salto > 0; // true = unidad mayor a menor (multiplicar)
+            const opSimbolo = baja ? '·' : ':';
+            const opVerbo = baja ? 'multiplicamos' : 'dividimos';
+
+            elSolOperacion.innerText = `${formatearES(ejercicioActual.valorOrigen)} ${opSimbolo} ${ejercicioActual.factorTotal} = ${ejercicioActual.solucionStr}`;
+
+            // Construir la ruta visual paso a paso solo con los nodos implicados
+            let htmlRuta = '';
+            let desgloseFactores = [];
+
+            if (baja) {
+                for (let i = idxOrig; i <= idxDest; i++) {
+                    let esExtremo = (i === idxOrig || i === idxDest);
+                    htmlRuta += `<div class="tmp-nodo ${esExtremo ? 'extremo' : ''}">${unidades[i].sim}</div>`;
+                    if (i < idxDest) {
+                        let f = unidades[i].factorSiguiente;
+                        desgloseFactores.push(f);
+                        htmlRuta += `
+                            <div class="tmp-salto-flecha">
+                                <span class="tmp-salto-badge">· ${f}</span>
+                                <span class="tmp-salto-linea">&rarr;</span>
+                            </div>
+                        `;
+                    }
+                }
+            } else {
+                for (let i = idxOrig; i >= idxDest; i--) {
+                    let esExtremo = (i === idxOrig || i === idxDest);
+                    htmlRuta += `<div class="tmp-nodo ${esExtremo ? 'extremo' : ''}">${unidades[i].sim}</div>`;
+                    if (i > idxDest) {
+                        let f = unidades[i - 1].factorSiguiente;
+                        desgloseFactores.push(f);
+                        htmlRuta += `
+                            <div class="tmp-salto-flecha">
+                                <span class="tmp-salto-badge">: ${f}</span>
+                                <span class="tmp-salto-linea">&rarr;</span>
+                            </div>
+                        `;
+                    }
+                }
+            }
+
+            elRutaContainer.innerHTML = htmlRuta;
+
+            let textoFactorTotal = desgloseFactores.length > 1
+                ? `(${desgloseFactores.join(' · ')} = <strong>${ejercicioActual.factorTotal}</strong>)`
+                : `<strong>${ejercicioActual.factorTotal}</strong>`;
+
+            elExplicacion.innerHTML = `
+                Para pasar de <strong>${unidades[idxOrig].nombre}</strong> a <strong>${unidades[idxDest].nombre}</strong> 
+                ${opVerbo} por ${textoFactorTotal} &rarr; <strong style="color:#ea580c; font-size:1.15rem;">${opSimbolo} ${ejercicioActual.factorTotal}</strong>
+            `;
+
+            ayudaPanel.style.setProperty('display', 'block', 'important');
+        }
+
+        function comprobarRespuesta() {
+            let raw = inpSol.value.trim().replace(',', '.');
+            if (raw === '' || isNaN(Number(raw))) {
+                inpSol.focus();
+                return;
+            }
+
+            let tieneCerosInnecesarios = false;
+            if (raw.includes('.')) {
+                if (raw.endsWith('0') || raw.endsWith('.')) {
+                    tieneCerosInnecesarios = true;
+                }
+            }
+
+            let valUsuario = parseFloat(raw);
+            let esCorrectoNum = Math.abs(valUsuario - ejercicioActual.solucionNum) < 1e-11;
+
+            if (esCorrectoNum && !tieneCerosInnecesarios) {
+                inpSol.style.borderColor = '#16a34a';
+                inpSol.style.backgroundColor = '#f0fdf4';
+                elHuecoPreview.innerText = ejercicioActual.solucionStr;
+                ayudaPanel.style.setProperty('display', 'none', 'important');
+                okBanner.style.setProperty('display', 'flex', 'important');
+            } else {
+                inpSol.style.borderColor = '#dc2626';
+                inpSol.style.backgroundColor = '#fef2f2';
+                mostrarAyuda();
+                inpSol.focus();
+                inpSol.select();
+            }
+        }
+
+        btnComprobar.addEventListener('click', comprobarRespuesta);
+        btnSiguienteOk.addEventListener('click', generarEjercicio);
+        inpSol.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                comprobarRespuesta();
+            }
+        });
+
+        setTimeout(generarEjercicio, 100);
+    })();
+    </script>
+</div>
+</div>
+</div>
+</div>
+</article><article id="20260323172955RZWMRO" class="box sin-copa caja-morada">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_relaciona.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Relaciona</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260320220557376KZQ" class="idevice_node relate" data-idevice-path="../idevices/relate/" data-idevice-type="relate">
+<div class="relaciona-IDevice"><div class="relaciona-instructions gameQP-instructions"><p>Relaciona cada tarjeta con su pareja.</p></div><div class="relaciona-DataGame js-hidden">{"typeGame":"Relaciona","author":"","randomCards":true,"instructions":"<p>Relaciona cada tarjeta con su pareja.</p>","showMinimize":false,"itinerary":{"showClue":false,"clueGame":"","percentageClue":40,"showCodeAccess":false,"codeAccess":"","messageCodeAccess":""},"cardsGame":[{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"2%20horas%20y%20media","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"150%20minutos"},{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"1%20hora%20y%20cuarto","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"75%20minutos"},{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"3%20horas","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"180%20minutos"},{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"Media%20hora","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"30%20minutos"},{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"1%20hora","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"60%20minutos"},{"url":"","x":0,"y":0,"author":"","alt":"","audio":"","color":"#7a297b","backcolor":"#f9f2fa","eText":"1%20hora%20y%20tres%20cuartos","urlBk":"","xBk":0,"yBk":0,"authorBk":"","altBk":"","audioBk":"","colorBk":"#7a297b","backcolorBk":"#f9f2fa","eTextBk":"105%20minutos"}],"isScorm":0,"textButtonScorm":"Guardar la puntuación","repeatActivity":true,"weighted":100,"textAfter":"","version":2,"percentajeCards":100,"type":1,"showSolution":true,"timeShowSolution":3,"time":59,"evaluation":false,"evaluationID":"20260319083737TTBZGX","id":"20260320220557376KZQ","msgs":{"msgSubmit":"Enviar","msgClue":"¡Genial! La pista es:","msgCodeAccess":"Código de acceso","msgPlayStart":"Pulsa aquí para jugar","msgScore":"Puntuación","msgErrors":"Errores","msgHits":"Aciertos","msgMinimize":"Minimizar","msgMaximize":"Maximizar","msgFullScreen":"Pantalla Completa","msgExitFullScreen":"Salir del modo pantalla completa","msgNoImage":"Pregunta sin imágenes","msgEndGameScore":"Antes de guardar la puntuación comience la partida.","msgScoreScorm":"La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.","msgOnlySaveScore":"¡Solo puede guardar la puntuación una vez!","msgOnlySave":"Solo puede guardar una vez","msgInformation":"Información","msgYouScore":"Su puntuación","msgAuthor":"Autoría","msgOnlySaveAuto":"Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.","msgSaveAuto":"Su puntuación se guardará automáticamente después de cada pregunta.","msgSeveralScore":"Puede guardar la puntuación tantas veces como quiera","msgYouLastScore":"La última puntuación guardada es","msgActityComply":"Ya ha realizado esta actividad.","msgPlaySeveralTimes":"Puede realizar esta actividad cuantas veces quiera","msgClose":"Cerrar","msgAudio":"Audio","msgNumQuestions":"Número de tarjetas","msgTryAgain":"Necesitas al menos %s% de respuestas correctas para obtener la información. Inténtalo de nuevo.","msgEndGameM":"Has completado el ejercicio. Tu puntuación es %s.","msgUncompletedActivity":"Actividad no completada","msgSuccessfulActivity":"Actividad superada. Puntuación: %s","msgUnsuccessfulActivity":"Actividad no superada. Puntuación: %s","msgTypeGame":"Relaciona","msgCheck":"Comprobar","msgRestart":"Reiniciar"}}</div><div class="game-evaluation-ids js-hidden" data-id="20260320220557376KZQ" data-evaluationb="false" data-evaluationid="20260319083737TTBZGX"></div><div class="relaciona-bns js-hidden">Su navegador no es compatible con esta herramienta.</div></div>
+</div>
+</div>
+</article><article id="20260323172955VOTVMR" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Instrumentos para medir el tiempo.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737LWXBWT" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737LWXBWT&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><h5><br></h5>
+<p>El reloj, el calendario, el cronómetro, ... todo dependerá de los periodos que queramos medir.</p>
+<p style="text-align: center;"><img src="../content/resources/20260319083737LWXBWT/relojes.jpg" width="704" height="384" alt=""></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955WVZQUY" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Otras unidades fuera del Sistema Internacional.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737GOGIWV" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737GOGIWV&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Con el tiempo no pasa como con la longitud o la masa, tanto en los países anglosajones como en los que se tiene instaurado el SI la medida básica del tiempo es el segundo, por lo que estas unidades dependerán de la agrupación que se haga del tiempo:&nbsp;</p>
+<ul>
+<li>
+<p>Agrupación de <strong>días</strong>: semana, quincena, mes...</p>
+</li>
+<li>
+<p>Agrupación de<strong> meses</strong>: trimestre, semestre...</p>
+</li>
+<li>
+<p>Agrupación de <strong>años</strong>: lustro, década, siglo, milenio...</p>
+</li>
+</ul><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955PNMGOR" class="box caja-morada sin-copa boton-morado">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_completa.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Completa</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260320234921575QFQ" class="idevice_node complete" data-idevice-path="../idevices/complete/" data-idevice-type="complete">
+<div class="completa-IDevice"><div class="game-evaluation-ids js-hidden" data-id="20260320234921575QFQ" data-evaluationb="false" data-evaluationid="20260319083737TTBZGX"></div><div class="completa-feedback-game"></div><div class="completa-instructions"><p><br /></p>
+<table border="0" cellpadding="10" style="width: 100%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 49.9688%; text-align: center;"><img src="../content/resources/20260320234921575QFQ/abuelo-2.jpg" width="550" height="324" alt="" /><br /></td>
+<td style="width: 49.9688%; text-align: center;"><img src="../content/resources/20260320234921575QFQ/abuela-1.jpg" width="550" height="326" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><br /></p></div><div class="completa-DataGame js-hidden">%E9%B0%E6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%D1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%B0%A8%B0%AE%E2%AC%AE%F0%E0%B2%BD%AC%AE%BD%E2%AC%CE%FC%AE%E6%F3%F0%FE%F7%B2%F0%FD%E0%F6%F7%E0%AF%CE%B0%A2%CE%B0%B2%F1%F7%FE%FE%E2%F3%F6%F6%FB%FC%F5%AF%CE%B0%A3%A2%CE%B0%B2%E1%E6%EB%FE%F7%AF%CE%B0%E5%FB%F6%E6%FA%A8%B2%A3%A2%A2%B7%A9%B2%FF%F3%E0%F5%FB%FC%BF%FE%F7%F4%E6%A8%B2%F3%E7%E6%FD%A9%B2%FF%F3%E0%F5%FB%FC%BF%E0%FB%F5%FA%E6%A8%B2%F3%E7%E6%FD%A9%CE%B0%AC%CE%FC%AE%E6%F0%FD%F6%EB%AC%CE%FC%AE%E6%E0%AC%CE%FC%AE%E6%F6%B2%E1%E6%EB%FE%F7%AF%CE%B0%E5%FB%F6%E6%FA%A8%B2%A6%AB%BC%AB%A4%AA%AA%B7%A9%B2%E6%F7%EA%E6%BF%F3%FE%FB%F5%FC%A8%B2%F1%F7%FC%E6%F7%E0%A9%CE%B0%AC%AE%FB%FF%F5%B2%E1%E0%F1%AF%CE%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A0%A1%A6%AB%A0%A3%A7%A5%A7%C3%D4%C3%BD%F3%F0%E7%F7%FE%FD%CD%A0%BC%E2%FC%F5%CE%B0%B2%E5%FB%F6%E6%FA%AF%CE%B0%A7%A7%A2%CE%B0%B2%FA%F7%FB%F5%FA%E6%AF%CE%B0%A1%A0%A6%CE%B0%B2%F3%FE%E6%AF%CE%B0%CE%B0%B2%BD%AC%AE%F0%E0%B2%BD%AC%AE%BD%E6%F6%AC%CE%FC%AE%E6%F6%B2%E1%E6%EB%FE%F7%AF%CE%B0%E5%FB%F6%E6%FA%A8%B2%A6%AB%BC%AB%A4%AA%AA%B7%A9%B2%E6%F7%EA%E6%BF%F3%FE%FB%F5%FC%A8%B2%F1%F7%FC%E6%F7%E0%A9%CE%B0%AC%AE%FB%FF%F5%B2%E1%E0%F1%AF%CE%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A0%A1%A6%AB%A0%A3%A7%A5%A7%C3%D4%C3%BD%F3%F0%E7%F7%FE%F3%CD%A3%BC%E2%FC%F5%CE%B0%B2%E5%FB%F6%E6%FA%AF%CE%B0%A7%A7%A2%CE%B0%B2%FA%F7%FB%F5%FA%E6%AF%CE%B0%A1%A0%A4%CE%B0%B2%F3%FE%E6%AF%CE%B0%CE%B0%B2%BD%AC%AE%BD%E6%F6%AC%CE%FC%AE%BD%E6%E0%AC%CE%FC%AE%BD%E6%F0%FD%F6%EB%AC%CE%FC%AE%BD%E6%F3%F0%FE%F7%AC%CE%FC%AE%E2%AC%AE%F0%E0%B2%BD%AC%AE%BD%E2%AC%B0%BE%B0%E6%F7%EA%E6%C6%F7%EA%E6%B0%A8%B0%B7%A1%D1%E6%F3%F0%FE%F7%B7%A0%A2%F0%FD%E0%F6%F7%E0%B7%A1%D6%B7%A0%A0%A2%B7%A0%A0%B7%A0%A2%E1%E6%EB%FE%F7%B7%A1%D6%B7%A0%A0%E5%FB%F6%E6%FA%B7%A1%D3%B7%A0%A2%A3%A2%A2%BC%A2%A3%A4%B7%A0%A7%B7%A1%D0%B7%A0%A0%B7%A1%D7%B7%A2%D3%B7%A1%D1%E6%F0%FD%F6%EB%B7%A1%D7%B7%A2%D3%B7%A1%D1%E6%E0%B7%A1%D7%B7%A2%D3%B7%A1%D1%E6%F6%B7%A0%A2%E1%E6%EB%FE%F7%B7%A1%D6%B7%A0%A0%E5%FB%F6%E6%FA%B7%A1%D3%B7%A0%A2%A6%AB%BC%AB%A4%A2%A4%B7%A0%A7%B7%A1%D0%B7%A0%A2%E6%F7%EA%E6%BF%F3%FE%FB%F5%FC%B7%A1%D3%B7%A0%A2%F1%F7%FC%E6%F7%E0%B7%A1%D0%B7%A0%A0%B7%A1%D7%B7%A2%D3%B7%A1%D1%E2%B7%A1%D7%D7%FE%B7%A0%A2%FC%FB%B7%D4%A3%FD%B7%A0%A2%E6%FB%F7%FC%F7%B7%A0%A2%D2%D2%A1%D2%D2%B7%A0%A2%F3%B7%D4%A3%FD%E1%BC%B7%A1%D1%BD%E2%B7%A1%D7%B7%A2%D3%B7%A1%D1%E2%B7%A1%D7%D7%FE%B7%A0%A2%F3%F0%E7%F7%FE%FD%B7%A0%A2%E6%FB%F7%FC%F7%B7%A0%A2%D2%D2%AA%A7%D2%D2%B7%A0%A2%F3%B7%D4%A3%FD%E1%BC%B7%A1%D1%BD%E2%B7%A1%D7%B7%A2%D3%B7%A1%D1%BD%E6%F6%B7%A1%D7%B7%A2%D3%B7%A1%D1%E6%F6%B7%A0%A2%E1%E6%EB%FE%F7%B7%A1%D6%B7%A0%A0%E5%FB%F6%E6%FA%B7%A1%D3%B7%A0%A2%A6%AB%BC%AB%A4%A2%A4%B7%A0%A7%B7%A1%D0%B7%A0%A2%E6%F7%EA%E6%BF%F3%FE%FB%F5%FC%B7%A1%D3%B7%A0%A2%F1%F7%FC%E6%F7%E0%B7%A1%D0%B7%A0%A0%B7%A1%D7%B7%A2%D3%B7%A1%D1%E2%B7%A1%D7%DE%F3%B7%A0%A2%FC%FB%B7%D4%A3%F3%B7%A0%A2%E6%FB%F7%FC%F7%B7%A0%A2%D2%D2%A3%A3%D2%D2%B7%A0%A2%F3%B7%D4%A3%FD%E1%BC%B7%A1%D1%BD%E2%B7%A1%D7%B7%A2%D3%B7%A1%D1%E2%B7%A1%D7%DE%F3%B7%A0%A2%F3%F0%E7%F7%FE%F3%B7%A0%A2%E6%FB%F7%FC%F7%B7%A0%A2%D2%D2%A5%A4%D2%D2%B7%A0%A2%F3%B7%D4%A3%FD%E1%BC%B7%A1%D1%BD%E2%B7%A1%D7%B7%A2%D3%B7%A1%D1%BD%E6%F6%B7%A1%D7%B7%A2%D3%B7%A1%D1%BD%E6%E0%B7%A1%D7%B7%A2%D3%B7%A1%D1%BD%E6%F0%FD%F6%EB%B7%A1%D7%B7%A2%D3%B7%A1%D1%BD%E6%F3%F0%FE%F7%B7%A1%D7%B0%BE%B0%E1%FA%FD%E5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%FB%E6%FB%FC%F7%E0%F3%E0%EB%B0%A8%E9%B0%E1%FA%FD%E5%D1%FE%E7%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FE%E7%F7%D5%F3%FF%F7%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%D1%FE%E7%F7%B0%A8%A6%A2%BE%B0%E1%FA%FD%E5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%BE%B0%FF%F7%E1%E1%F3%F5%F7%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%EF%BE%B0%F1%F3%E1%F7%C1%F7%FC%E1%FB%E6%FB%E4%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%FB%E1%C1%F1%FD%E0%FF%B0%A8%A2%BE%B0%E6%F7%EA%E6%D0%E7%E6%E6%FD%FC%C1%F1%FD%E0%FF%B0%A8%B0%D5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%E0%F7%E2%F7%F3%E6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%E6%E0%E7%F7%BE%B0%E5%F7%FB%F5%FA%E6%F7%F6%B0%A8%A3%A2%A2%BE%B0%E6%F7%EA%E6%D4%F7%F7%F6%D0%F3%F1%F9%B0%A8%B0%B0%BE%B0%E6%F7%EA%E6%D3%F4%E6%F7%E0%B0%A8%B0%B0%BE%B0%F4%F7%F7%F6%D0%F3%F1%F9%B0%A8%F4%F3%FE%E1%F7%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%D4%D0%B0%A8%A3%A2%A2%BE%B0%E4%F7%E0%E1%FB%FD%FC%B0%A8%A3%BE%B0%F7%E1%E6%E0%FB%F1%E6%D1%FA%F7%F1%F9%B0%A8%F4%F3%FE%E1%F7%BE%B0%E5%FD%E0%F6%E1%C1%FB%E8%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%E6%FB%FF%F7%B0%A8%A2%BE%B0%E6%EB%E2%F7%B0%A8%A2%BE%B0%E5%FD%E0%F6%E1%D7%E0%E0%FD%E0%E1%B0%A8%B0%B0%BE%B0%F3%E6%E6%F7%FF%E2%E1%DC%E7%FF%F0%F7%E0%B0%A8%A3%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%D7%E0%E0%FD%E0%B0%A8%A0%A2%BE%B0%E1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%E5%FD%E0%F6%E1%DE%FB%FF%FB%E6%B0%A8%F4%F3%FE%E1%F7%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%DB%D6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%C6%C6%D0%C8%D5%CA%B0%BE%B0%FA%F3%E1%D0%F3%F1%F9%B0%A8%F4%F3%FE%E1%F7%BE%B0%E7%E0%FE%D0%F3%F1%F9%B0%A8%B0%B0%BE%B0%F3%E7%E6%FA%FD%E0%D0%F3%F1%F9%DB%FF%F3%F5%F7%B0%A8%B0%B0%BE%B0%F4%FD%FC%E6%D1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%FB%F6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A0%A2%A0%A1%A6%AB%A0%A3%A7%A5%A7%C3%D4%C3%B0%BE%B0%FF%E1%F5%E1%B0%A8%E9%B0%FF%E1%F5%C0%F7%E2%FE%EB%B0%A8%B0%C0%F7%E1%E2%FD%FC%F6%F7%E0%B0%BE%B0%FF%E1%F5%D7%FC%E6%F7%E0%D1%FD%F6%F7%B0%A8%B0%DB%FC%E6%E0%FD%F6%E7%E8%F1%F3%B2%F7%FE%B2%F1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%D1%FD%F6%F7%B0%A8%B0%D7%FE%B2%F1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B2%FC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B0%BE%B0%FF%E1%F5%D5%F3%FF%F7%DD%E4%F7%E0%B0%A8%B03%D4%FB%FC%B2%F6%F7%B2%FE%F3%B2%E2%F3%E0%E6%FB%F6%F3%B3%B0%BE%B0%FF%E1%F5%D1%FE%E7%F7%B0%A8%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%E2%FB%E1%E6%F3%B2%F7%E1%A8%B0%BE%B0%FF%E1%F5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%D1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%E6%F3%E0%E6%B0%A8%B0%C2%E7%FE%E1%F7%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F8%E7%F5%F3%E0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%E1%B0%A8%B0%D7%E0%E0%FD%E0%F7%E1%B0%BE%B0%FF%E1%F5%DA%FB%E6%E1%B0%A8%B0%D3%F1%FB%F7%E0%E6%FD%E1%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%C5%F7%FB%F5%FA%E6%B0%A8%B0%C2%F7%E1%FD%B0%BE%B0%FF%E1%F5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%B0%DF%FB%FC%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%DF%F3%EA%FB%FF%FB%E8%F7%B0%A8%B0%DF%F3%EA%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%C6%FB%FF%F7%B0%A8%B0%DE%7F%FF%FB%E6%F7%B2%F6%F7%B2%E6%FB%F7%FF%E2%FD%B2%BA%FF%FF%A8%E1%E1%BB%B0%BE%B0%FF%E1%F5%DE%FB%E4%F7%B0%A8%B0%C4%FB%F6%F3%B0%BE%B0%FF%E1%F5%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C2%F3%FC%E6%F3%FE%FE%F3%B2%D1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%D7%EA%FB%E6%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C1%F3%FE%FB%E0%B2%F6%F7%FE%B2%FF%FD%F6%FD%B2%E2%F3%FC%E6%F3%FE%FE%F3%B2%F1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%DC%E7%FF%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B0%DCh%FF%F7%E0%FD%B2%F6%F7%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F7%E1%B0%A8%B03%D1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%D7%EA%F1%F7%FE%F7%FC%E6%F7%B3%B2%EE%B23%D5%F7%FC%FB%F3%FE%B3%B2%EE%B23%DF%E7%EB%B2%F0%FB%F7%FC%B3%B2%EE%B23%C2%F7%E0%F4%F7%F1%E6%FD%B3%B0%BE%B0%FF%E1%F5%D4%F3%FB%FE%E7%E0%F7%E1%B0%A8%B03%DC%FD%B2%F7%E0%F3%B2%F7%E1%FD%B3%B2%EE%B23%DB%FC%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DE%FD%B2%E1%F7%FC%E6%FB%FF%FD%E1%B3%B2%EE%B23%D7%E0%E0%FD%E0%B3%B0%BE%B0%FF%E1%F5%C6%E0%EB%D3%F5%F3%FB%FC%B0%A8%B0%DC%F7%F1%F7%E1%FB%E6%F3%E1%B2%F3%FE%B2%FF%F7%FC%FD%E1%B2%B7%E1%B7%B2%F6%F7%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%E2%F3%E0%F3%B2%FD%F0%E6%F7%FC%F7%E0%B2%FE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%BC%B2%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%BC%B0%BE%B0%FF%E1%F5%D7%FC%F6%D5%F3%FF%F7%C1%F1%FD%E0%F7%B0%A8%B0%D3%FC%E6%F7%E1%B2%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F1%FD%FF%FB%F7%FC%F1%F7%B2%FE%F3%B2%E2%F3%E0%E6%FB%F6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%C1%F1%FD%E0%FF%B0%A8%B0%DE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%FC%FD%B2%E1%F7%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E2%FD%E0%E3%E7%F7%B2%F7%E1%E6%F3%B2%E2s%F5%FB%FC%F3%B2%FC%FD%B2%F4%FD%E0%FF%F3%B2%E2%F3%E0%E6%F7%B2%B2%F6%F7%B2%E7%FC%B2%E2%F3%E3%E7%F7%E6%F7%B2%C1%D1%DD%C0%DF%BC%B0%BE%B0%FF%E1%F5%D3%FC%E1%E5%F7%E0%B0%A8%B0%C0%F7%E1%E2%FD%FC%F6%F7%E0%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%C1%F1%FD%E0%F7%B0%A8%B03%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E7%FC%F3%B2%E4%F7%E8%B3%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%B0%A8%B0%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%B0%BE%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B0%DB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%CB%FD%E7%C1%F1%FD%E0%F7%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%D3%E7%E6%FA%FD%E0%B0%A8%B0%D3%E7%E6%FD%E0%7F%F3%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B2%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F8%E7%F5%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%BC%B0%BE%B0%FF%E1%F5%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F3%E7%E6%FD%FFs%E6%FB%F1%F3%FF%F7%FC%E6%F7%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F7%E4%F7%E0%F3%FE%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E6%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%F1%FD%FF%FD%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%CB%FD%E7%DE%F3%E1%E6%C1%F1%FD%E0%F7%B0%A8%B0%DE%F3%B2h%FE%E6%FB%FF%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F5%E7%F3%E0%F6%F3%F6%F3%B2%F7%E1%B0%BE%B0%FF%E1%F5%D3%F1%E6%FB%E6%EB%D1%FD%FF%E2%FE%EB%B0%A8%B0%CB%F3%B2%FA%F3%B2%E0%F7%F3%FE%FB%E8%F3%F6%FD%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%BC%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%F7%E4%F7%E0%F3%FE%C6%FB%FF%F7%E1%B0%A8%B0%C2%E7%F7%F6%F7%B2%E0%F7%F3%FE%FB%E8%F3%E0%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B2%F1%E7%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%D1%FE%FD%E1%F7%B0%A8%B0%D1%F7%E0%E0%F3%E0%B0%BE%B0%FF%E1%F5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%C1%FD%FE%E7%F1%FBa%FC%B0%BE%B0%FF%E1%F5%C6%E0%EB%B0%A8%B03%C2%E0%E7%F7%F0%F3%B2%FD%E6%E0%F3%B2%E4%F7%E8%B3%B0%BE%B0%FF%E1%F5%D1%FA%F7%F1%F9%B0%A8%B0%D1%FD%FF%E2%E0%FD%F0%F3%E0%B0%BE%B0%FF%E1%F5%D7%FC%F6%C1%F1%FD%E0%F7%B0%A8%B0%DA%F3%E1%B2%E6%F7%FC%FB%F6%FD%B2%B7%E1%B2%F3%F1%FB%F7%E0%E6%FD%E1%B2%EB%B2%B7%F6%B2%F7%E0%E0%FD%E0%F7%E1%BC%B0%BE%B0%FF%E1%F5%D7%FC%F6%C6%FB%FF%F7%B0%A8%B0%D7%FE%B2%E6%FB%F7%FF%E2%FD%B2%FA%F3%B2%F4%FB%FC%F3%FE%FB%E8%F3%F6%FD%BC%B0%BE%B0%FF%E1%F5%D5%F3%FF%F7%D7%FC%F6%B0%A8%B0%DA%F3%E1%B2%F1%FD%FF%E2%FE%F7%E6%F3%F6%FD%B2%FE%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B0%BE%B0%FF%E1%F5%C7%FC%F1%FD%FF%E2%FE%F7%E6%F7%F6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%F1%FD%FF%E2%FE%F7%E6%F3%F6%F3%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C7%FC%E1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%D1%FD%FF%E2%FE%F7%E6%F3%B0%EF%EF</div><div class="completa-text-game js-hidden"><table border="0" style="width: 100.016%;">
+<tbody>
+<tr>
+<td style="width: 49.9606%; text-align: center;">
+<p>El niño tiene @@3@@ años.</p>
+<p>El abuelo tiene @@85@@ años.</p>
+</td>
+<td style="width: 49.9606%; text-align: center;">
+<p>La niña tiene @@11@@ años.</p>
+<p>La abuela tiene @@76@@ años.</p>
+</td>
+</tr>
+</tbody>
+</table></div><div class="cmpt-bns js-hidden">Su navegador no es compatible con esta herramienta.</div></div>
+</div>
+</div>
+</article><article id="20260323172955KFVMMZ" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_casopractico.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Expresiones complejas e incomplejas.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737KSPGNR" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737KSPGNR&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 99.9703%; background-color: #edfcfc;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">
+<p>Cuando hablamos de tiempo podemos expresar el resultado con una o varias unidades. Por ejemplo:</p>
+<p>Si hemos hecho una ruta de senderismo podemos decir:</p>
+<p>"Hemos tardado 2 h 40 min 30 s" (<strong><span style="color: #0066cc;">forma compleja</span></strong>) o bien "hemos tardado 2,675 horas" (<span style="color: #0066cc;"><strong>forma incompleja</strong></span>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Para pasar de una forma a otra, solo hay que aplicar las reglas de cambio de unidades. Veamos unos ejemplos:</p>
+<p>a) Expresa 4,5 horas en forma compleja.</p>
+<p>b) Expresa 2 h 40 min 12 s en forma incompleja.</p>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="w">
+            </div>
+            <div class="feedback js-feedback js-hidden"><p>a) La parte entera del número decimal son las horas. Por lo que tenemos 4 horas.</p>
+<p>¿Cuántos minutos son 0,5 horas? Para pasar de horas a minutos, multiplicamos por 60, luego tenemos 60·0,5=30 min.</p>
+<p>Como no obtenemos un número decimal, sabemos que no hay segundos.</p>
+<p>Luego 4,5 h son 4 h 30 min</p>
+<p>b) Lo primero es pasar los segundos a minutos, dividiendo entre 60.</p>
+<p>12:60=0,2</p>
+<p>Luego tenemos 2 h 40,2 min.</p>
+<p>Ahora tenemos que pasar los minutos a horas, dividiendo de nuevo entre 60:</p>
+<p>40,2:60=0,67. </p>
+<p>Por lo que tenemos un total de 2,67 h</p></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955SGOLRG" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">Curiosidad</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737QXDRPF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737QXDRPF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;"><strong>La unidad de tiempo, el segundo,</strong> fue en un tiempo considerado como la fracción 1/86.400 del día solar medio. La definición exacta de "día solar medio" se dejó a los astrónomos. Sin embargo, las mediciones mostraron que las irregularidades en la rotación de la Tierra hacen de esta una definición poco satisfactoria. Teniendo en cuenta que una definición muy precisa de la unidad de tiempo es indispensable para la ciencia y la tecnología, la 13ª CGPM (1967/68, Resolución 1) sustituyó a la definición del segundo por el texto siguiente:</p>
+<p style="text-align: justify;"><em>El segundo es la duración de 9.192.631.770 periodos de la radiación correspondiente a la transición entre los dos niveles hiperfinos del estado fundamental del átomo de cesio 133.</em></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/22-masa.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/24-temperatura.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

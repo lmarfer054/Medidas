@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8je-zwlopiskz">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>2.2 Ángulos | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8je-zwlopiskz" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li class="active"> <a href="../html/22-angulos.html" class="active no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8je-zwlopiskz" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">2.2 Ángulos</h1></div>
+</header><div id="page-content-page-moskc8je-zwlopiskz" class="page-content">
+<article id="20260323172955DYPHUP" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Ángulo.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737RRSMAX" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737RRSMAX&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Si una mesa tiene esquinas, los lados de la mesa formarán un ángulo.</p>
+<table border="0" align="center" cellpadding="10">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737RRSMAX/corner-1436620-340.jpg" width="310" height="207" alt="corner" title="corner"></td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="15" style="width: 100.03%; height: 29.675px; background-color: #d3fada;">
+<tbody>
+<tr style="height: 29.675px;">
+<td style="width: 99.91%; height: 29.675px;">Un&nbsp;<span style="font-weight: bolder;">ángulo</span>&nbsp;es la&nbsp;<span style="font-weight: bolder; color: #007932;">región del plano comprendida entre dos semirrectas con origen común</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;El ángulo es positivo si se desplaza en sentido contrario al movimiento de las agujas del reloj y negativo en caso contrario.</p>
+<p style="text-align: center;"><img src="../content/resources/20260319083737JQXTEN/angulo2.jpg" width="303" height="135"></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955QRWMEC" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Radián.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737MYTMOT" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737MYTMOT&quot;}">
+<div class="exe-text-template">
+    <table border="0" cellpadding="15" style="width: 99.9703%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">
+<p>En el Sistema Internacional la unidad de medida es el <strong>radián</strong>.</p>
+<p>Un <span style="font-weight: bolder;">radián</span> es el <span style="color: #007932;"><strong>ángulo que limita un arco de circunferencia cuya longitud es igual al radio de la circunferencia</strong></span><span style="font-weight: bolder;">.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente animación te permitirá hacerte una idea intuitiva de qué es un radián.</p>
+<p style="text-align: center;"><img src="../content/resources/20260319083737MYTMOT/145px-circle-radians.gif" width="242" height="244" alt="radián" title="radián" /></p>
+<p>El radián es una unidad sumamente útil para medir ángulos, puesto que simplifica los cálculos, ya que los más comunes se expresan mediante sencillos múltiplos o divisores de π.</p>
+</div>
+</div>
+</div>
+</article><article id="block-mwngbwyi-2ha1fhk71" class="box caja-azul">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_pensar.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Observa.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795086796697-kbh7iaddt" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795086796697-kbh7iaddt&quot;}">
+<div class="exe-text-template">
+    <div id="radianes-app-container" style="width: 100%; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b;"><!-- Cabecera / Panel informativo superior -->
+<div id="rad-header" style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid #1d4ed8; border-radius: 8px; padding: 18px 22px; margin-bottom: 14px; min-height: 98px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 2px 4px rgba(29, 78, 216, 0.06);">
+<div id="rad-estado-inicial" style="font-size: 1.15rem; color: #1e3a8a; font-weight: 500; text-align: center;">Al pulsar los botones inferiores se visualizarán en radianes los ángulos indicados.</div>
+<div id="rad-estado-activo" style="display: none;">
+<div id="rad-titulo-angulo" style="display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 1.75rem; font-weight: 800; color: #1d4ed8; margin-bottom: 8px;"></div>
+<div id="rad-explicacion" style="font-size: 1.02rem; color: #1e40af; text-align: center; line-height: 1.45;"></div>
+</div>
+</div>
+<!-- Lienzo SVG central ampliado para que las etiquetas exteriores respiren holgadamente -->
+<div style="width: 100%; max-width: 560px; margin: 0 auto 16px auto; text-align: center;"><svg id="rad-svg" viewbox="0 0 520 400" style="width: 100%; height: auto; display: block; overflow: visible;"></svg></div>
+<!-- Cuadrícula de 16 botones blindados (8x2) -->
+<div id="rad-grid-botones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); gap: 8px; max-width: 720px; margin: 0 auto; background-color: #f8fafc; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0;"></div>
+</div>
+<script>
+(function() {
+  const angulosData = [
+    { id: 0, label: "π/2", num: "π", den: "2", val: Math.PI / 2, div: 2, steps: 1, dir: 1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 2 partes." },
+    { id: 1, label: "-π/2", num: "-π", den: "2", val: -Math.PI / 2, div: 2, steps: 1, dir: -1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 2 partes (sentido negativo u horario)." },
+    { id: 2, label: "π", num: "π", den: "", val: Math.PI, div: 1, steps: 1, dir: 1,
+      desc: "El ángulo π corresponde exactamente a media circunferencia (180°)." },
+    { id: 3, label: "3π/2", num: "3π", den: "2", val: 3 * Math.PI / 2, div: 2, steps: 3, dir: 1,
+      desc: "Los puntos amarillos indican que cada semicircunferencia (π) se ha dividido en 2 partes, tomando 3 de ellas." },
+    { id: 4, label: "π/3", num: "π", den: "3", val: Math.PI / 3, div: 3, steps: 1, dir: 1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 3 partes." },
+    { id: 5, label: "π/4", num: "π", den: "4", val: Math.PI / 4, div: 4, steps: 1, dir: 1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 4 partes." },
+    { id: 6, label: "3π/4", num: "3π", den: "4", val: 3 * Math.PI / 4, div: 4, steps: 3, dir: 1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 4 partes, tomando 3 de ellas." },
+    { id: 7, label: "5π/6", num: "5π", den: "6", val: 5 * Math.PI / 6, div: 6, steps: 5, dir: 1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 6 partes." },
+    { id: 8, label: "2π", num: "2π", den: "", val: 2 * Math.PI, div: 1, steps: 2, dir: 1,
+      desc: "El ángulo 2π equivale a dos semicircunferencias completas (una vuelta entera de 360°)." },
+    { id: 9, label: "5π/4", num: "5π", den: "4", val: 5 * Math.PI / 4, div: 4, steps: 5, dir: 1,
+      desc: "Los puntos amarillos indican que cada semicircunferencia (π) se ha dividido en 4 partes, tomando 5 de ellas." },
+    { id: 10, label: "11π/6", num: "11π", den: "6", val: 11 * Math.PI / 6, div: 6, steps: 11, dir: 1,
+      desc: "Los puntos amarillos indican que cada semicircunferencia (π) se ha dividido en 6 partes, tomando 11 de ellas." },
+    { id: 11, label: "-2π", num: "-2π", den: "", val: -2 * Math.PI, div: 1, steps: 2, dir: -1,
+      desc: "El ángulo -2π equivale a una vuelta completa (360°) recorrida en sentido negativo (horario)." },
+    { id: 12, label: "-3π/4", num: "-3π", den: "4", val: -3 * Math.PI / 4, div: 4, steps: 3, dir: -1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 4 partes, tomando 3 en sentido negativo." },
+    { id: 13, label: "-π/4", num: "-π", den: "4", val: -Math.PI / 4, div: 4, steps: 1, dir: -1,
+      desc: "Los puntos amarillos indican que la semicircunferencia (π) se ha dividido en 4 partes, tomando 1 en sentido negativo." },
+    { id: 14, label: "3π", num: "3π", den: "", val: 3 * Math.PI, div: 1, steps: 3, dir: 1,
+      desc: "El ángulo 3π corresponde a 3 semicircunferencias (una vuelta completa de 2π más media vuelta adicional)." },
+    { id: 15, label: "6", num: "6", den: "", val: 6, div: 0, steps: 0, dir: 1,
+      desc: "El recorrido de longitud igual a 6 radios.<br>Cada punto rojo marca un radián." }
+  ];
+
+  let activeId = null;
+
+  function renderTituloHTML(item) {
+    if (item.den) {
+      return `
+        <span style="display: inline-flex; flex-direction: column; align-items: center; line-height: 1.05; vertical-align: middle;">
+          <span style="padding: 0 6px; border-bottom: 2.5px solid #1d4ed8;">${item.num}</span>
+          <span style="padding: 2px 6px 0 6px;">${item.den}</span>
+        </span>
+        <span>radianes</span>
+      `;
+    } else {
+      return `<span>${item.num} radianes</span>`;
+    }
+  }
+
+  // Calcula posición exterior evitando pisar los ejes X e Y
+  function obtenerPosEtiquetaExterior(cx, cy, R, ang) {
+    const labelR = R + 28;
+    const cosA = Math.cos(ang);
+    const sinA = Math.sin(ang);
+    let lx = cx + labelR * cosA;
+    let ly = cy - labelR * sinA;
+
+    // Si cae sobre el eje Y (cosA ≈ 0): desplazamos ligeramente a la derecha del eje
+    if (Math.abs(cosA) < 0.08) {
+      lx = cx + 22;
+      ly = cy - (R + 24) * Math.sign(sinA);
+    }
+    // Si cae sobre el eje X (sinA ≈ 0): desplazamos ligeramente por encima del eje
+    else if (Math.abs(sinA) < 0.08) {
+      lx = cx + (R + 24) * Math.sign(cosA);
+      ly = cy - 22;
+    }
+
+    return { x: lx, y: ly };
+  }
+
+  function dibujarEscena(item) {
+    const svg = document.getElementById('rad-svg');
+    if (!svg) return;
+
+    const cx = 260;
+    const cy = 200;
+    const R = 132;
+    let html = '';
+
+    // 1. Sombreado del sector circular del ángulo (si hay ángulo activo)
+    if (item) {
+      const totalAbs = Math.abs(item.val);
+      if (totalAbs >= 2 * Math.PI - 0.001) {
+        // Círculo completo sombreado (más intenso si da más de una vuelta)
+        const opacidad = totalAbs > 2.5 * Math.PI ? "0.24" : "0.15";
+        html += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="rgba(2, 132, 199, ${opacidad})" />`;
+      } else {
+        // Sector circular exacto desde 0 hasta item.val
+        const x1 = cx + R;
+        const y1 = cy;
+        const x2 = cx + R * Math.cos(item.val);
+        const y2 = cy - R * Math.sin(item.val);
+        const largeArc = totalAbs > Math.PI ? 1 : 0;
+        const sweepFlag = item.val > 0 ? 0 : 1; // En SVG Y crece hacia abajo: sentido antihorario es sweep=0
+        const sectorPath = `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${R} ${R} 0 ${largeArc} ${sweepFlag} ${x2.toFixed(2)} ${y2.toFixed(2)} Z`;
+        html += `<path d="${sectorPath}" fill="rgba(2, 132, 199, 0.16)" />`;
+      }
+    }
+
+    // 2. Ejes coordenados con marcas de graduación
+    html += `<line x1="25" y1="${cy}" x2="495" y2="${cy}" stroke="#64748b" stroke-width="1.3" />`;
+    html += `<line x1="${cx}" y1="18" x2="${cx}" y2="382" stroke="#64748b" stroke-width="1.3" />`;
+
+    // Marcas en eje X
+    for (let x = cx - 220; x <= cx + 220; x += 13.2) {
+      let isMajor = Math.abs((x - cx) % 52.8) < 1;
+      let tick = isMajor ? 4 : 2;
+      html += `<line x1="${x.toFixed(1)}" y1="${cy - tick}" x2="${x.toFixed(1)}" y2="${cy + tick}" stroke="#64748b" stroke-width="1" />`;
+    }
+    // Marcas en eje Y
+    for (let y = cy - 171.6; y <= cy + 171.6; y += 13.2) {
+      let isMajor = Math.abs((y - cy) % 52.8) < 1;
+      let tick = isMajor ? 4 : 2;
+      html += `<line x1="${cx - tick}" y1="${y.toFixed(1)}" x2="${cx + tick}" y2="${y.toFixed(1)}" stroke="#64748b" stroke-width="1" />`;
+    }
+
+    // 3. Circunferencia base
+    html += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#94a3b8" stroke-width="1.6" />`;
+
+    if (!item) {
+      svg.innerHTML = html;
+      return;
+    }
+
+    // 4. Semirrecta origen (eje X positivo en azul)
+    html += `<line x1="${cx}" y1="${cy}" x2="495" y2="${cy}" stroke="#0284c7" stroke-width="2.8" />`;
+
+    // 5. Semirrecta terminal (lado final del ángulo)
+    const endX = cx + 232 * Math.cos(item.val);
+    const endY = cy - 232 * Math.sin(item.val);
+    html += `<line x1="${cx}" y1="${cy}" x2="${endX.toFixed(2)}" y2="${endY.toFixed(2)}" stroke="#0284c7" stroke-width="2.8" />`;
+
+    // 6. Arco azul (con ligera espiral si supera 2*PI para visualizar las vueltas)
+    const totalAngle = Math.abs(item.val);
+    const numSamples = Math.max(45, Math.ceil(totalAngle * 35));
+    let pathD = '';
+    let lastX = cx + R;
+    let lastY = cy;
+    let prevX = lastX;
+    let prevY = lastY;
+
+    for (let i = 0; i <= numSamples; i++) {
+      const t = i / numSamples;
+      const theta = item.val * t;
+      let rActual = R;
+      if (totalAngle > 2 * Math.PI + 0.01) {
+        rActual = R - 8 + (16 * t);
+      }
+      const px = cx + rActual * Math.cos(theta);
+      const py = cy - rActual * Math.sin(theta);
+
+      if (i === 0) {
+        pathD += `M ${px.toFixed(2)} ${py.toFixed(2)}`;
+      } else {
+        pathD += ` L ${px.toFixed(2)} ${py.toFixed(2)}`;
+      }
+      if (i === numSamples - 1) {
+        prevX = px;
+        prevY = py;
+      }
+      if (i === numSamples) {
+        lastX = px;
+        lastY = py;
+      }
+    }
+
+    html += `<path d="${pathD}" fill="none" stroke="#0284c7" stroke-width="2.7" />`;
+
+    // Punta de flecha al final del arco
+    const tangentAngle = Math.atan2(lastY - prevY, lastX - prevX);
+    const arrowLen = 13;
+    const a1 = tangentAngle + 2.65;
+    const a2 = tangentAngle - 2.65;
+    const ax1 = lastX + arrowLen * Math.cos(a1);
+    const ay1 = lastY + arrowLen * Math.sin(a1);
+    const ax2 = lastX + arrowLen * Math.cos(a2);
+    const ay2 = lastY + arrowLen * Math.sin(a2);
+    const amidX = lastX + (arrowLen * 0.55) * Math.cos(tangentAngle + Math.PI);
+    const amidY = lastY + (arrowLen * 0.55) * Math.sin(tangentAngle + Math.PI);
+
+    html += `<polygon points="${lastX.toFixed(2)},${lastY.toFixed(2)} ${ax1.toFixed(2)},${ay1.toFixed(2)} ${amidX.toFixed(2)},${amidY.toFixed(2)} ${ax2.toFixed(2)},${ay2.toFixed(2)}" fill="#0284c7" stroke="#0f172a" stroke-width="1.2" />`;
+
+    // 7. Puntos y etiquetas exteriores
+    if (item.div > 0) {
+      const totalPuntos = Math.max(item.div, item.steps);
+      const yaDibujados = new Set();
+
+      for (let k = 1; k <= totalPuntos; k++) {
+        const angK = item.dir * k * (Math.PI / item.div);
+        const key = Math.round(((angK % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI) * 1000);
+
+        const dotX = cx + R * Math.cos(angK);
+        const dotY = cy - R * Math.sin(angK);
+
+        if (!yaDibujados.has(key)) {
+          yaDibujados.add(key);
+          html += `<circle cx="${dotX.toFixed(2)}" cy="${dotY.toFixed(2)}" r="5.2" fill="#facc15" stroke="#1e293b" stroke-width="1.3" />`;
+
+          // Etiqueta exterior sin pisar los ejes
+          if (k <= item.steps) {
+            const pos = obtenerPosEtiquetaExterior(cx, cy, R, angK);
+            const signStr = item.dir < 0 ? "-" : "";
+
+            if (item.div === 1) {
+              const txt = k === 1 ? `${signStr}π` : `${signStr}${k}π`;
+              html += `
+                <rect x="${(pos.x - 14).toFixed(1)}" y="${(pos.y - 10).toFixed(1)}" width="28" height="20" rx="4" fill="rgba(255,255,255,0.88)" />
+                <text x="${pos.x.toFixed(2)}" y="${(pos.y + 4).toFixed(2)}" font-size="13.5" font-weight="700" fill="#1e293b" text-anchor="middle">${txt}</text>
+              `;
+            } else {
+              const numTxt = k === 1 ? `${signStr}π` : `${signStr}${k}π`;
+              html += `
+                <g transform="translate(${pos.x.toFixed(2)}, ${pos.y.toFixed(2)})">
+                  <rect x="-15" y="-16" width="30" height="32" rx="4" fill="rgba(255,255,255,0.88)" />
+                  <text x="0" y="-3" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">${numTxt}</text>
+                  <line x1="-11" y1="0" x2="11" y2="0" stroke="#1e293b" stroke-width="1.2" />
+                  <text x="0" y="13" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">${item.den}</text>
+                </g>
+              `;
+            }
+          }
+        }
+      }
+    } else {
+      // Caso especial: 6 radianes (6 puntos rojos numerados en el exterior)
+      for (let rStep = 1; rStep <= 6; rStep++) {
+        const dotX = cx + R * Math.cos(rStep);
+        const dotY = cy - R * Math.sin(rStep);
+        const pos = obtenerPosEtiquetaExterior(cx, cy, R - 8, rStep);
+
+        html += `
+          <circle cx="${dotX.toFixed(2)}" cy="${dotY.toFixed(2)}" r="4.8" fill="#ef4444" stroke="#7f1d1d" stroke-width="1.1" />
+          <rect x="${(pos.x - 8).toFixed(1)}" y="${(pos.y - 9).toFixed(1)}" width="16" height="18" rx="3" fill="rgba(255,255,255,0.88)" />
+          <text x="${pos.x.toFixed(2)}" y="${(pos.y + 4.5).toFixed(2)}" font-size="13.5" font-weight="800" fill="#dc2626" text-anchor="middle">${rStep}</text>
+        `;
+      }
+    }
+
+    // 8. Punto negro de origen (1, 0)
+    html += `<circle cx="${cx + R}" cy="${cy}" r="5" fill="#0f172a" />`;
+
+    svg.innerHTML = html;
+  }
+
+  function actualizarBotones() {
+    const botones = document.querySelectorAll('#rad-grid-botones .rad-btn-item');
+    botones.forEach(btn => {
+      const id = parseInt(btn.dataset.id, 10);
+      if (id === activeId) {
+        btn.style.backgroundColor = '#1d4ed8';
+        btn.style.color = '#ffffff';
+        btn.style.borderColor = '#1e3a8a';
+        btn.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.25)';
+      } else {
+        btn.style.backgroundColor = '#ffffff';
+        btn.style.color = '#1e293b';
+        btn.style.borderColor = '#93c5fd';
+        btn.style.boxShadow = '0 1px 2px rgba(0,0,0,0.06)';
+      }
+    });
+  }
+
+  function seleccionarAngulo(id) {
+    activeId = id;
+    const item = angulosData.find(a => a.id === id);
+    if (!item) return;
+
+    document.getElementById('rad-estado-inicial').style.display = 'none';
+    document.getElementById('rad-estado-activo').style.display = 'block';
+    document.getElementById('rad-titulo-angulo').innerHTML = renderTituloHTML(item);
+    document.getElementById('rad-explicacion').innerHTML = item.desc;
+
+    actualizarBotones();
+    dibujarEscena(item);
+  }
+
+  function inicializar() {
+    const grid = document.getElementById('rad-grid-botones');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    angulosData.forEach(item => {
+      const btn = document.createElement('div');
+      btn.className = 'rad-btn-item';
+      btn.dataset.id = item.id;
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('tabindex', '0');
+      btn.textContent = item.label;
+
+      btn.style.cssText = `
+        background-color: #ffffff;
+        color: #1e293b;
+        border: 1.5px solid #93c5fd;
+        border-radius: 6px;
+        padding: 12px 4px;
+        text-align: center;
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.15s ease;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      `;
+
+      btn.addEventListener('mouseenter', function() {
+        if (activeId !== item.id) {
+          this.style.backgroundColor = '#dbeafe';
+          this.style.borderColor = '#2563eb';
+        }
+      });
+      btn.addEventListener('mouseleave', function() {
+        if (activeId !== item.id) {
+          this.style.backgroundColor = '#ffffff';
+          this.style.borderColor = '#93c5fd';
+        }
+      });
+
+      btn.addEventListener('click', function() {
+        seleccionarAngulo(item.id);
+      });
+
+      grid.appendChild(btn);
+    });
+
+    dibujarEscena(null);
+  }
+
+  setTimeout(inicializar, 100);
+})();
+</script>
+</div>
+</div>
+</div>
+</article><article id="20260323172955MVTSKO" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Otras unidades de medida.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737NJOFUF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737NJOFUF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Los <strong>ángulos</strong>, al igual que hacíamos con el tiempo, se pueden medir en el<em> <span style="color: #007932;"><strong>sistema sexagesimal</strong></span></em><span style="color: #007932;"> </span>ya que, aunque sus unidades no pertenezcan al SI, sí están autorizadas.</p>
+<p><strong><span style="color: #0066cc;">Grado</span> sexagesima</strong>l (º) es la amplitud del <span style="color: #0066cc;"><em>ángulo resultante de dividir la circunferencia en 360 partes iguales</em></span><strong>.</strong> Cada grado se divide en <em>60 <strong><span style="color: #0066cc;">minutos</span></strong> (´)</em> y, cada minuto, en <em>60 <strong><span style="color: #0066cc;">segundos</span></strong> (´´)</em>.</p>
+<ul>
+<li>Si queremos <strong>pasar de radianes a grados: </strong>\[\boxed{\\ \quad \textrm{grados}=\dfrac{180}{\pi}\textrm{radianes}\quad \\}\]</li>
+<li>Si queremos <strong style="color: #212529; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 16px;">pasar de grados a radianes</strong><span style="color: #212529; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 16px;">:\[\boxed{\\ \quad \textrm{radianes}=\dfrac{\pi}{180}\textrm{grados}\quad \\ }\]</span></li>
+</ul><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955FYDTOF" class="box caja-roja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/bidio.gif" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cambio entre unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260322193840341F49" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260322193840341F49&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>En la siguiente lista de reproducción te ofrecemos 4 vídeos en los que se practica el cambio de grados a radianes y viceversa:</p>
+<p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLs4lpFZkmuXVheUlOwOGc29WyQsCj6SS5" frameborder="0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955AVDFYZ" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_ejercicioresuelto.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Ejercicio resuelto.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737VNAJAQ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737VNAJAQ&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Usando las fórmulas anteriores, averigua a cuántos grado equivale un radián. Expresa el resultado en grados, minutos y segundos.</p>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="w">
+            </div>
+            <div class="feedback js-feedback js-hidden"><div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border: 2px solid #0066cc; border-radius: 10px; overflow: hidden; background-color: #ffffff; max-width: 75%; margin: 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<div style="background-color: #0066cc; color: #ffffff; padding: 20px; text-align: center;">
+<h2 style="margin: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 1px;">Proceso de Conversión paso a paso</h2>
+<p style="margin: 5px 0 0 0; opacity: 0.9;">De Grados Decimales a Sistema Sexagesimal</p>
+</div>
+<div style="padding: 25px; color: #333; line-height: 1.8;">
+<p>Partimos del valor decimal obtenido de la operación \(\dfrac{180}{\pi}\)</p>
+<div style="text-align: center; font-size: 1.3em; color: #0066cc; font-weight: bold; margin: 15px 0;">1 rad ≈ 57.29577951°</div>
+<hr style="border: 0; border-top: 1px solid #edfcfc; margin: 20px 0;" />
+<div style="margin-bottom: 20px;"><strong style="color: #0066cc;">1. Identificar los Grados:</strong><br />La parte entera antes de la coma son los grados completos.
+<ul style="list-style: none; padding-left: 20px; border-left: 3px solid #edfcfc;">
+<li>Parte entera: <strong>57</strong> → <span style="background-color: #edfcfc; padding: 2px 6px; border-radius: 4px; font-weight: bold;">57°</span></li>
+</ul>
+</div>
+<div style="margin-bottom: 20px;"><strong style="color: #0066cc;">2. Calcular los Minutos:</strong><br />Tomamos el resto decimal de los grados y lo multiplicamos por 60 (ya que 1° = 60').
+<ul style="list-style: none; padding-left: 20px; border-left: 3px solid #edfcfc;">
+<li>Operación: \(0.29577951 \times 60 = 17.74677'\)</li>
+<li>Parte entera: <strong>17</strong> → <span style="background-color: #edfcfc; padding: 2px 6px; border-radius: 4px; font-weight: bold;">17'</span></li>
+</ul>
+</div>
+<div style="margin-bottom: 20px;"><strong style="color: #0066cc;">3. Calcular los Segundos:</strong><br />Tomamos el nuevo resto decimal de los minutos y lo multiplicamos por 60 (ya que 1' = 60'').
+<ul style="list-style: none; padding-left: 20px; border-left: 3px solid #edfcfc;">
+<li>Operación: \(0.74677 \times 60 = 44.8062''\)</li>
+<li>Redondeo: <strong>45</strong> → <span style="background-color: #edfcfc; padding: 2px 6px; border-radius: 4px; font-weight: bold;">45''</span></li>
+</ul>
+</div>
+<div style="margin-top: 30px; padding: 15px; border: 2px dashed #0066cc; background-color: #edfcfc; text-align: center; border-radius: 8px;"><span style="font-size: 0.9em; text-transform: uppercase; color: #0066cc; font-weight: bold; display: block; margin-bottom: 5px;">Equivalencia Final</span> <span style="font-size: 1.8em; color: #333; font-weight: bold; letter-spacing: 2px;">57° 17' 45''</span></div>
+</div>
+</div></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955ZOQHOX" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Instrumentos para medir ángulos.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737ESPTSF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737ESPTSF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;"><span style="color: #784aba;"><strong></strong></span>El <strong>transportador de ángulos o goniómetro</strong> es un semicírculo dividido en 180 partes iguales. Cada una de ellas es un grado (º). Las unidades que se usan para medir ángulos más pequeños que el grado son el minuto (1´) y el segundo (1´´). Sus equivalencias son 1º=60´ y 1´=60´´. El minuto y el segundo son unidades muy pequeñas que a simple vista no se aprecian. Para medirlas se utiliza el <strong>teodolito</strong>, un instrumento de mucha precisión.</p>
+<table border="0" align="center" width="577" height="328">
+<tbody>
+<tr>
+<td style="border: 1px solid #ffffff; width: 285px;"><img src="../content/resources/20260319083737ESPTSF/220px-goniometro.jpg" width="220" height="123" alt="transportador de ángulos" title="transportador de ángulos" style="display: block; margin-left: auto; margin-right: auto;"></td>
+<td style="border: 1px solid #ffffff; width: 276px;"><img src="../content/resources/20260319083737ESPTSF/teodolito.jpg" width="250" height="197" alt="teodolito" title="teodolito" style="display: block; margin-left: auto; margin-right: auto;"></td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955IRAFEU" class="box caja-roja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/bidio.gif" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Configura tu calculadora.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737IRTXND" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737IRTXND&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Todas las calculadoras científicas nos permiten trabajar con grados sexagesimales (modo deg) o con radianes (modo rad). En el siguiente tutorial viene explicado cómo hacerlo:</p>
+<p><iframe width="560" height="315" style="display: block; margin-left: auto; margin-right: auto;" src="https://www.youtube.com/embed/Bno4V6dZv_o" frameborder="0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/21-presion.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/3-resumen-2.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

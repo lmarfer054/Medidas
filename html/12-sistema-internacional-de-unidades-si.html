@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8ii-n3t8ml4x0">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>1.2. Sistema internacional de unidades (SI) | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/form/form.js"></script><link rel="stylesheet" href="../idevices/form/form.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8ii-n3t8ml4x0" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li class="current-page-parent"> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li class="active"> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="active no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8ii-n3t8ml4x0" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">1.2. Sistema internacional de unidades (SI)</h1></div>
+</header><div id="page-content-page-moskc8ii-n3t8ml4x0" class="page-content">
+<article id="20260323172955HOBEPV" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Sistema internacional de unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737MYTRMP" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737MYTRMP&quot;}">
+<div class="exe-text-template">
+    <p style="text-align: justify;">Hasta finales del s. XVIII, los sistemas de medida utilizados por el hombre en sus relaciones científicas y comerciales tenían dos inconvenientes principales:</p>
+<ul style="text-align: justify;">
+<li>Cada país y, a veces, cada región, tenía su propio sistema de unidades.</li>
+<li>Los múltiplos y submúltiplos no utilizaban el número 10 como base.</li>
+</ul>
+<p style="text-align: justify;">Para evitar esto, el gobierno francés por medio de un decreto, sentó los principios para la implantación de un sistema de medidas basado en el número 10, llamado <strong>Sistema Métrico Decimal</strong>, que progresivamente fue adoptado por la mayoría de los países y que posteriormente se llamaría <strong>Sistema Internacional de Unidades</strong> (SI).</p>
+<p style="text-align: justify;">En el siguiente mapa tenemos en verde los países que en su legislación recogen como sistema de medida el sistema internacional:</p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737MYTRMP/800px-countries-adopting-metric-system-2006.jpg" width="600" height="287" alt="mapa_si" title="mapa_si" /></td>
+</tr>
+</tbody>
+</table>
+<p>En el resto de países (Estados Unidos, Birmania...) se usa el sistema británico de unidades; aunque en casi todo el mundo se está remplazando por el SI.</p>
+</div>
+</div>
+</div>
+</article><article id="20260323172955IQMYYX" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades básicas del SI.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737VCRGNO" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737VCRGNO&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>El SI consta de siete <strong>unidades básicas</strong> que proporcionan la referencia utilizada para definir el resto de unidades de medida del Sistema Internacional, llamadas <strong>unidades derivadas</strong>.</p>
+<p>Este SI consiste en un conjunto de unidades de base , prefijos y unidades derivadas.</p>
+<p>Las siete unidades básicas son:</p>
+<div style="border: 2px solid #007078; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 50%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff; text-align: center;">
+<thead>
+<tr style="background-color: #007932; color: #ffffff;">
+<th style="padding: 15px; border-right: 1px solid #ffffff; font-size: 1.1em;">Magnitud</th>
+<th style="padding: 15px; font-size: 1.1em;">Símbolo</th>
+</tr>
+</thead>
+<tbody style="color: #333333;">
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Longitud</td>
+<td style="padding: 12px; border: 1px solid #007932;">m</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Masa</td>
+<td style="padding: 12px; border: 1px solid #007932;">kg</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Tiempo</td>
+<td style="padding: 12px; border: 1px solid #007932;">s</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Temperatura</td>
+<td style="padding: 12px; border: 1px solid #007932;">K</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Cantidad de sustancia</td>
+<td style="padding: 12px; border: 1px solid #007932;">mol</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Intensidad de corriente</td>
+<td style="padding: 12px; border: 1px solid #007932;">A</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #007932;">Intensidad luminosa</td>
+<td style="padding: 12px; border: 1px solid #007932;">cd</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Como estamos en un Nivel I de un ámbito científico-tecnológico, nos centraremos en tres de las unidades básicas que son longitud, masa y tiempo, y partir de ellas trabajaremos con otras unidades derivadas.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955ERBDQR" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Múltiplos y submúltiplos decimales de las unidades del SI.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737KQZYUT" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737KQZYUT&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Se ha adoptado un conjunto de prefijos para su uso junto con las unidades SI, con el fin de expresar los valores de las magnitudes que son mucho más grandes o mucho más pequeñas que la unidad SI sin prefijo. Estos prefijos SI se incluyen en la siguiente tabla, pueden utilizarse con cualquiera de las unidades básicas y con cualquiera de las unidades derivadas con nombres especiales.</p>
+<div style="border: 2px solid #007932; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 60%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff; text-align: center;">
+<thead>
+<tr style="background-color: #007932; color: #ffffff;">
+<th style="padding: 12px; border-right: 1px solid #ffffff;">Prefijo</th>
+<th style="padding: 12px; border-right: 1px solid #ffffff;">Símbolo</th>
+<th style="padding: 12px;">Equivalencia decimal</th>
+</tr>
+</thead>
+<tbody style="color: #333333;">
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">yotta</td>
+<td style="padding: 8px; border: 1px solid #007932;">Y</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000 000 000 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">zetta</td>
+<td style="padding: 8px; border: 1px solid #007932;">Z</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000 000 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">exa</td>
+<td style="padding: 8px; border: 1px solid #007932;">E</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">peta</td>
+<td style="padding: 8px; border: 1px solid #007932;">P</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">tera</td>
+<td style="padding: 8px; border: 1px solid #007932;">T</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">giga</td>
+<td style="padding: 8px; border: 1px solid #007932;">G</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">mega</td>
+<td style="padding: 8px; border: 1px solid #007932;">M</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">kilo</td>
+<td style="padding: 8px; border: 1px solid #007932;">k</td>
+<td style="padding: 8px; border: 1px solid #007932;">1 000</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">hecto</td>
+<td style="padding: 8px; border: 1px solid #007932;">h</td>
+<td style="padding: 8px; border: 1px solid #007932;">100</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">deca</td>
+<td style="padding: 8px; border: 1px solid #007932;">da</td>
+<td style="padding: 8px; border: 1px solid #007932;">10</td>
+</tr>
+<tr style="background-color: #f0fdf4;">
+<td style="padding: 8px; border: 1px solid #007932;">-</td>
+<td style="padding: 8px; border: 1px solid #007932;">-</td>
+<td style="padding: 8px; border: 1px solid #007932;">1</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">deci</td>
+<td style="padding: 8px; border: 1px solid #007932;">d</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,1</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">centi</td>
+<td style="padding: 8px; border: 1px solid #007932;">c</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,01</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">mili</td>
+<td style="padding: 8px; border: 1px solid #007932;">m</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">micro</td>
+<td style="padding: 8px; border: 1px solid #007932;">µ</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">nano</td>
+<td style="padding: 8px; border: 1px solid #007932;">n</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">pico</td>
+<td style="padding: 8px; border: 1px solid #007932;">p</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">femto</td>
+<td style="padding: 8px; border: 1px solid #007932;">f</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 000 000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">atto</td>
+<td style="padding: 8px; border: 1px solid #007932;">a</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 000 000 000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">zepto</td>
+<td style="padding: 8px; border: 1px solid #007932;">z</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 000 000 000 000 001</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #007932;">yocto</td>
+<td style="padding: 8px; border: 1px solid #007932;">y</td>
+<td style="padding: 8px; border: 1px solid #007932;">0,000 000 000 000 000 000 000 001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<p>Así podemos hablar de centilitros, kilómetros...</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955KCARTN" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades derivadas.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737HUWNHL" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737HUWNHL&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">Las unidades derivadas se forman a partir de productos de potencias de unidades básicas. Por ejemplo, cuando viajamos en coche y circulamos a 120 km/hora, estamos hablando de una magnitud derivada llamada velocidad, ya que sus unidades se forman a partir de las unidades fundamentales de la longitud y del tiempo.</p>
+<p style="text-align: justify;">El número de magnitudes utilizadas en el campo científico no tiene límite; por tanto, no es posible establecer una lista completa de magnitudes y unidades derivadas. Sin embargo, más adelante estudiaremos algunas de ellas.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955IXCTEY" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades fuera del SI.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YUDBQI" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YUDBQI&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">No obstante, algunas unidades no pertenecientes al SI son todavía ampliamente utilizadas. Unas pocas, como el minuto, la hora y el día, unidades de tiempo, serán siempre utilizadas porque están fuertemente enraizadas en nuestra cultura.&nbsp;</p>
+<p>También existen unidades más utilizadas en distintas ciencias, como por ejemplo el año luz en astronomía.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955PZIEFY" class="box caja-morada boton-morado">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_completa.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Completa.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737CGZDZM" class="idevice_node form" data-idevice-path="../idevices/form/" data-idevice-type="form" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737CGZDZM&quot;,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;&quot;,&quot;repeatActivity&quot;:true,&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;weighted&quot;:100,&quot;msgs&quot;:{&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgYouScore&quot;:&quot;Tu puntuación es&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgTypeGame&quot;:&quot;Formulario&quot;,&quot;msgStartGame&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgSaveScore&quot;:&quot;Guardar la puntuación&quot;,&quot;msgResult&quot;:&quot;Resultado&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgReset&quot;:&quot;Reiniciar&quot;,&quot;msgShowAnswers&quot;:&quot;Mostrar respuestas&quot;,&quot;msgTestResultPass&quot;:&quot;¡Felicidades! Has pasado la prueba&quot;,&quot;msgTestResultNotPass&quot;:&quot;Lo siento. Has fallado la prueba&quot;,&quot;msgTrueFalseHelp&quot;:&quot;Di si la afirmación es verdadera o falsa&quot;,&quot;msgDropdownHelp&quot;:&quot;Elige la respuesta correcta entre las opciones propuestas&quot;,&quot;msgFillHelp&quot;:&quot;Rellena los espacios en blanco con la palabra apropiada&quot;,&quot;msgSingleSelectionHelp&quot;:&quot;Opción múltiple con solo una respuesta correcta&quot;,&quot;msgMultipleSelectionHelp&quot;:&quot;Opción múltiple con varias respuestas correctas&quot;,&quot;msgPlayStart&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTrue&quot;:&quot;Verdadero&quot;,&quot;msgFalse&quot;:&quot;Falso&quot;,&quot;msgNext&quot;:&quot;Siguiente&quot;,&quot;msgPrevious&quot;:&quot;Anterior&quot;,&quot;msgSuggestion&quot;:&quot;Sugerencia&quot;},&quot;id&quot;:&quot;20260319083737CGZDZM&quot;,&quot;questionsRandom&quot;:false,&quot;percentageQuestions&quot;:&quot;100&quot;,&quot;time&quot;:&quot;0&quot;,&quot;eXeFormInstructions&quot;:&quot;&lt;p&gt;Completa la siguiente tabla con el nombre de la magnitud y si se trata de una unidad derivada, básica o múltiplo o submúltiplo de una básica.&lt;/p&gt;&quot;,&quot;questionsData&quot;:[{&quot;id&quot;:&quot;1773913247459-3FD70&quot;,&quot;activityType&quot;:&quot;fill&quot;,&quot;baseText&quot;:&quot;&lt;div style=\&quot;border: 2px solid #7a297b; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 50%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);\&quot;&gt;\n&lt;table style=\&quot;width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff; text-align: center;\&quot;&gt;\n&lt;thead&gt;\n&lt;tr style=\&quot;background-color: #7a297b; color: #ffffff;\&quot;&gt;\n&lt;th style=\&quot;padding: 15px; border-right: 1px solid #ffffff;\&quot;&gt;Magnitud&lt;/th&gt;\n&lt;th style=\&quot;padding: 15px; border-right: 1px solid #ffffff;\&quot;&gt;Unidad&lt;/th&gt;\n&lt;th style=\&quot;padding: 15px;\&quot;&gt;Tipo de unidad&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody style=\&quot;color: #333333;\&quot;&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;Velocidad&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;m/s&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;derivada&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;u&gt;Área&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;m&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;derivada&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;Tiempo&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;s&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;básica&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;u&gt;Volumen&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;l&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;derivada&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;u&gt;Longitud&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;km&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-style: italic;\&quot;&gt;&lt;u&gt;múltiplo&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&lt;/div&gt;&quot;,&quot;feedbackRight&quot;:&quot;&quot;,&quot;feedbackWrong&quot;:&quot;&quot;,&quot;suggestion&quot;:&quot;&quot;,&quot;wrongAnswersValue&quot;:&quot;&quot;,&quot;selectionType&quot;:&quot;single&quot;,&quot;answers&quot;:[],&quot;answer&quot;:&quot;1&quot;,&quot;capitalization&quot;:true,&quot;strict&quot;:true,&quot;order&quot;:0,&quot;customScore&quot;:1,&quot;time&quot;:0}],&quot;passRate&quot;:5,&quot;addBtnAnswers&quot;:true,&quot;eXeIdeviceTextAfter&quot;:&quot;&quot;,&quot;showSlider&quot;:false}" data-idevice-template="form.html">
+<div class="exe-form-container"><div class="game-evaluation-ids js-hidden" data-id="20260319083737CGZDZM" data-evaluationb="false" data-evaluationid=""></div>
+            <div id="frmMainContainer-20260319083737CGZDZM" class="form-IDevice" data-id="20260319083737CGZDZM">
+                <div class="form-Data js-hidden">{}</div>
+                <div class="form-instructions"><p>Completa la siguiente tabla con el nombre de la magnitud y si se trata de una unidad derivada, básica o múltiplo o submúltiplo de una básica.</p></div>
+                <div class="FRMP-GameScoreBoard" style="display:none;">
+                    <div>
+                        <strong><span class="sr-av">Tiempo por pregunta:</span></strong>
+                        <span id="frmPTime-20260319083737CGZDZM">00:00</span>
+                    </div>
+                </div>
+                <div class="FRMP-StartGame" id="frmStartGameDiv-20260319083737CGZDZM" style="display:none;">
+                      <button  id="frmStartGame-20260319083737CGZDZM" type="button" class="btn btn-primary">Pulse aquí para empezar</button>
+                </div>
+                <div class="form-body" id="frmBody-20260319083737CGZDZM" style="display:block;">
+                    <div class="FRMP-Questions">
+                        <div id="form-questions-20260319083737CGZDZM" > </div>
+                        <div id="frmCover-20260319083737CGZDZM" class="FRMP-Cover"> </div>
+                    </div>
+                    <div id="resultsContainer-20260319083737CGZDZM" class="form-results-container inline">
+                        <div id="form-score-20260319083737CGZDZM" class="score-text">Puntuación.</div>
+                        <div id="form-result-test-20260319083737CGZDZM" class="score-text phrase-score"></div>
+                    </div>
+                    <div class="form-buttons-container inline">
+                        <input id="form-button-check-20260319083737CGZDZM" class="btn btn-primary" type="button" value="Comprobar"
+                            data-id="20260319083737CGZDZM" data-pass-rate="" />
+                        <input id="form-button-reset-20260319083737CGZDZM" type="button" value="Reiniciar"
+                            data-id="20260319083737CGZDZM" class="btn btn-primary"  style="display:none" />
+                        <input id="form-button-show-answers-20260319083737CGZDZM" class="btn btn-primary" type="button" value="Mostrar respuestas"
+                            data-id="20260319083737CGZDZM" style="display: " />
+
+                    </div>
+                </div>
+                <div class="Games-BottonContainer">
+                    <div class="Games-GetScore">
+                        <input id="frmPSendScore-20260319083737CGZDZM" type="button" value="Guardar la puntuación" class="feedbackbutton Games-SendScore" style="display:none"/> <span class="Games-RepeatActivity"></span>
+                    </div>
+                </div>
+                <div class="form-instructions"></div>
+            </div>
+            <div class="questionsMedia" style="display:none"></div>
+            </div>
+</div>
+</div>
+</article><article id="20260323172955YPISRE" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">&lt;br&gt;</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737NPRYPI" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737NPRYPI&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">El 11 de diciembre de 1998, la NASA envió a Marte una sonda para estudiar el clima del planeta. Recorrió 600 millones de kilómetros en nueve meses sin problema, pero cuando llegó al planeta rojo, se estrelló. ¿Qué fue lo que pasó? El siguiente titular de aquel día de EL PAÍS, nos lo resume:</p>
+<p><br></p>
+<p><img src="../content/resources/20260319083737NPRYPI/titular-el-pais.png" width="663" height="145" alt="titular el pais" title="titular el pais" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p><br></p>
+<p>Por cierto, este error provocó pérdidas por 125 millones de dólares.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955XSAGDH" class="box caja-postit">
+<header class="box-head no-icon">
+<h1 class="box-title">&lt;br&gt;</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737NZYZMN" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737NZYZMN&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><strong>¿Quién decide cuánto es una unidad de medida básica?</strong></p>
+<p style="text-align: justify;">El <a href="http://www.bipm.org/en/committees/cipm/" target="_blank" rel="noopener">Comité Internacional de Pesos y Medidas </a>(abreviado CIPM del francés Comité International des Poids et Mesures) es un organismo creado por la Convención del Metro, en París, en 1875. Su función es asegurar la uniformidad mundial de las unidades de medida, sea por acción directa o presentando propuestas en la Conferencia General de Pesos y Medidas (CGPM). Está conformado por 18 personas de distintos países, seleccionadas de los estados miembros de la Convención del Metro.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/11-medir-valores-magnitudes-y-unidades.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/13-algunas-normas-de-uso-del-si.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

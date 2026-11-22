@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8im-xo1zxctp4">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>2. Unidades básicas del SI | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8im-xo1zxctp4" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li class="active"> <a href="../html/2-unidades-basicas-del-si.html" class="active daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8im-xo1zxctp4" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">2. Unidades básicas del SI</h1></div>
+</header><div id="page-content-page-moskc8im-xo1zxctp4" class="page-content">
+<article id="20260323172955LLXLDR" class="box no-header caja-libreta">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737DKMPUA" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737DKMPUA&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;"><span style="font-size: 18pt;">Ya hemos visto que el SI es el único sistema de unidades que es reconocido universalmente, por ello tiene la ventaja definida de permitir un entendimiento internacional. El uso del SI también simplifica la enseñanza de la ciencia. Por todas estas razones se recomienda el uso de las unidades del SI en todos los campos de la ciencia y la tecnología.&nbsp;</span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="border: 1px solid #ffffff;"><span style="font-size: 18pt;"><img src="../content/resources/20260319083737DKMPUA/medida3.png" width="220" height="220" style="display: block; margin-left: auto; margin-right: auto;"></span></td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/13-algunas-normas-de-uso-del-si.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/21-longitud.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

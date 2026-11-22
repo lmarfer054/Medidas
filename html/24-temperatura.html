@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8iw-co13pi66v">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>2.4. Temperatura | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/form/form.js"></script><link rel="stylesheet" href="../idevices/form/form.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8iw-co13pi66v" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li class="active"> <a href="../html/24-temperatura.html" class="active no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8iw-co13pi66v" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">2.4. Temperatura</h1></div>
+</header><div id="page-content-page-moskc8iw-co13pi66v" class="page-content">
+<article id="20260323172955IJXOFS" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737FCKYJQ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737FCKYJQ&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;"><span style="color: #007932;"><strong>La temperatura es una magnitud física que expresa el grado o nivel de calor o frío de los cuerpos o del ambiente</strong></span>. Con la temperatura pasa lo contrario que con la masa: es una medida que alberga algo más de complejidad, ya que está ligado al concepto de la agitación de las partículas de los cuerpos: a mayor velocidad de estas partículas más temperatura tiene.</p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737FCKYJQ/hielo.jpg" width="350" height="232" alt="hielo" title="hielo"></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p style="text-align: justify;">Cuando dos cuerpos que se encuentran a distinta temperatura se ponen en contacto, se produce una transferencia de energía, en forma de calor, desde el cuerpo caliente al frío. Esto ocurre hasta que las temperaturas de ambos cuerpos se igualan.</p>
+<p style="text-align: justify;">Esta es precisamente la idea en la que se basa el termómetro, el instrumento más usado para medir la temperatura.</p>
+<p style="text-align: justify;">En el siguiente vídeo, se explican de una forma muy sencilla estas ideas.</p>
+<p><iframe width="560" height="315" style="display: block; margin-left: auto; margin-right: auto;" src="https://www.youtube.com/embed/-Zpt3B4BZsc" frameborder="0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955AFPTMI" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Instrumentos para medir la temperatura.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737NREZPF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737NREZPF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">El instrumento utilizado habitualmente para medir la temperatura es el <strong>termómetro</strong>. Los termómetros de líquido encerrado en vidrio son los más populares; se basan en la propiedad que tiene el mercurio, y otras sustancias (alcohol coloreado, etc.), de dilatarse cuando aumenta la temperatura. El líquido se aloja en una burbuja -bulbo- conectada a un capilar (tubo muy fino). Cuando la temperatura aumenta, el líquido se expande por el capilar, así, pequeñas variaciones de su volumen resultan claramente visibles.</p>
+<p><img src="../content/resources/20260319083737NREZPF/termss.jpg" width="704" height="384" alt="" style="display: block; margin-left: auto; margin-right: auto;"></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955TIXOUS" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades de temperatura.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737FZUBJM" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737FZUBJM&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><div class="exe-fx exe-tabs">
+<h2>Escala centígrada o Celsius</h2>
+<p style="text-align: center;"><img src="../content/resources/20260319083737FZUBJM/timagen1.jpg" width="100%" height="42" alt=""><br></p>
+<h2>Escala Fahrenheit</h2>
+<p><img src="../content/resources/20260319083737FZUBJM/timagen2.jpg" width="1707" height="952" alt=""><br></p>
+<h2>Escala absoluta &nbsp;o de Kelvin</h2>
+<p><img src="../content/resources/20260319083737FZUBJM/timagen3.png" width="1707" height="952" alt=""></p>
+<h2>Comparativa entre escalas</h2>
+<p><img src="../content/resources/20260319083737FZUBJM/timagen4.jpg" width="1707" height="952" alt=""></p>
+</div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955YTWKWW" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_practica.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Piensa.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737TDMUGD" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737TDMUGD&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>¿Pueden existir temperaturas con valores negativos en las distintas escalas?</p>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="w">
+            </div>
+            <div class="feedback js-feedback js-hidden"><p>En la escala Celsius y en la Fahrenheit sí, sin embargo, en la Kelvin es imposible ya que parte del valor del cero absoluto.</p></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955LJXWXT" class="box caja-roja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/bidio.gif" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cómo pasar de una escala a otra.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737OVVIRJ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737OVVIRJ&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>En la siguiente lista de reproducción, que consta de dos vídeos, se explica cómo pasar de unas escalas de temperatura a otras. Además, incluyen algunos ejemplos:</p>
+<p><iframe width="560" height="315" style="display: block; margin-left: auto; margin-right: auto;" src="https://www.youtube.com/embed/lzFOBC1SotI?list=PLs4lpFZkmuXWxcp4EtckwH3NtMEhElNoe" frameborder="0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955ORMEPK" class="box caja-morada boton-morado">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_completa.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Completa.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737RRJZII" class="idevice_node form" data-idevice-path="../idevices/form/" data-idevice-type="form" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737RRJZII&quot;,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;&quot;,&quot;passScoreMode&quot;:&quot;global&quot;,&quot;passScoreCustom&quot;:5,&quot;repeatActivity&quot;:true,&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;weighted&quot;:100,&quot;msgs&quot;:{&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgYouScore&quot;:&quot;Tu puntuación es&quot;,&quot;msgEndGameScore&quot;:&quot;Comience la partida antes de guardar la puntuación.&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgPassScore&quot;:&quot;Puntuación mínima necesaria para aprobar esta actividad: %s&quot;,&quot;msgTypeGame&quot;:&quot;Formulario&quot;,&quot;msgStartGame&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgSaveScore&quot;:&quot;Guardar la puntuación&quot;,&quot;msgResult&quot;:&quot;Resultado&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgReset&quot;:&quot;Reiniciar&quot;,&quot;msgShowAnswers&quot;:&quot;Mostrar respuestas&quot;,&quot;msgTestResultPass&quot;:&quot;¡Felicidades! Has pasado la prueba&quot;,&quot;msgTestResultNotPass&quot;:&quot;Lo siento. Has fallado la prueba&quot;,&quot;msgTrueFalseHelp&quot;:&quot;Di si la afirmación es verdadera o falsa&quot;,&quot;msgDropdownHelp&quot;:&quot;Elige la respuesta correcta entre las opciones propuestas&quot;,&quot;msgFillHelp&quot;:&quot;Rellena los espacios en blanco con la palabra apropiada&quot;,&quot;msgSingleSelectionHelp&quot;:&quot;Opción múltiple con solo una respuesta correcta&quot;,&quot;msgMultipleSelectionHelp&quot;:&quot;Opción múltiple con varias respuestas correctas&quot;,&quot;msgPlayStart&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTrue&quot;:&quot;Verdadero&quot;,&quot;msgFalse&quot;:&quot;Falso&quot;,&quot;msgNext&quot;:&quot;Siguiente&quot;,&quot;msgPrevious&quot;:&quot;Anterior&quot;,&quot;msgSuggestion&quot;:&quot;Sugerencia&quot;,&quot;msgOk&quot;:&quot;Correcto&quot;,&quot;msgKO&quot;:&quot;Incorrecto&quot;,&quot;msgHide&quot;:&quot;Ocultar&quot;},&quot;id&quot;:&quot;20260319083737RRJZII&quot;,&quot;questionsRandom&quot;:false,&quot;percentageQuestions&quot;:&quot;100&quot;,&quot;time&quot;:&quot;0&quot;,&quot;eXeFormInstructions&quot;:&quot;&quot;,&quot;questionsData&quot;:[{&quot;id&quot;:&quot;1774120614483-N9PHH&quot;,&quot;activityType&quot;:&quot;fill&quot;,&quot;baseText&quot;:&quot;&lt;div style=\&quot;border: 2px solid #7a297b; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 50%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);\&quot;&gt;\n&lt;table style=\&quot;width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff; text-align: center;\&quot;&gt;\n&lt;thead&gt;\n&lt;tr style=\&quot;background-color: #7a297b; color: #ffffff;\&quot;&gt;\n&lt;th style=\&quot;padding: 15px; border-right: 1px solid #ffffff; font-size: 1.2em;\&quot;&gt;°C&lt;/th&gt;\n&lt;th style=\&quot;padding: 15px; border-right: 1px solid #ffffff; font-size: 1.2em;\&quot;&gt;°F&lt;/th&gt;\n&lt;th style=\&quot;padding: 15px; font-size: 1.2em;\&quot;&gt;kelvin&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody style=\&quot;color: #333333;\&quot;&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;u&gt;30&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;86&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;&lt;u&gt;303,15&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;span style=\&quot;font-family: arial, helvetica, sans-serif;\&quot;&gt;-2&lt;/span&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;&lt;u&gt;28,4&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;&lt;u&gt;271,15&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b; font-weight: bold;\&quot;&gt;&lt;u&gt;8&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;&lt;u&gt;46,4&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 12px; border: 1px solid #7a297b;\&quot;&gt;281,15&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&lt;/div&gt;&quot;,&quot;feedbackRight&quot;:&quot;&quot;,&quot;feedbackWrong&quot;:&quot;&quot;,&quot;suggestion&quot;:&quot;&quot;,&quot;wrongAnswersValue&quot;:&quot;&quot;,&quot;selectionType&quot;:&quot;single&quot;,&quot;answers&quot;:[],&quot;answer&quot;:&quot;1&quot;,&quot;capitalization&quot;:true,&quot;strict&quot;:true,&quot;order&quot;:0,&quot;customScore&quot;:1,&quot;time&quot;:0}],&quot;addBtnAnswers&quot;:true,&quot;eXeIdeviceTextAfter&quot;:&quot;&quot;,&quot;showSlider&quot;:false}" data-idevice-template="form.html">
+<div class="exe-form-container">
+  <div class="game-evaluation-ids js-hidden" data-id="20260319083737RRJZII" data-evaluationb="false" data-evaluationid=""></div>
+            <div id="frmMainContainer-20260319083737RRJZII" class="form-IDevice" data-id="20260319083737RRJZII">
+                <div class="form-Data js-hidden">{}</div>
+                
+                <div class="FRMP-GameScoreBoard" style="display:none;">
+                    <div>
+                        <strong><span class="sr-av">Tiempo por pregunta:</span></strong>
+                        <span id="frmPTime-20260319083737RRJZII">00:00</span>
+                    </div>
+                </div>
+                <div class="FRMP-StartGame" id="frmStartGameDiv-20260319083737RRJZII" style="display:none;">
+                      <button  id="frmStartGame-20260319083737RRJZII" type="button" class="btn btn-primary">Pulse aquí para empezar</button>
+                </div>
+                <div class="form-body" id="frmBody-20260319083737RRJZII" style="display:block;">
+                    <div class="FRMP-Questions">
+                        <div id="form-questions-20260319083737RRJZII" > </div>
+                        <div id="frmCover-20260319083737RRJZII" class="FRMP-Cover"> </div>
+                    </div>
+                    <div id="resultsContainer-20260319083737RRJZII" class="form-results-container inline">
+                        <div id="form-score-20260319083737RRJZII" class="score-text">Puntuación.</div>
+                        <div id="form-result-test-20260319083737RRJZII" class="score-text phrase-score"></div>
+                    </div>
+                    <div class="form-buttons-container inline">
+                        <input id="form-button-check-20260319083737RRJZII" class="btn btn-primary" type="button" value="Comprobar"
+                            data-id="20260319083737RRJZII" />
+                        <input id="form-button-reset-20260319083737RRJZII" type="button" value="Reiniciar"
+                            data-id="20260319083737RRJZII" class="btn btn-primary"  style="display:none" />
+                        <input id="form-button-show-answers-20260319083737RRJZII" class="btn btn-primary" type="button" value="Mostrar respuestas"
+                            data-id="20260319083737RRJZII" style="display: " />
+
+                    </div>
+                </div>
+                <div class="Games-BottonContainer d-flex align-items-center justify-content-end mx-auto p-0 w-100"></div>
+                
+            </div>
+            <div class="questionsMedia" style="display:none"></div>
+            
+</div>
+</div>
+</div>
+</article><article id="20260323172955XRLZDR" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">Curiosidad</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YSKAYF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YSKAYF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><strong>Termómetro sin contacto</strong></p>
+<p style="text-align: justify;">Últimamente se vienen utilizando unos termómetros que no necesitan contacto, y que se conocen popularmente por termómetro de infrarrojos. Pero, no te confundas, el láser es simplemente para apuntar mejor hacia el lugar de medición (como en ciertas miras de rifles), no para hacer la medida.</p>
+<p><img src="../content/resources/20260319083737YSKAYF/termomsincont-1.jpg" width="462" height="260" alt="" style="display: block; margin-left: auto; margin-right: auto;"></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/23-tiempo.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/3-resumen.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

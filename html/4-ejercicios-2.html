@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8jh-vmexkkbu3">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>4. Ejercicios | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/form/form.js"></script><link rel="stylesheet" href="../idevices/form/form.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8jh-vmexkkbu3" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li class="active"> <a href="../html/4-ejercicios-2.html" class="active no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8jh-vmexkkbu3" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">4. Ejercicios</h1></div>
+</header><div id="page-content-page-moskc8jh-vmexkkbu3" class="page-content">
+<article id="20260323172955FGNVBB" class="box caja-morada boton-morado">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_completa.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Completa. Superficie.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737JWFWSW" class="idevice_node form" data-idevice-path="../idevices/form/" data-idevice-type="form" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737JWFWSW&quot;,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;&quot;,&quot;passScoreMode&quot;:&quot;global&quot;,&quot;passScoreCustom&quot;:5,&quot;repeatActivity&quot;:true,&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;weighted&quot;:100,&quot;msgs&quot;:{&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgYouScore&quot;:&quot;Tu puntuación es&quot;,&quot;msgEndGameScore&quot;:&quot;Comience la partida antes de guardar la puntuación.&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgPassScore&quot;:&quot;Puntuación mínima necesaria para aprobar esta actividad: %s&quot;,&quot;msgTypeGame&quot;:&quot;Formulario&quot;,&quot;msgStartGame&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgSaveScore&quot;:&quot;Guardar la puntuación&quot;,&quot;msgResult&quot;:&quot;Resultado&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgReset&quot;:&quot;Reiniciar&quot;,&quot;msgShowAnswers&quot;:&quot;Mostrar respuestas&quot;,&quot;msgTestResultPass&quot;:&quot;¡Felicidades! Has pasado la prueba&quot;,&quot;msgTestResultNotPass&quot;:&quot;Lo siento. Has fallado la prueba&quot;,&quot;msgTrueFalseHelp&quot;:&quot;Di si la afirmación es verdadera o falsa&quot;,&quot;msgDropdownHelp&quot;:&quot;Elige la respuesta correcta entre las opciones propuestas&quot;,&quot;msgFillHelp&quot;:&quot;Rellena los espacios en blanco con la palabra apropiada&quot;,&quot;msgSingleSelectionHelp&quot;:&quot;Opción múltiple con solo una respuesta correcta&quot;,&quot;msgMultipleSelectionHelp&quot;:&quot;Opción múltiple con varias respuestas correctas&quot;,&quot;msgPlayStart&quot;:&quot;Pulse aquí para empezar&quot;,&quot;msgTrue&quot;:&quot;Verdadero&quot;,&quot;msgFalse&quot;:&quot;Falso&quot;,&quot;msgNext&quot;:&quot;Siguiente&quot;,&quot;msgPrevious&quot;:&quot;Anterior&quot;,&quot;msgSuggestion&quot;:&quot;Sugerencia&quot;,&quot;msgOk&quot;:&quot;Correcto&quot;,&quot;msgKO&quot;:&quot;Incorrecto&quot;,&quot;msgHide&quot;:&quot;Ocultar&quot;},&quot;id&quot;:&quot;20260319083737JWFWSW&quot;,&quot;questionsRandom&quot;:false,&quot;percentageQuestions&quot;:&quot;100&quot;,&quot;time&quot;:&quot;0&quot;,&quot;eXeFormInstructions&quot;:&quot;&quot;,&quot;questionsData&quot;:[{&quot;id&quot;:&quot;1774208262595-YULPS&quot;,&quot;activityType&quot;:&quot;fill&quot;,&quot;baseText&quot;:&quot;&lt;div style=\&quot;font-family: 'Century Gothic', Arial, sans-serif; border: 2px solid #7a297b; border-radius: 12px; overflow: hidden; max-width: 750px; margin: 20px auto; box-shadow: 0 6px 15px rgba(0,0,0,0.1);\&quot;&gt;\n&lt;table style=\&quot;width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;\&quot;&gt;\n&lt;thead&gt;\n&lt;tr style=\&quot;background-color: #7a297b; color: #ffffff;\&quot;&gt;\n&lt;th style=\&quot;padding: 18px; border: 1px solid #7a297b; font-size: 1.3em; letter-spacing: 1px;\&quot;&gt;km²&lt;/th&gt;\n&lt;th style=\&quot;padding: 18px; border: 1px solid #7a297b; font-size: 1.3em; letter-spacing: 1px;\&quot;&gt;m²&lt;/th&gt;\n&lt;th style=\&quot;padding: 18px; border: 1px solid #7a297b; font-size: 1.3em; letter-spacing: 1px;\&quot;&gt;cm²&lt;/th&gt;\n&lt;th style=\&quot;padding: 18px; border: 1px solid #7a297b; font-size: 1.3em; letter-spacing: 1px;\&quot;&gt;mm²&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody&gt;\n&lt;tr style=\&quot;background-color: #e0d6dd;\&quot;&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;0,000035&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; font-weight: bold; color: #000; font-size: 1.1em;\&quot;&gt;35&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;350000&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;35000000&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;0,0000000187&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;0,0187&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; font-weight: bold; color: #000; font-size: 1.1em;\&quot;&gt;187&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;18700&lt;/u&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr style=\&quot;background-color: #e0d6dd;\&quot;&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;0,000000001&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;0,001&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; color: #666; font-size: 0.95em;\&quot;&gt;&lt;u&gt;10&lt;/u&gt;&lt;/td&gt;\n&lt;td style=\&quot;padding: 15px; border: 1px solid #7a297b; font-weight: bold; color: #000; font-size: 1.1em;\&quot;&gt;1.000&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&lt;/div&gt;&quot;,&quot;feedbackRight&quot;:&quot;&quot;,&quot;feedbackWrong&quot;:&quot;&quot;,&quot;suggestion&quot;:&quot;&quot;,&quot;wrongAnswersValue&quot;:&quot;&quot;,&quot;selectionType&quot;:&quot;single&quot;,&quot;answers&quot;:[],&quot;answer&quot;:&quot;1&quot;,&quot;capitalization&quot;:true,&quot;strict&quot;:true,&quot;order&quot;:0,&quot;customScore&quot;:1,&quot;time&quot;:0}],&quot;addBtnAnswers&quot;:true,&quot;eXeIdeviceTextAfter&quot;:&quot;&quot;,&quot;showSlider&quot;:false}" data-idevice-template="form.html">
+<div class="exe-form-container">
+  <div class="game-evaluation-ids js-hidden" data-id="20260319083737JWFWSW" data-evaluationb="false" data-evaluationid=""></div>
+            <div id="frmMainContainer-20260319083737JWFWSW" class="form-IDevice" data-id="20260319083737JWFWSW">
+                <div class="form-Data js-hidden">{}</div>
+                
+                <div class="FRMP-GameScoreBoard" style="display:none;">
+                    <div>
+                        <strong><span class="sr-av">Tiempo por pregunta:</span></strong>
+                        <span id="frmPTime-20260319083737JWFWSW">00:00</span>
+                    </div>
+                </div>
+                <div class="FRMP-StartGame" id="frmStartGameDiv-20260319083737JWFWSW" style="display:none;">
+                      <button  id="frmStartGame-20260319083737JWFWSW" type="button" class="btn btn-primary">Pulse aquí para empezar</button>
+                </div>
+                <div class="form-body" id="frmBody-20260319083737JWFWSW" style="display:block;">
+                    <div class="FRMP-Questions">
+                        <div id="form-questions-20260319083737JWFWSW" > </div>
+                        <div id="frmCover-20260319083737JWFWSW" class="FRMP-Cover"> </div>
+                    </div>
+                    <div id="resultsContainer-20260319083737JWFWSW" class="form-results-container inline">
+                        <div id="form-score-20260319083737JWFWSW" class="score-text">Puntuación.</div>
+                        <div id="form-result-test-20260319083737JWFWSW" class="score-text phrase-score"></div>
+                    </div>
+                    <div class="form-buttons-container inline">
+                        <input id="form-button-check-20260319083737JWFWSW" class="btn btn-primary" type="button" value="Comprobar"
+                            data-id="20260319083737JWFWSW" />
+                        <input id="form-button-reset-20260319083737JWFWSW" type="button" value="Reiniciar"
+                            data-id="20260319083737JWFWSW" class="btn btn-primary"  style="display:none" />
+                        <input id="form-button-show-answers-20260319083737JWFWSW" class="btn btn-primary" type="button" value="Mostrar respuestas"
+                            data-id="20260319083737JWFWSW" style="display: " />
+
+                    </div>
+                </div>
+                <div class="Games-BottonContainer d-flex align-items-center justify-content-end mx-auto p-0 w-100"></div>
+                
+            </div>
+            <div class="questionsMedia" style="display:none"></div>
+            
+</div>
+</div>
+</div>
+</article><article id="block-mwnh80nt-y9dstg0rt" class="box sin-titulo">
+<header class="box-head no-icon">
+<h1 class="box-title">Texto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795088294488-gne4tpdq8" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795088294488-gne4tpdq8&quot;}">
+<div class="exe-text-template">
+    <div id="vol-cap-app-v1" style="width: 100%; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1e293b; user-select: none;"><!-- Barra superior: Título y botón calculadora -->
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fed7aa; padding-bottom: 12px; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+<div><span style="font-size: 1.3rem; font-weight: 800; color: #ea580c;">Para practicar:</span> <span style="font-size: 1.2rem; font-weight: bold; color: #431407; margin-left: 6px;">Volúmenes y capacidades</span></div>
+<!-- Botón calculadora básica blindado -->
+<div id="vc-btn-toggle-calc" title="Abrir/cerrar calculadora básica" style="background: #fff7ed; border: 2px solid #ea580c; color: #ea580c; border-radius: 8px; padding: 6px 12px; font-weight: 800; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s ease;"><span style="font-family: monospace; font-size: 1.1rem; line-height: 1;">+ − × ÷</span> <span>Calculadora</span></div>
+</div>
+<!-- Calculadora Básica Desplegable -->
+<div id="vc-calc-panel" style="display: none; background: #fff7ed; border: 2px solid #fdba74; border-radius: 10px; padding: 14px; margin-bottom: 18px; max-width: 280px; margin-left: auto; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.12);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;"><span style="font-size: 0.78rem; font-weight: 800; color: #9a3412; text-transform: uppercase;">Calculadora básica</span> <span id="vc-calc-close" style="cursor: pointer; font-weight: 800; color: #ea580c; padding: 0 4px;">✕</span></div>
+<input type="text" id="vc-calc-display" readonly="readonly" value="0" style="width: 100%; box-sizing: border-box; text-align: right; font-family: monospace; font-size: 1.35rem; font-weight: 800; padding: 8px 10px; border: 2px solid #ea580c; border-radius: 6px; background: #ffffff; color: #0f172a; margin-bottom: 10px; outline: none;" />
+<div id="vc-calc-keys" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; font-weight: 800; font-size: 1.05rem;"><!-- Fila 1 -->
+<div class="vc-ckey" data-k="C" style="background: #fed7aa; color: #9a3412; padding: 8px 0; border-radius: 6px; cursor: pointer;">C</div>
+<div class="vc-ckey" data-k="DEL" style="background: #fed7aa; color: #9a3412; padding: 8px 0; border-radius: 6px; cursor: pointer;">⌫</div>
+<div class="vc-ckey" data-k="/" style="background: #ffedd5; color: #ea580c; padding: 8px 0; border-radius: 6px; cursor: pointer;">÷</div>
+<div class="vc-ckey" data-k="*" style="background: #ffedd5; color: #ea580c; padding: 8px 0; border-radius: 6px; cursor: pointer;">×</div>
+<!-- Fila 2 -->
+<div class="vc-ckey" data-k="7" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">7</div>
+<div class="vc-ckey" data-k="8" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">8</div>
+<div class="vc-ckey" data-k="9" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">9</div>
+<div class="vc-ckey" data-k="-" style="background: #ffedd5; color: #ea580c; padding: 8px 0; border-radius: 6px; cursor: pointer;">−</div>
+<!-- Fila 3 -->
+<div class="vc-ckey" data-k="4" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">4</div>
+<div class="vc-ckey" data-k="5" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">5</div>
+<div class="vc-ckey" data-k="6" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">6</div>
+<div class="vc-ckey" data-k="+" style="background: #ffedd5; color: #ea580c; padding: 8px 0; border-radius: 6px; cursor: pointer;">+</div>
+<!-- Fila 4 -->
+<div class="vc-ckey" data-k="1" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">1</div>
+<div class="vc-ckey" data-k="2" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">2</div>
+<div class="vc-ckey" data-k="3" style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">3</div>
+<div class="vc-ckey" data-k="=" style="grid-row: span 2; background: #ea580c; color: #ffffff; display: flex; align-items: center; justify-content: center; border-radius: 6px; cursor: pointer;">=</div>
+<!-- Fila 5 -->
+<div class="vc-ckey" data-k="0" style="grid-column: span 2; background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">0</div>
+<div class="vc-ckey" data-k="." style="background: #ffffff; border: 1px solid #fed7aa; padding: 8px 0; border-radius: 6px; cursor: pointer;">,</div>
+</div>
+</div>
+<!-- Selector de Tipo de Problema -->
+<div style="background: #fff7ed; border: 1px solid #fdba74; border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><label for="vc-select-modelo" style="font-weight: 800; color: #9a3412; font-size: 0.98rem;">Elige un modelo:</label><select id="vc-select-modelo" style="padding: 8px 12px; font-size: 0.98rem; font-weight: bold; color: #1e293b; background: #ffffff; border: 2px solid #ea580c; border-radius: 6px; outline: none; cursor: pointer;">
+<option value="cisterna">1. El agua de la cisterna</option>
+<option value="jarabe">2. La dosis de jarabe</option>
+<option value="pantano">3. El pantano</option>
+<option value="piscina">4. Llenado de una piscina</option>
+<option value="zumos">5. Envases y vasos</option>
+</select></div>
+<div id="vc-btn-otro" style="background: #ea580c; color: #ffffff; font-weight: 800; font-size: 0.9rem; padding: 8px 16px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.4px; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.25);">Otro ejercicio</div>
+</div>
+<!-- Cuerpo Principal en 2 Columnas (Gráfico + Enunciado y Resolución) -->
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-bottom: 20px;"><!-- Columna Izquierda: Ilustración SVG -->
+<div id="vc-grafico-box" style="flex: 1 1 240px; max-width: 300px; margin: 0 auto; background: #fffbeb; border: 2px solid #fed7aa; border-radius: 12px; padding: 16px; text-align: center; box-sizing: border-box;"><!-- Se inyecta SVG por JS --></div>
+<!-- Columna Derecha: Enunciado, Input de respuesta y Botones -->
+<div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 16px;"><!-- Caja del Enunciado -->
+<div id="vc-enunciado-texto" style="background: #ffffff; border-left: 5px solid #ea580c; border-top: 1px solid #fed7aa; border-right: 1px solid #fed7aa; border-bottom: 1px solid #fed7aa; border-radius: 8px; padding: 18px; font-size: 1.12rem; line-height: 1.55; color: #0f172a; font-weight: 500;"><!-- Texto dinámico --></div>
+<!-- Zona de Respuesta del Alumno -->
+<div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;"><span style="font-weight: bold; color: #9a3412;">Tu respuesta:</span> <input type="text" id="vc-input-resp" placeholder="Ej: 6,075" style="width: 140px; padding: 8px 12px; font-size: 1.1rem; font-weight: bold; border: 2px solid #ea580c; border-radius: 6px; background: #ffffff; color: #0f172a; text-align: center; outline: none;" /> <span id="vc-unidad-resp" style="font-weight: 800; font-size: 1.1rem; color: #431407;">m³</span>
+<div id="vc-btn-comprobar" style="background: #f57c00; color: #ffffff; font-weight: 800; font-size: 0.92rem; padding: 9px 18px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.4px; margin-left: auto;">Comprobar</div>
+</div>
+<!-- Feedback rápido -->
+<div id="vc-feedback" style="font-weight: 800; font-size: 1.02rem; min-height: 22px;"></div>
+<!-- Botón Ver la solución -->
+<div style="display: flex; justify-content: flex-end;">
+<div id="vc-btn-solucion" style="background: #ffffff; color: #ea580c; border: 2px solid #ea580c; font-weight: 800; font-size: 0.9rem; padding: 8px 18px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.4px;">Ver la solución</div>
+</div>
+</div>
+</div>
+<!-- Panel Desplegable de Solución Paso a Paso -->
+<div id="vc-panel-solucion" style="display: none; background: #fffbeb; border: 2px solid #ea580c; border-radius: 10px; padding: 18px 20px; margin-top: 10px; line-height: 1.6; color: #1e293b;">
+<div style="font-weight: 800; color: #9a3412; font-size: 1.05rem; margin-bottom: 10px; border-bottom: 1px dashed #fdba74; padding-bottom: 6px;">Resolución paso a paso</div>
+<div id="vc-solucion-contenido" style="font-size: 1rem;"></div>
+</div>
+</div>
+<p>
+<script>
+(function() {
+  // Evitar colisiones si se instancia varias veces
+  const root = document.getElementById('vol-cap-app-v1');
+  if (!root) return;
+
+  let ejercicioActual = null;
+  let calcExpresion = '';
+
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function formatES(num) {
+    // Evita problemas de coma flotante (ej. 6.075000000000001)
+    let limpio = Math.round(num * 1000000) / 1000000;
+    return limpio.toString().replace('.', ',');
+  }
+
+  // Ilustraciones SVG limpias para cada escenario
+  const SVGS = {
+    cisterna: `
+      <svg viewBox="0 0 200 180" width="100%" height="165">
+        <rect x="10" y="10" width="180" height="160" rx="12" fill="#ffedd5" />
+        <!-- Cisterna -->
+        <rect x="48" y="26" width="54" height="44" rx="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+        <rect x="44" y="21" width="62" height="7" rx="3" fill="#f57c00"/>
+        <path d="M 38 38 L 48 38" stroke="#9a3412" stroke-width="4" stroke-linecap="round"/>
+        <!-- Nivel agua interior -->
+        <rect x="52" y="42" width="46" height="24" rx="2" fill="#bae6fd"/>
+        <!-- Tubo bajante -->
+        <rect x="69" y="70" width="12" height="22" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+        <!-- Taza -->
+        <path d="M 55 92 L 138 92 C 142 118, 124 134, 102 134 L 102 154 L 62 154 L 62 126 C 54 116, 53 102, 55 92 Z" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+        <ellipse cx="98" cy="92" rx="42" ry="6" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+        <!-- Gotas -->
+        <path d="M 155 45 C 155 45, 165 60, 165 67 A 10 10 0 1 1 145 67 C 145 60, 155 45, 155 45 Z" fill="#0284c7"/>
+        <path d="M 135 28 C 135 28, 141 37, 141 42 A 6 6 0 1 1 129 42 C 129 37, 135 28, 135 28 Z" fill="#38bdf8"/>
+      </svg>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #9a3412; margin-top: 6px;">Recuerda: 1 m³ = 1.000 litros</div>
+    `,
+    jarabe: `
+      <svg viewBox="0 0 200 180" width="100%" height="165">
+        <rect x="10" y="10" width="180" height="160" rx="12" fill="#ffedd5" />
+        <!-- Frasco ámbar -->
+        <rect x="58" y="25" width="34" height="14" rx="3" fill="#ffffff" stroke="#9a3412" stroke-width="2.5"/>
+        <path d="M 62 39 L 88 39 L 100 58 L 100 148 C 100 153, 96 156, 91 156 L 59 156 C 54 156, 50 153, 50 148 L 50 58 Z" fill="#d97706" stroke="#78350f" stroke-width="3"/>
+        <!-- Etiqueta -->
+        <rect x="54" y="76" width="42" height="52" rx="3" fill="#fffbeb"/>
+        <path d="M 75 86 L 75 102 M 67 94 L 83 94" stroke="#ea580c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="62" y1="112" x2="88" y2="112" stroke="#9a3412" stroke-width="2"/>
+        <line x1="62" y1="119" x2="82" y2="119" stroke="#9a3412" stroke-width="2"/>
+        <!-- Vasito dosificador -->
+        <path d="M 122 112 L 154 112 L 149 155 L 127 155 Z" fill="#ffffff" fill-opacity="0.85" stroke="#0284c7" stroke-width="2.5"/>
+        <path d="M 125 132 L 151 132 L 149 155 L 127 155 Z" fill="#f59e0b" fill-opacity="0.75"/>
+        <line x1="132" y1="122" x2="144" y2="122" stroke="#0284c7" stroke-width="1.5"/>
+        <line x1="133" y1="132" x2="143" y2="132" stroke="#0284c7" stroke-width="1.5"/>
+        <line x1="134" y1="142" x2="142" y2="142" stroke="#0284c7" stroke-width="1.5"/>
+      </svg>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #9a3412; margin-top: 6px;">Recuerda: 1 cm³ = 1 ml</div>
+    `,
+    pantano: `
+      <svg viewBox="0 0 200 180" width="100%" height="165">
+        <rect x="10" y="10" width="180" height="160" rx="12" fill="#e0f2fe" />
+        <!-- Sol cálido -->
+        <circle cx="152" cy="40" r="16" fill="#f59e0b" />
+        <!-- Montañas -->
+        <polygon points="15,105 65,48 118,105" fill="#fdba74" />
+        <polygon points="75,105 130,55 185,105" fill="#fb923c" />
+        <!-- Agua del embalse -->
+        <rect x="10" y="105" width="180" height="65" rx="0" fill="#0284c7" />
+        <path d="M 28 122 Q 45 117, 62 122 T 96 122" fill="none" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 105 142 Q 122 137, 139 142 T 173 142" fill="none" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Presa -->
+        <polygon points="10,98 32,98 44,170 10,170" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+      </svg>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #9a3412; margin-top: 6px;">Recuerda: 1 dm³ = 1 litro</div>
+    `,
+    piscina: `
+      <svg viewBox="0 0 200 180" width="100%" height="165">
+        <rect x="10" y="10" width="180" height="160" rx="12" fill="#ffedd5" />
+        <!-- Prisma piscina isométrico -->
+        <polygon points="35,75 115,45 170,70 90,100" fill="#38bdf8" stroke="#0284c7" stroke-width="2.5"/>
+        <polygon points="35,75 90,100 90,138 35,113" fill="#0284c7" stroke="#0369a1" stroke-width="2.5"/>
+        <polygon points="90,100 170,70 170,108 90,138" fill="#0ea5e9" stroke="#0369a1" stroke-width="2.5"/>
+        <!-- Escalera -->
+        <path d="M 122 52 L 122 38 C 122 32, 132 32, 132 38 L 132 58" fill="none" stroke="#ea580c" stroke-width="3"/>
+        <path d="M 136 58 L 136 44 C 136 38, 146 38, 146 44 L 146 64" fill="none" stroke="#ea580c" stroke-width="3"/>
+      </svg>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #9a3412; margin-top: 6px;">Volumen = largo × ancho × alto</div>
+    `,
+    zumos: `
+      <svg viewBox="0 0 200 180" width="100%" height="165">
+        <rect x="10" y="10" width="180" height="160" rx="12" fill="#ffedd5" />
+        <!-- Brick de zumo -->
+        <polygon points="45,52 95,52 108,42 58,42" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+        <rect x="45" y="52" width="50" height="98" fill="#f97316" stroke="#ea580c" stroke-width="2.5"/>
+        <polygon points="95,52 108,42 108,140 95,150" fill="#ea580c" stroke="#c2410c" stroke-width="2.5"/>
+        <circle cx="70" cy="100" r="14" fill="#fde047" />
+        <!-- Pajita -->
+        <path d="M 75 46 L 85 24 L 102 22" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+        <!-- Vaso -->
+        <polygon points="128,96 164,96 158,150 134,150" fill="#ffffff" stroke="#0284c7" stroke-width="2.5"/>
+        <polygon points="130,112 162,112 158,150 134,150" fill="#fb923c" />
+      </svg>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #9a3412; margin-top: 6px;">1 dm³ = 1 litro = 100 cl</div>
+    `
+  };
+
+  function generarDatosEjercicio(modelo) {
+    if (modelo === 'cisterna') {
+      const veces = randInt(5, 14);
+      const litrosPool = [4.5, 5, 6, 6.5, 7.5, 8, 9];
+      const litros = litrosPool[randInt(0, litrosPool.length - 1)];
+      const diasPool = [30, 45, 60, 90, 100, 120];
+      const dias = diasPool[randInt(0, diasPool.length - 1)];
+
+      const totalLitros = veces * litros * dias;
+      const totalM3 = totalLitros / 1000;
+
+      return {
+        modelo: 'cisterna',
+        enunciado: `¿Cuántos <strong>metros cúbicos</strong> de agua se consumen al vaciar <strong>${veces} veces</strong> al día una cisterna de <strong>${formatES(litros)} l</strong>, durante <strong>${dias} días</strong>?`,
+        respuesta: totalM3,
+        unidad: 'm³',
+        pasos: `
+          <p style="margin: 0 0 8px 0;"><strong>1. Calculamos el consumo total en litros:</strong><br>
+          ${veces} veces/día × ${formatES(litros)} litros × ${dias} días = <strong>${formatES(totalLitros)} litros</strong>.</p>
+          <p style="margin: 0;"><strong>2. Pasamos de litros a metros cúbicos (m³):</strong><br>
+          Como 1 m³ equivale a 1 dm³ × 1.000 = <strong>1.000 litros</strong>, dividimos entre 1.000:<br>
+          ${formatES(totalLitros)} l : 1.000 = <strong>${formatES(totalM3)} m³</strong>.</p>
+        `
+      };
+    }
+
+    if (modelo === 'jarabe') {
+      const cm3 = randInt(4, 25);
+      const horasPool = [6, 8, 12];
+      const horas = horasPool[randInt(0, horasPool.length - 1)];
+
+      return {
+        modelo: 'jarabe',
+        enunciado: `El médico me ha prescrito <strong>${cm3} cm³</strong> de jarabe, cada ${horas} horas. El dosificador viene en <strong>ml</strong>. ¿Cuántos <strong>ml</strong> debo tomar cada ${horas} horas?`,
+        respuesta: cm3,
+        unidad: 'ml',
+        pasos: `
+          <p style="margin: 0 0 8px 0;"><strong>1. Aplicamos la equivalencia directa entre volumen y capacidad:</strong><br>
+          Sabemos que 1 dm³ = 1 litro. Si bajamos un escalón en volumen (de dm³ a cm³, dividiendo entre 1.000) y tres en capacidad (de l a ml, dividiendo entre 1.000), obtenemos que:<br>
+          <strong>1 cm³ = 1 ml</strong>.</p>
+          <p style="margin: 0;"><strong>2. Resultado:</strong><br>
+          Por tanto, ${cm3} cm³ equivalen exactamente a <strong>${cm3} ml</strong>.</p>
+        `
+      };
+    }
+
+    if (modelo === 'pantano') {
+      const hm3 = randInt(12, 480);
+      const litros = hm3 * 1000000000;
+      const litrosFormateado = litros.toLocaleString('es-ES');
+
+      return {
+        modelo: 'pantano',
+        enunciado: `Un pantano tiene una capacidad de <strong>${hm3} hm³</strong>. Expresa esta cantidad en <strong>litros</strong>.`,
+        respuesta: litros,
+        unidad: 'litros',
+        pasos: `
+          <p style="margin: 0 0 8px 0;"><strong>1. Pasamos de hm³ a dm³ (que equivalen a litros):</strong><br>
+          En la escalera de unidades de volumen, de <strong>hm³</strong> a <strong>dm³</strong> hay <strong>3 escalones hacia abajo</strong> (hm³ → dam³ → m³ → dm³). Cada escalón multiplica por 1.000.</p>
+          <p style="margin: 0 0 8px 0;"><strong>2. Multiplicamos por 1.000.000.000 (10⁹):</strong><br>
+          ${hm3} hm³ × 1.000.000.000 = <strong>${litrosFormateado} dm³</strong>.</p>
+          <p style="margin: 0;"><strong>3. Equivalencia a litros:</strong><br>
+          Como 1 dm³ = 1 litro, el pantano contiene <strong>${litrosFormateado} litros</strong> (escribe el número sin puntos: <code>${litros}</code>).</p>
+        `
+      };
+    }
+
+    if (modelo === 'piscina') {
+      const largo = randInt(5, 12);
+      const ancho = randInt(3, 6);
+      const profPool = [1.5, 1.8, 2, 2.2];
+      const prof = profPool[randInt(0, profPool.length - 1)];
+
+      const volM3 = largo * ancho * prof;
+      const litros = volM3 * 1000;
+
+      return {
+        modelo: 'piscina',
+        enunciado: `Una piscina rectangular mide <strong>${largo} m</strong> de largo, <strong>${ancho} m</strong> de ancho y <strong>${formatES(prof)} m</strong> de profundidad. ¿Cuántos <strong>litros</strong> de agua se necesitan para llenarla por completo?`,
+        respuesta: litros,
+        unidad: 'litros',
+        pasos: `
+          <p style="margin: 0 0 8px 0;"><strong>1. Calculamos el volumen de la piscina en metros cúbicos (m³):</strong><br>
+          Volumen = ${largo} m × ${ancho} m × ${formatES(prof)} m = <strong>${formatES(volM3)} m³</strong>.</p>
+          <p style="margin: 0;"><strong>2. Convertimos los m³ a litros:</strong><br>
+          Como 1 m³ = 1.000 dm³ = 1.000 litros, multiplicamos por 1.000:<br>
+          ${formatES(volM3)} × 1.000 = <strong>${litros.toLocaleString('es-ES')} litros</strong> (escribe <code>${litros}</code>).</p>
+        `
+      };
+    }
+
+    if (modelo === 'zumos') {
+      const bricks = randInt(2, 6);
+      const dm3Pool = [1, 1.5, 2];
+      const dm3 = dm3Pool[randInt(0, dm3Pool.length - 1)];
+      const vasoClPool = [20, 25];
+      const vasoCl = vasoClPool[randInt(0, vasoClPool.length - 1)];
+
+      const totalLitros = bricks * dm3;
+      const totalCl = totalLitros * 100;
+      const numVasos = totalCl / vasoCl;
+
+      return {
+        modelo: 'zumos',
+        enunciado: `Tenemos <strong>${bricks} envases</strong> de zumo de <strong>${formatES(dm3)} dm³</strong> cada uno. ¿Cuántos vasos de <strong>${vasoCl} cl</strong> podemos llenar en total?`,
+        respuesta: numVasos,
+        unidad: 'vasos',
+        pasos: `
+          <p style="margin: 0 0 8px 0;"><strong>1. Calculamos la capacidad total en litros:</strong><br>
+          Como 1 dm³ = 1 litro, cada envase tiene ${formatES(dm3)} litros.<br>
+          Total = ${bricks} envases × ${formatES(dm3)} l = <strong>${formatES(totalLitros)} litros</strong>.</p>
+          <p style="margin: 0 0 8px 0;"><strong>2. Pasamos los litros a centilitros (cl):</strong><br>
+          ${formatES(totalLitros)} l × 100 = <strong>${formatES(totalCl)} cl</strong>.</p>
+          <p style="margin: 0;"><strong>3. Dividimos entre la capacidad de cada vaso:</strong><br>
+          ${formatES(totalCl)} cl : ${vasoCl} cl/vaso = <strong>${formatES(numVasos)} vasos</strong>.</p>
+        `
+      };
+    }
+  }
+
+  function cargarEjercicio() {
+    const sel = root.querySelector('#vc-select-modelo');
+    const modelo = sel.value;
+    ejercicioActual = generarDatosEjercicio(modelo);
+
+    root.querySelector('#vc-grafico-box').innerHTML = SVGS[modelo];
+    root.querySelector('#vc-enunciado-texto').innerHTML = ejercicioActual.enunciado;
+    root.querySelector('#vc-unidad-resp').textContent = ejercicioActual.unidad;
+
+    const inp = root.querySelector('#vc-input-resp');
+    inp.value = '';
+    inp.style.borderColor = '#ea580c';
+    inp.style.background = '#ffffff';
+
+    root.querySelector('#vc-feedback').innerHTML = '';
+    root.querySelector('#vc-panel-solucion').style.display = 'none';
+    root.querySelector('#vc-solucion-contenido').innerHTML = ejercicioActual.pasos;
+  }
+
+  function comprobarRespuesta() {
+    const inp = root.querySelector('#vc-input-resp');
+    const fb = root.querySelector('#vc-feedback');
+    // Limpiar espacios y puntos de miles si el alumno los escribe, y convertir coma a punto
+    let raw = inp.value.trim().replace(/\s+/g, '');
+    
+    // Si tiene tanto puntos como comas (ej: 1.000,5), quitar puntos de miles
+    if (raw.includes('.') && raw.includes(',')) {
+      raw = raw.replace(/\./g, '').replace(',', '.');
+    } else if (raw.includes(',')) {
+      raw = raw.replace(',', '.');
+    } else if ((raw.match(/\./g) || []).length > 1) {
+      // Varios puntos (ej: 451.000.000.000) -> quitar todos
+      raw = raw.replace(/\./g, '');
+    }
+
+    const val = parseFloat(raw);
+
+    if (isNaN(val)) {
+      fb.style.color = '#c2410c';
+      fb.textContent = 'Escribe un número válido antes de comprobar.';
+      inp.style.borderColor = '#ea580c';
+      return;
+    }
+
+    const tolerancia = Math.max(0.0001, Math.abs(ejercicioActual.respuesta) * 0.0001);
+    if (Math.abs(val - ejercicioActual.respuesta) <= tolerancia) {
+      inp.style.borderColor = '#16a34a';
+      inp.style.background = '#f0fdf4';
+      fb.style.color = '#15803d';
+      fb.innerHTML = '✓ ¡Correcto! Has realizado bien la conversión.';
+    } else {
+      inp.style.borderColor = '#dc2626';
+      inp.style.background = '#fef2f2';
+      fb.style.color = '#b91c1c';
+      fb.innerHTML = '✗ No es correcto. Revisa las equivalencias de unidades o pulsa «Ver la solución».';
+    }
+  }
+
+  // Eventos de los botones principales
+  root.querySelector('#vc-select-modelo').addEventListener('change', cargarEjercicio);
+  root.querySelector('#vc-btn-otro').addEventListener('click', cargarEjercicio);
+  root.querySelector('#vc-btn-comprobar').addEventListener('click', comprobarRespuesta);
+  
+  root.querySelector('#vc-input-resp').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') comprobarRespuesta();
+  });
+
+  root.querySelector('#vc-btn-solucion').addEventListener('click', function() {
+    const panel = root.querySelector('#vc-panel-solucion');
+    panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+  });
+
+  // Lógica de la Calculadora Básica
+  const calcPanel = root.querySelector('#vc-calc-panel');
+  const calcDisplay = root.querySelector('#vc-calc-display');
+
+  root.querySelector('#vc-btn-toggle-calc').addEventListener('click', function() {
+    calcPanel.style.display = (calcPanel.style.display === 'none') ? 'block' : 'none';
+  });
+
+  root.querySelector('#vc-calc-close').addEventListener('click', function() {
+    calcPanel.style.display = 'none';
+  });
+
+  root.querySelectorAll('.vc-ckey').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const k = this.getAttribute('data-k');
+      if (k === 'C') {
+        calcExpresion = '';
+        calcDisplay.value = '0';
+      } else if (k === 'DEL') {
+        calcExpresion = calcExpresion.slice(0, -1);
+        calcDisplay.value = calcExpresion.replace(/\./g, ',') || '0';
+      } else if (k === '=') {
+        try {
+          if (!calcExpresion) return;
+          // Evaluar de forma segura solo números y operadores básicos
+          if (/^[0-9+\-*/.() ]+$/.test(calcExpresion)) {
+            const res = Function('"use strict";return (' + calcExpresion + ')')();
+            if (isFinite(res)) {
+              const limpio = Math.round(res * 100000000) / 100000000;
+              calcExpresion = limpio.toString();
+              calcDisplay.value = calcExpresion.replace('.', ',');
+            } else {
+              calcDisplay.value = 'Error';
+              calcExpresion = '';
+            }
+          }
+        } catch (err) {
+          calcDisplay.value = 'Error';
+          calcExpresion = '';
+        }
+      } else {
+        calcExpresion += k;
+        calcDisplay.value = calcExpresion.replace(/\./g, ',').replace(/\*/g, '×').replace(/\//g, '÷');
+      }
+    });
+  });
+
+  // Inicializar primer ejercicio
+  cargarEjercicio();
+})();
+</script>
+</p>
+</div>
+</div>
+</div>
+</article><article id="20260323172955TRTEQK" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_ejercicioresuelto.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Ejercicio resuelto. Densidad.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737AAVFSM" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737AAVFSM&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Un objeto tiene de masa \(210 \textrm{ g}\).</p>
+<p>Medimos su volumen introduciéndolo en un recipiente y viendo que sube el volumen del agua contenido en él \(20 \textrm{ cm}^3\).</p>
+<p>¿Cuál es su densidad en la unidad del SI?</p>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="w">
+            </div>
+            <div class="feedback js-feedback js-hidden"><p>Para que la unidad sea la del SI tenemos que tener la masa en kg y el volumen en m<sup>3</sup>.</p>
+<p>Masa=\(210 \textrm{ g}=0,21 \textrm{ kg}\)</p>
+<p>Volumen= \(20 \textrm{ cm}^3=0,0002 \textrm{ m}^3\)</p>
+<p>Luego la densidad es: \[\rho=\dfrac{0,21}{0,0002} \text{ kg/m}^3\]</p></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955LVSACX" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_ejercicioresuelto.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Ejercicio resuelto. Presión.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737COJXRH" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737COJXRH&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>a) Un gas ejerce sobre las paredes de un recipiente una presión de \(0.75 \textrm{ atm}\). Pasa esa presión a la unidad del sistema SI.</p>
+<p>b) Una aguja hipodérmica de \(0,01 \textrm{ mm}^2\) de sección se empuja con una fuerza de \(60 \textrm{ B}\). Calcula la presión ejercida.</p>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="w">
+            </div>
+            <div class="feedback js-feedback js-hidden"><p>a) \(1 \textrm{ atm}\) son \(101325 \textrm{ Pa}\), luego \[\textrm{P} = 0.75 \textrm{ atm} =0.75 \times 101325 \textrm{ Pa}= 75993.75 \textrm{ Pa}\]</p>
+<p>b) Para obtener el resultado en Pascales, tenemos que tener la fuerza en \(\textrm{N}\) y la superficie en \(\textrm{m}^2\). Luego el primer paso es pasar los \(\textrm{mm}^2\)<sup> </sup>a \(\textrm{m}^2\).</p>
+<p>\[0,01 \textrm{ mm}^2=0,00000001 \textrm{ m}^2\]</p>
+<p>\[\textrm{P}=\dfrac{F}{S}=\dfrac{60}{0.00000001}=6000000000 \textrm{ Pa}\]</p></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="block-mwnht6tv-7v5p9u3qp" class="box sin-titulo">
+<header class="box-head no-icon">
+<h1 class="box-title">Texto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795089282259-xrn75xkha" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795089282259-xrn75xkha&quot;}">
+<div class="exe-text-template">
+    <div id="signo-angulo-app" style="width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #1e293b; user-select: none; box-sizing: border-box;"><!-- Cabecera de instrucciones -->
+<div style="background-color: #fff7ed; border-left: 5px solid #ea580c; border-top: 1px solid #fed7aa; border-right: 1px solid #fed7aa; border-bottom: 1px solid #fed7aa; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 18px; box-sizing: border-box;">
+<div style="font-size: 0.8rem; font-weight: 800; color: #ea580c; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Orientación de ángulos</div>
+<div style="font-size: 1.05rem; font-weight: bold; color: #7c2d12; line-height: 1.4;">Observa cómo se dibuja el ángulo desde el semieje positivo \(OX\) e indica cuál es su signo.</div>
+</div>
+<!-- Contenedor principal en 2 columnas adaptables -->
+<div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: stretch; justify-content: center; box-sizing: border-box;"><!-- Columna Izquierda: Lienzo SVG animado -->
+<div style="flex: 1 1 320px; max-width: 440px; background-color: #ffffff; border: 1px solid #fed7aa; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06); display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;"><svg id="sa-svg-canvas" viewbox="0 0 340 340" style="width: 100%; max-width: 340px; height: auto; display: block; margin: 0 auto; background-color: #fffaf5; border-radius: 8px; border: 1px solid #ffedd5;"> <defs> <pattern id="sa-grid" width="20" height="20" patternunits="userSpaceOnUse"> <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffedd5" stroke-width="0.8"></path> </pattern> </defs> <rect width="340" height="340" fill="url(#sa-grid)"></rect> <!-- Circunferencia goniométrica base --> <circle cx="170" cy="170" r="100" fill="none" stroke="#fdba74" stroke-width="1.5" stroke-dasharray="4,4"></circle> <!-- Ejes cartesianos --> <line x1="20" y1="170" x2="320" y2="170" stroke="#94a3b8" stroke-width="1.5"></line> <line x1="170" y1="20" x2="170" y2="320" stroke="#94a3b8" stroke-width="1.5"></line> <!-- Marcas en los ejes --> <line x1="70" y1="166" x2="70" y2="174" stroke="#94a3b8" stroke-width="1.5"></line> <text x="62" y="188" font-size="11" font-weight="700" fill="#64748b">-1</text> <line x1="270" y1="166" x2="270" y2="174" stroke="#94a3b8" stroke-width="1.5"></line> <text x="275" y="188" font-size="11" font-weight="700" fill="#64748b">1</text> <line x1="166" y1="70" x2="174" y2="70" stroke="#94a3b8" stroke-width="1.5"></line> <text x="178" y="66" font-size="11" font-weight="700" fill="#64748b">1</text> <line x1="166" y1="270" x2="174" y2="270" stroke="#94a3b8" stroke-width="1.5"></line> <text x="178" y="282" font-size="11" font-weight="700" fill="#64748b">-1</text> <text x="157" y="185" font-size="11" font-weight="700" fill="#64748b">0</text> <text x="312" y="163" font-size="11" font-weight="800" fill="#64748b">X</text> <text x="177" y="32" font-size="11" font-weight="800" fill="#64748b">Y</text> <!-- Capa dinámica de animación --> <g id="sa-capa-animacion"></g> </svg> <!-- Botón secundario blindado en línea -->
+<div style="margin-top: 14px;">
+<div role="button" id="sa-btn-repetir" style="display: inline-block; background-color: #ffffff; color: #ea580c; border: 2px solid #fdba74; padding: 8px 18px; border-radius: 7px; font-weight: bold; font-size: 0.92rem; cursor: pointer; user-select: none; box-shadow: 0 2px 4px rgba(234, 88, 12, 0.08);" tabindex="0">↻ Repetir animación</div>
+</div>
+</div>
+<!-- Columna Derecha: Panel de respuesta y retroalimentación -->
+<div style="flex: 1 1 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; box-sizing: border-box;"><!-- Caja de pregunta y botones de opción -->
+<div style="background-color: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.05); box-sizing: border-box;">
+<div style="font-size: 1.15rem; font-weight: 800; color: #9a3412; margin-bottom: 16px;">¿Cuál es el signo del ángulo dibujado?</div>
+<!-- Botones de selección Positivo / Negativo (sustituyen al select) -->
+<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+<div role="button" id="sa-opt-pos" style="flex: 1 1 130px; text-align: center; background-color: #ffffff; color: #9a3412; border: 2px solid #fdba74; padding: 11px 16px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; user-select: none; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.08);" tabindex="0">Positivo (+)</div>
+<div role="button" id="sa-opt-neg" style="flex: 1 1 130px; text-align: center; background-color: #ffffff; color: #9a3412; border: 2px solid #fdba74; padding: 11px 16px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; user-select: none; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.08);" tabindex="0">Negativo (−)</div>
+</div>
+<!-- Caja de mensaje / retroalimentación -->
+<div id="sa-feedback-box" style="margin-top: 18px; background-color: #ffffff; border: 2px dashed #fdba74; border-radius: 8px; padding: 16px; min-height: 85px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.98rem; color: #9a3412; font-weight: 600; line-height: 1.5; box-sizing: border-box;">Pulsa sobre una de las dos opciones para comprobar tu respuesta.</div>
+</div>
+<!-- Recordatorio visual rápido -->
+<div style="background-color: #ffffff; border: 1px solid #fed7aa; border-radius: 8px; padding: 14px 16px; font-size: 0.9rem; color: #475569; line-height: 1.5; box-sizing: border-box;"><strong style="color: #ea580c;">Recuerda el convenio de signos:</strong>
+<ul style="margin: 6px 0 0 0; padding-left: 18px;">
+<li><strong>Positivo (+):</strong> gira en sentido <em>contrario</em> a las agujas del reloj.</li>
+<li><strong>Negativo (−):</strong> gira en el <em>mismo sentido</em> que las agujas del reloj.</li>
+</ul>
+</div>
+<!-- Botón principal blindado en línea -->
+<div style="text-align: right;">
+<div role="button" id="sa-btn-nuevo" style="display: inline-block; background-color: #ea580c; color: #ffffff; border: 2px solid #ea580c; padding: 11px 24px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; user-select: none; box-shadow: 0 3px 8px rgba(234, 88, 12, 0.28);" tabindex="0">Otro ángulo →</div>
+</div>
+</div>
+</div>
+</div>
+<p>
+<script>
+(function() {
+  const cx = 170;
+  const cy = 170;
+  const R_circ = 100;
+  const R_rayo = 132;
+
+  let anguloObjetivoDeg = 195;
+  let animacionId = null;
+
+  const BANCO_ANGULOS = [
+    45, 70, 120, 150, 195, 225, 260, 310, 410,
+    -40, -75, -115, -145, -195, -230, -280, -320, -405
+  ];
+  let ultimoAngulo = null;
+
+  function elegirNuevoAngulo() {
+    let candidato;
+    do {
+      candidato = BANCO_ANGULOS[Math.floor(Math.random() * BANCO_ANGULOS.length)];
+    } while (candidato === ultimoAngulo);
+    ultimoAngulo = candidato;
+    return candidato;
+  }
+
+  function crearPathArco(degActual) {
+    const pasos = Math.max(12, Math.ceil(Math.abs(degActual) / 4));
+    let d = "";
+    for (let i = 0; i <= pasos; i++) {
+      const t = i / pasos;
+      const aDeg = degActual * t;
+      const aRad = (aDeg * Math.PI) / 180;
+      const rActual = 52 + (Math.abs(aDeg) / 360) * 14;
+      const x = cx + rActual * Math.cos(aRad);
+      const y = cy - rActual * Math.sin(aRad);
+      d += (i === 0 ? `M ${x.toFixed(2)} ${y.toFixed(2)}` : ` L ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return d;
+  }
+
+  function crearPathSector(degActual) {
+    const degLimitado = Math.max(-359.9, Math.min(359.9, degActual));
+    if (Math.abs(degLimitado) < 1) return "";
+    const rad = (degLimitado * Math.PI) / 180;
+    const xEnd = cx + R_circ * Math.cos(rad);
+    const yEnd = cy - R_circ * Math.sin(rad);
+    const largeArc = Math.abs(degLimitado) > 180 ? 1 : 0;
+    const sweep = degLimitado > 0 ? 0 : 1;
+    return `M ${cx} ${cy} L ${cx + R_circ} ${cy} A ${R_circ} ${R_circ} 0 ${largeArc} ${sweep} ${xEnd.toFixed(2)} ${yEnd.toFixed(2)} Z`;
+  }
+
+  function renderFrame(progreso) {
+    const capa = document.getElementById('sa-capa-animacion');
+    if (!capa) return;
+
+    let html = "";
+
+    // Fase 1 (0% a 22%): Semirrecta fija desde el origen
+    const pBase = Math.min(1, progreso / 0.22);
+    const xBase = cx + R_rayo * pBase;
+
+    html += `<line x1="${cx}" y1="${cy}" x2="${xBase.toFixed(2)}" y2="${cy}" stroke="#475569" stroke-width="2.5" stroke-linecap="round" />`;
+    html += `<circle cx="${cx}" cy="${cy}" r="3.5" fill="#ea580c" />`;
+
+    if (pBase >= 1) {
+      html += `<circle cx="${cx + R_circ}" cy="${cy}" r="4.5" fill="#ea580c" stroke="#ffffff" stroke-width="1.5" />`;
+    }
+
+    // Fase 2 (22% a 100%): Barrido del ángulo
+    if (progreso > 0.22) {
+      const pGiro = (progreso - 0.22) / 0.78;
+      const ease = 1 - Math.pow(1 - pGiro, 3);
+      const degActual = anguloObjetivoDeg * ease;
+      const radActual = (degActual * Math.PI) / 180;
+
+      const pathSector = crearPathSector(degActual);
+      if (pathSector) {
+        html += `<path d="${pathSector}" fill="rgba(234, 88, 12, 0.14)" />`;
+      }
+
+      const xTerm = cx + R_rayo * Math.cos(radActual);
+      const yTerm = cy - R_rayo * Math.sin(radActual);
+      html += `<line x1="${cx}" y1="${cy}" x2="${xTerm.toFixed(2)}" y2="${yTerm.toFixed(2)}" stroke="#ea580c" stroke-width="2.8" stroke-linecap="round" />`;
+
+      if (Math.abs(degActual) > 4) {
+        const pathArco = crearPathArco(degActual);
+        html += `<path d="${pathArco}" fill="none" stroke="#c2410c" stroke-width="2.4" stroke-linecap="round" />`;
+
+        const rFlecha = 52 + (Math.abs(degActual) / 360) * 14;
+        const fx = cx + rFlecha * Math.cos(radActual);
+        const fy = cy - rFlecha * Math.sin(radActual);
+
+        const dir = degActual >= 0 ? 1 : -1;
+        const tx = -dir * Math.sin(radActual);
+        const ty = -dir * Math.cos(radActual);
+        const anguloFlecha = Math.atan2(ty, tx) * (180 / Math.PI);
+
+        html += `
+          <g transform="translate(${fx.toFixed(2)}, ${fy.toFixed(2)}) rotate(${anguloFlecha.toFixed(2)})">
+            <polygon points="3,0 -7,-4.5 -5,0 -7,4.5" fill="#c2410c" />
+          </g>
+        `;
+      }
+    }
+
+    capa.innerHTML = html;
+  }
+
+  function iniciarAnimacion() {
+    if (animacionId) cancelAnimationFrame(animacionId);
+    const duracionMs = 2300; // Animación ligeramente más pausada
+    let inicio = null;
+
+    function paso(timestamp) {
+      if (!inicio) inicio = timestamp;
+      const transcurrido = timestamp - inicio;
+      const progreso = Math.min(1, transcurrido / duracionMs);
+
+      renderFrame(progreso);
+
+      if (progreso < 1) {
+        animacionId = requestAnimationFrame(paso);
+      } else {
+        animacionId = null;
+      }
+    }
+
+    animacionId = requestAnimationFrame(paso);
+  }
+
+  function resetearBotonesOpcion() {
+    const btnPos = document.getElementById('sa-opt-pos');
+    const btnNeg = document.getElementById('sa-opt-neg');
+    [btnPos, btnNeg].forEach(btn => {
+      if (!btn) return;
+      btn.style.backgroundColor = '#ffffff';
+      btn.style.color = '#9a3412';
+      btn.style.borderColor = '#fdba74';
+    });
+  }
+
+  function evaluarRespuesta(eleccion) {
+    const fb = document.getElementById('sa-feedback-box');
+    const btnPos = document.getElementById('sa-opt-pos');
+    const btnNeg = document.getElementById('sa-opt-neg');
+
+    resetearBotonesOpcion();
+
+    const btnSeleccionado = eleccion === 'positivo' ? btnPos : btnNeg;
+    const signoCorrecto = anguloObjetivoDeg > 0 ? 'positivo' : 'negativo';
+    const esCorrecto = (eleccion === signoCorrecto);
+
+    if (esCorrecto) {
+      btnSeleccionado.style.backgroundColor = '#16a34a';
+      btnSeleccionado.style.color = '#ffffff';
+      btnSeleccionado.style.borderColor = '#15803d';
+
+      fb.style.backgroundColor = '#f0fdf4';
+      fb.style.borderColor = '#16a34a';
+      fb.style.borderStyle = 'solid';
+      fb.style.color = '#15803d';
+
+      if (signoCorrecto === 'positivo') {
+        fb.innerHTML = `<div><strong>¡Correcto! El ángulo es POSITIVO (+).</strong><br><span style="font-size:0.92rem; font-weight:500;">Gira en sentido contrario a las agujas del reloj (antihorario) desde el semieje positivo \(OX\).</span></div>`;
+      } else {
+        fb.innerHTML = `<div><strong>¡Correcto! El ángulo es NEGATIVO (−).</strong><br><span style="font-size:0.92rem; font-weight:500;">Gira en el mismo sentido que las agujas del reloj (horario) desde el semieje positivo \(OX\).</span></div>`;
+      }
+    } else {
+      btnSeleccionado.style.backgroundColor = '#dc2626';
+      btnSeleccionado.style.color = '#ffffff';
+      btnSeleccionado.style.borderColor = '#b91c1c';
+
+      fb.style.backgroundColor = '#fef2f2';
+      fb.style.borderColor = '#dc2626';
+      fb.style.borderStyle = 'solid';
+      fb.style.color = '#b91c1c';
+
+      const pista = signoCorrecto === 'positivo'
+        ? 'Fíjate en la flecha: sube girando en sentido <strong>contrario</strong> a las agujas del reloj.'
+        : 'Fíjate en la flecha: baja girando en el <strong>mismo sentido</strong> que las agujas del reloj.';
+
+      fb.innerHTML = `<div><strong>Incorrecto. Inténtalo de nuevo.</strong><br><span style="font-size:0.92rem; font-weight:500;">${pista}</span></div>`;
+    }
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise([fb]).catch(function(){});
+    }
+  }
+
+  function nuevoEjercicio() {
+    anguloObjetivoDeg = elegirNuevoAngulo();
+    resetearBotonesOpcion();
+
+    const fb = document.getElementById('sa-feedback-box');
+    if (fb) {
+      fb.style.backgroundColor = '#ffffff';
+      fb.style.borderColor = '#fdba74';
+      fb.style.borderStyle = 'dashed';
+      fb.style.color = '#9a3412';
+      fb.innerHTML = 'Pulsa sobre una de las dos opciones para comprobar tu respuesta.';
+    }
+
+    iniciarAnimacion();
+  }
+
+  function init() {
+    const btnPos = document.getElementById('sa-opt-pos');
+    const btnNeg = document.getElementById('sa-opt-neg');
+    const btnRepetir = document.getElementById('sa-btn-repetir');
+    const btnNuevo = document.getElementById('sa-btn-nuevo');
+
+    if (btnPos) btnPos.addEventListener('click', () => evaluarRespuesta('positivo'));
+    if (btnNeg) btnNeg.addEventListener('click', () => evaluarRespuesta('negativo'));
+    if (btnRepetir) btnRepetir.addEventListener('click', iniciarAnimacion);
+    if (btnNuevo) btnNuevo.addEventListener('click', nuevoEjercicio);
+
+    // Efectos hover mediante JS para que eXeLearning no los borre
+    if (btnRepetir) {
+      btnRepetir.addEventListener('mouseenter', () => { btnRepetir.style.backgroundColor = '#fff7ed'; btnRepetir.style.borderColor = '#ea580c'; });
+      btnRepetir.addEventListener('mouseleave', () => { btnRepetir.style.backgroundColor = '#ffffff'; btnRepetir.style.borderColor = '#fdba74'; });
+    }
+    if (btnNuevo) {
+      btnNuevo.addEventListener('mouseenter', () => { btnNuevo.style.backgroundColor = '#c2410c'; btnNuevo.style.borderColor = '#c2410c'; });
+      btnNuevo.addEventListener('mouseleave', () => { btnNuevo.style.backgroundColor = '#ea580c'; btnNuevo.style.borderColor = '#ea580c'; });
+    }
+
+    nuevoEjercicio();
+  }
+
+  setTimeout(init, 100);
+})();
+</script>
+</p>
+</div>
+</div>
+</div>
+</article><article id="block-mwni8ugg-d836fa2vw" class="box sin-titulo">
+<header class="box-head no-icon">
+<h1 class="box-title">Texto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795090012720-rkj9m89gl" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795090012720-rkj9m89gl&quot;}">
+<div class="exe-text-template">
+    <div id="angulos-6ej-app" style="width: 100%; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color: #1e293b; user-select: none;"><!-- Cabecera superior -->
+<div style="background-color: #eff6ff; border-left: 5px solid #1d4ed8; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe; border-bottom: 1px solid #bfdbfe; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 18px; box-sizing: border-box;">
+<div style="font-size: 0.78rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 3px;">Trazado de ángulos</div>
+<div style="font-size: 1.08rem; font-weight: 800; color: #1e3a8a; line-height: 1.35;">Ejercicios resueltos: medida de ángulos en grados y radianes</div>
+</div>
+<!-- Contenedor principal en 2 columnas adaptables -->
+<div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: stretch; justify-content: center; box-sizing: border-box;"><!-- Columna Izquierda: Explicación y enunciados -->
+<div style="flex: 1 1 350px; background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);">
+<div id="a6-panel-texto" style="font-size: 1rem; line-height: 1.65; color: #1e293b;"><!-- Contenido dinámico inyectado por JS --></div>
+<!-- Barra inferior de navegación (Botones 1 al 6 y reinicio) -->
+<div style="margin-top: 22px; padding-top: 16px; border-top: 1px dashed #cbd5e1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span style="font-size: 0.85rem; font-weight: bold; color: #475569;">Ejercicio:</span>
+<div id="a6-nav-botones" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+</div>
+<div role="button" id="a6-btn-reset" style="display: inline-block; background-color: #ffffff; color: #0284c7; border: 1.5px solid #93c5fd; padding: 6px 14px; border-radius: 6px; font-size: 0.88rem; font-weight: bold; cursor: pointer;" tabindex="0">↺ Poner a 0°</div>
+</div>
+</div>
+<!-- Columna Derecha: Escena gráfica interactiva -->
+<div style="flex: 1 1 320px; max-width: 440px; background-color: #ffffff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 3px 10px rgba(29, 78, 216, 0.07); display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;"><!-- Conmutador de Unidad (visible en ejercicios 3, 4, 5 y 6) -->
+<div id="a6-unidad-bar" style="display: none; justify-content: center; align-items: center; gap: 8px; margin-bottom: 10px; background-color: #eff6ff; padding: 7px 12px; border-radius: 8px; border: 1px solid #dbeafe;"><span style="font-size: 0.88rem; font-weight: bold; color: #1e3a8a;">Unidad del medidor:</span>
+<div role="button" id="a6-u-rad" style="padding: 4px 12px; border-radius: 5px; font-size: 0.86rem; font-weight: bold; cursor: pointer;" tabindex="0">Radianes</div>
+<div role="button" id="a6-u-deg" style="padding: 4px 12px; border-radius: 5px; font-size: 0.86rem; font-weight: bold; cursor: pointer;" tabindex="0">Grados</div>
+</div>
+<!-- Lienzo SVG interactivo --> <svg id="a6-svg" viewbox="0 0 360 360" style="width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; touch-action: none; cursor: grab;"> <defs> <pattern id="a6-grid" width="20" height="20" patternunits="userSpaceOnUse"> <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.8"></path> </pattern> </defs> <rect width="360" height="360" fill="url(#a6-grid)"></rect> <!-- Ejes coordenados --> <line x1="18" y1="180" x2="342" y2="180" stroke="#94a3b8" stroke-width="1.4"></line> <line x1="180" y1="18" x2="180" y2="342" stroke="#94a3b8" stroke-width="1.4"></line> <!-- Graduación ejes --> <line x1="70" y1="176" x2="70" y2="184" stroke="#64748b" stroke-width="1.5"></line> <text x="58" y="198" font-size="11" font-weight="700" fill="#64748b">-1</text> <line x1="290" y1="176" x2="290" y2="184" stroke="#64748b" stroke-width="1.5"></line> <text x="295" y="198" font-size="11" font-weight="700" fill="#64748b">1</text> <line x1="176" y1="70" x2="184" y2="70" stroke="#64748b" stroke-width="1.5"></line> <text x="188" y="66" font-size="11" font-weight="700" fill="#64748b">1</text> <line x1="176" y1="290" x2="184" y2="290" stroke="#64748b" stroke-width="1.5"></line> <text x="188" y="302" font-size="11" font-weight="700" fill="#64748b">-1</text> <text x="167" y="195" font-size="11" font-weight="700" fill="#64748b">0</text> <!-- Circunferencia goniométrica --> <circle cx="180" cy="180" r="110" fill="none" stroke="#93c5fd" stroke-width="1.8"></circle> <!-- Capa dinámica --> <g id="a6-capa-dinamica"></g> </svg> <!-- Barra de estado / objetivo alcanzado -->
+<div id="a6-estado-objetivo" style="margin-top: 10px; font-size: 0.9rem; font-weight: bold; color: #0369a1; min-height: 24px;">Haz clic y arrastra la flecha sobre la circunferencia.</div>
+</div>
+</div>
+</div>
+<script>
+(function() {
+  const cx = 180;
+  const cy = 180;
+  const R = 110;
+  const R_rayo = 148;
+
+  let ejercicioActual = 0;
+  let unidadModo = 'deg';
+  let anguloDeg = 35;
+  let ultimoAnguloRaw = 35;
+  let arrastrando = false;
+  let completados = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
+
+  function renderMathSafe(contenedor) {
+    if (typeof MathJax !== 'undefined') {
+      try {
+        if (MathJax.typesetPromise) {
+          MathJax.typesetPromise(contenedor ? [contenedor] : undefined).catch(function(){});
+        } else if (MathJax.Hub && MathJax.Hub.Queue) {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub, contenedor]);
+        }
+      } catch (e) {}
+    }
+  }
+
+  const EJERCICIOS = {
+    0: {
+      unidadPorDefecto: 'deg',
+      anguloInicial: 42,
+      objetivoDeg: null,
+      tolerancia: 0,
+      mostrarConmutador: false,
+      html: `
+        <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 18px; margin-bottom: 14px;">
+          <p style="margin: 0 0 10px 0; font-size: 1.08rem; font-weight: 700; color: #1e3a8a;">
+            Pulsa en los botones inferiores (1 al 6) para ver y practicar diferentes ejercicios resueltos.
+          </p>
+          <p style="margin: 0; font-size: 0.95rem; color: #334155;">
+            Mientras tanto, puedes probar a <strong>arrastrar la flecha verde</strong> sobre la circunferencia para recorrer los cuatro cuadrantes.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.88rem;">
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:8px 10px; border-radius:6px; color:#15803d;"><strong>1.er cuadrante:</strong> de 0° a 90°</div>
+          <div style="background:#eff6ff; border:1px solid #bfdbfe; padding:8px 10px; border-radius:6px; color:#1d4ed8;"><strong>2.º cuadrante:</strong> de 90° a 180°</div>
+          <div style="background:#fef3c7; border:1px solid #fde68a; padding:8px 10px; border-radius:6px; color:#b45309;"><strong>3.er cuadrante:</strong> de 180° a 270°</div>
+          <div style="background:#fae8ff; border:1px solid #f5d0fe; padding:8px 10px; border-radius:6px; color:#86198f;"><strong>4.º cuadrante:</strong> de 270° a 360°</div>
+        </div>
+      `
+    },
+    1: {
+      unidadPorDefecto: 'deg',
+      anguloInicial: 0,
+      objetivoDeg: -50,
+      tolerancia: 3,
+      mostrarConmutador: false,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          1. Dibuja en la circunferencia goniométrica el ángulo de
+          <span style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 2px 10px; border-radius: 6px; font-weight: 800;">−50°</span>
+        </div>
+        <p style="margin: 0 0 12px 0; color: #334155;">
+          Haz clic sobre la punta de flecha de la escena y arrástrala en <strong>sentido horario</strong> (hacia abajo, 4.º cuadrante) hasta marcar \\(\\alpha = -50^\\circ\\).
+        </p>
+        <div style="background-color: #ffffff; border-left: 4px solid #0284c7; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 0.94rem; color: #475569;">
+          <strong>Pista:</strong> Al tratarse de un ángulo <em>negativo</em>, el giro comienza en el semieje positivo \\(OX\\) y avanza en el mismo sentido que las agujas del reloj.
+        </div>
+      `
+    },
+    2: {
+      unidadPorDefecto: 'rad',
+      anguloInicial: 0,
+      objetivoDeg: 135,
+      tolerancia: 4,
+      mostrarConmutador: false,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          2. Dibuja en la circunferencia el ángulo de
+          <span style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 2px 10px; border-radius: 6px; font-weight: 800;">3π/4 radianes</span>
+        </div>
+        <p style="margin: 0 0 12px 0; color: #334155;">
+          Arrastra la flecha hasta que aparezca \\(\\alpha = 0,75 \\cdot \\pi\\text{ rad}\\) (equivalente a \\(\\dfrac{3\\pi}{4}\\)).
+        </p>
+        <div style="background-color: #ffffff; border: 1px solid #dbeafe; padding: 12px 14px; border-radius: 8px; font-size: 0.95rem; color: #1e293b; margin-bottom: 12px;">
+          Este ángulo, \\(\\dfrac{3}{4}\\) de semicircunferencia, es igual a \\(\\dfrac{3}{4}\\) de \\(180^\\circ\\), es decir:
+          <div style="text-align: center; font-weight: 700; color: #1d4ed8; margin: 8px 0 2px 0;">
+            \\(\\dfrac{3}{4} \\cdot 180^\\circ = 135^\\circ\\)
+          </div>
+        </div>
+        <div style="background-color: #eff6ff; border-left: 4px solid #1d4ed8; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.93rem; color: #1e3a8a;">
+          <strong>¿Cuántos grados valdrá el ángulo de \\(\\dfrac{\\pi}{4}\\) radianes?</strong><br>
+          Un cuarto de semicircunferencia es \\(\\dfrac{1}{4} \\cdot 180^\\circ = 45^\\circ\\).
+        </div>
+      `
+    },
+    3: {
+      unidadPorDefecto: 'rad',
+      anguloInicial: 0,
+      objetivoDeg: 72,
+      tolerancia: 3,
+      mostrarConmutador: true,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          3. Expresa en radianes el ángulo de
+          <span style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 2px 10px; border-radius: 6px; font-weight: 800;">72°</span>
+        </div>
+        <div style="background-color: #ffffff; border: 1px solid #dbeafe; padding: 14px; border-radius: 8px; font-size: 0.96rem; color: #1e293b; margin-bottom: 12px;">
+          \\(72\\text{ grados} = 72 \\cdot \\dfrac{\\pi}{180}\\text{ radianes} =\\) <span style="font-size: 0.86rem; color: #64748b;">(simplificando por 36)</span>
+          <div style="text-align: center; font-weight: 800; color: #1d4ed8; font-size: 1.05rem; margin-top: 8px;">
+            \\(= \\dfrac{2\\pi}{5}\\text{ radianes} = 0,4 \\cdot \\pi\\text{ radianes}\\)
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 0.93rem; color: #475569;">
+          Puedes dibujar el ángulo arrastrando la flecha hasta \\(0,4 \\cdot \\pi\\text{ rad}\\) y alternar el selector superior entre <strong>Radianes</strong> y <strong>Grados</strong> para comprobar que coincide con \\(72^\\circ\\).
+        </p>
+      `
+    },
+    4: {
+      unidadPorDefecto: 'rad',
+      anguloInicial: 0,
+      objetivoDeg: 216,
+      tolerancia: 4,
+      mostrarConmutador: true,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          4. Expresa en grados el ángulo de
+          <span style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 2px 10px; border-radius: 6px; font-weight: 800;">1,2·π radianes</span>
+        </div>
+        <div style="background-color: #ffffff; border: 1px solid #dbeafe; padding: 14px; border-radius: 8px; font-size: 0.96rem; color: #1e293b; margin-bottom: 12px;">
+          \\(1,2\\pi\\text{ radianes} = 1,2\\pi \\cdot \\dfrac{180}{\\pi}\\text{ grados} = 1,2 \\cdot 180\\text{ grados} =\\)
+          <div style="text-align: center; font-weight: 800; color: #1d4ed8; font-size: 1.08rem; margin-top: 8px;">
+            \\(= 216\\text{ grados} = 216^\\circ\\)
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 0.93rem; color: #475569;">
+          Arrastra la flecha hasta \\(1,2 \\cdot \\pi\\text{ rad}\\) (3.er cuadrante) y cambia el selector superior a <strong>Grados</strong> para verificar que marca exactamente \\(216^\\circ\\).
+        </p>
+      `
+    },
+    5: {
+      unidadPorDefecto: 'rad',
+      anguloInicial: 0,
+      objetivoDeg: -135,
+      tolerancia: 4,
+      mostrarConmutador: true,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          5. Dibuja en la circunferencia el ángulo de
+          <span style="display: inline-block; background-color: #fee2e2; color: #991b1b; padding: 2px 10px; border-radius: 6px; font-weight: 800;">−3π/4 radianes</span>
+        </div>
+        <p style="margin: 0 0 10px 0; color: #334155;">
+          Como el signo es <strong>negativo</strong>, arrastra la flecha en <strong>sentido horario</strong> (hacia abajo, 3.er cuadrante) hasta marcar \\(\\alpha = -0,75 \\cdot \\pi\\text{ rad}\\).
+        </p>
+        <div style="background-color: #ffffff; border: 1px solid #dbeafe; padding: 12px 14px; border-radius: 8px; font-size: 0.95rem; color: #1e293b; margin-bottom: 10px;">
+          Su equivalencia en grados sexagesimales es:
+          <div style="text-align: center; font-weight: 800; color: #b91c1c; margin: 6px 0 2px 0;">
+            \\(-\\dfrac{3\\pi}{4}\\text{ rad} = -\\dfrac{3}{4} \\cdot 180^\\circ = -135^\\circ\\)
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 0.92rem; color: #475569;">
+          Cambia el selector superior a <strong>Grados</strong> para comprobar que coincide con la bisectriz del tercer cuadrante (\\(-135^\\circ\\)).
+        </p>
+      `
+    },
+    6: {
+      unidadPorDefecto: 'deg',
+      anguloInicial: 0,
+      objetivoDeg: 120,
+      tolerancia: 3,
+      mostrarConmutador: true,
+      html: `
+        <div style="font-size: 1.12rem; font-weight: 800; color: #1d4ed8; margin-bottom: 12px; line-height: 1.4;">
+          6. Dibuja y expresa en radianes el ángulo de
+          <span style="display: inline-block; background-color: #dbeafe; color: #1e3a8a; padding: 2px 10px; border-radius: 6px; font-weight: 800;">120°</span>
+        </div>
+        <div style="background-color: #ffffff; border: 1px solid #dbeafe; padding: 14px; border-radius: 8px; font-size: 0.96rem; color: #1e293b; margin-bottom: 12px;">
+          \\(120^\\circ = 120 \\cdot \\dfrac{\\pi}{180}\\text{ radianes} =\\) <span style="font-size: 0.86rem; color: #64748b;">(simplificando por 60)</span>
+          <div style="text-align: center; font-weight: 800; color: #1d4ed8; font-size: 1.06rem; margin-top: 8px;">
+            \\(= \\dfrac{2\\pi}{3}\\text{ radianes} \\approx 0,67 \\cdot \\pi\\text{ radianes}\\)
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 0.93rem; color: #475569;">
+          Arrastra la flecha en sentido antihorario hasta \\(\\alpha = 120^\\circ\\) (2.º cuadrante) y pulsa en <strong>Radianes</strong> en el selector superior para ver su medida en función de \\(\\pi\\).
+        </p>
+      `
+    }
+  };
+
+  function formatearEtiquetaAngulo(deg, modo) {
+    const redondeado = Math.round(deg);
+    if (modo === 'deg') {
+      return `α = ${redondeado}°`;
+    } else {
+      const piFactor = redondeado / 180;
+      const piStr = piFactor.toFixed(2).replace('.', ',');
+      return `α = ${piStr} · π rad`;
+    }
+  }
+
+  function actualizarColorActivo(deg) {
+    if (ejercicioActual === 0) {
+      return { trazo: '#16a34a', relleno: 'rgba(22, 163, 74, 0.14)', texto: '#15803d' };
+    }
+    if (deg < -0.5) {
+      return { trazo: '#dc2626', relleno: 'rgba(220, 38, 38, 0.14)', texto: '#b91c1c' };
+    }
+    if (ejercicioActual >= 2) {
+      return { trazo: '#0284c7', relleno: 'rgba(2, 132, 199, 0.15)', texto: '#0369a1' };
+    }
+    return { trazo: '#1d4ed8', relleno: 'rgba(29, 78, 216, 0.15)', texto: '#1e3a8a' };
+  }
+
+  function dibujarEscena() {
+    const capa = document.getElementById('a6-capa-dinamica');
+    if (!capa) return;
+
+    let html = '';
+
+    if (ejercicioActual === 0) {
+      const qActivo = anguloDeg >= 0
+        ? (anguloDeg < 90 ? 1 : anguloDeg < 180 ? 2 : anguloDeg < 270 ? 3 : 4)
+        : (anguloDeg > -90 ? 4 : anguloDeg > -180 ? 3 : anguloDeg > -270 ? 2 : 1);
+
+      const cuadrantes = [
+        { num: 1, x: 226, y: 132, label: '1.º', sub: 'cuadrante', col: qActivo === 1 ? '#16a34a' : '#0284c7' },
+        { num: 2, x: 134, y: 132, label: '2.º', sub: 'cuadrante', col: qActivo === 2 ? '#16a34a' : '#0284c7' },
+        { num: 3, x: 134, y: 222, label: '3.º', sub: 'cuadrante', col: qActivo === 3 ? '#16a34a' : '#0284c7' },
+        { num: 4, x: 226, y: 222, label: '4.º', sub: 'cuadrante', col: qActivo === 4 ? '#16a34a' : '#0284c7' }
+      ];
+
+      cuadrantes.forEach(q => {
+        const peso = q.num === qActivo ? '800' : '600';
+        const op = q.num === qActivo ? '1' : '0.65';
+        html += `
+          <g opacity="${op}">
+            <text x="${q.x}" y="${q.y}" font-size="16" font-weight="${peso}" fill="${q.col}" text-anchor="middle">${q.label}</text>
+            <text x="${q.x}" y="${q.y + 16}" font-size="11.5" font-weight="${peso}" fill="${q.col}" text-anchor="middle">${q.sub}</text>
+          </g>
+        `;
+      });
+    }
+
+    const paleta = actualizarColorActivo(anguloDeg);
+    const rad = (anguloDeg * Math.PI) / 180;
+
+    // 1. Sector circular sombreado
+    const degLimitado = Math.max(-359.9, Math.min(359.9, anguloDeg));
+    if (Math.abs(degLimitado) >= 1) {
+      const radLim = (degLimitado * Math.PI) / 180;
+      const sx = cx + R * Math.cos(radLim);
+      const sy = cy - R * Math.sin(radLim);
+      const largeArc = Math.abs(degLimitado) > 180 ? 1 : 0;
+      const sweep = degLimitado > 0 ? 0 : 1;
+      const dSector = `M ${cx} ${cy} L ${cx + R} ${cy} A ${R} ${R} 0 ${largeArc} ${sweep} ${sx.toFixed(2)} ${sy.toFixed(2)} Z`;
+      html += `<path d="${dSector}" fill="${paleta.relleno}" />`;
+    }
+
+    // 2. Semirrecta origen fija
+    html += `<line x1="${cx}" y1="${cy}" x2="${cx + R_rayo}" y2="${cy}" stroke="${paleta.trazo}" stroke-width="2.6" stroke-linecap="round" />`;
+
+    // 3. Semirrecta terminal móvil
+    const tx = cx + R_rayo * Math.cos(rad);
+    const ty = cy - R_rayo * Math.sin(rad);
+    html += `<line x1="${cx}" y1="${cy}" x2="${tx.toFixed(2)}" y2="${ty.toFixed(2)}" stroke="${paleta.trazo}" stroke-width="2.6" stroke-linecap="round" />`;
+
+    // 4. Arco con punta de flecha
+    if (Math.abs(anguloDeg) >= 2) {
+      const pasos = Math.max(16, Math.ceil(Math.abs(anguloDeg) / 4));
+      let dArco = '';
+      for (let i = 0; i <= pasos; i++) {
+        const aDeg = (anguloDeg * i) / pasos;
+        const aRad = (aDeg * Math.PI) / 180;
+        const px = cx + R * Math.cos(aRad);
+        const py = cy - R * Math.sin(aRad);
+        dArco += (i === 0 ? `M ${px.toFixed(2)} ${py.toFixed(2)}` : ` L ${px.toFixed(2)} ${py.toFixed(2)}`);
+      }
+      html += `<path d="${dArco}" fill="none" stroke="${paleta.trazo}" stroke-width="2.8" stroke-linecap="round" />`;
+    }
+
+    // Puntos de referencia
+    html += `<circle cx="${cx + R}" cy="${cy}" r="4.5" fill="${paleta.trazo}" stroke="#ffffff" stroke-width="1.4" />`;
+    html += `<circle cx="${cx}" cy="${cy}" r="3.5" fill="#1e293b" />`;
+
+    // 5. Punta de flecha y tirador
+    const fx = cx + R * Math.cos(rad);
+    const fy = cy - R * Math.sin(rad);
+    const dir = anguloDeg >= 0 ? 1 : -1;
+    const tanX = -dir * Math.sin(rad);
+    const tanY = -dir * Math.cos(rad);
+    const rotFlecha = Math.atan2(tanY, tanX) * (180 / Math.PI);
+
+    html += `<circle cx="${fx.toFixed(2)}" cy="${fy.toFixed(2)}" r="22" fill="rgba(2, 132, 199, 0.08)" style="cursor: grab;" />`;
+    html += `
+      <g transform="translate(${fx.toFixed(2)}, ${fy.toFixed(2)}) rotate(${rotFlecha.toFixed(2)})" style="cursor: grab;">
+        <polygon points="6,0 -10,-6.5 -6.5,0 -10,6.5" fill="${paleta.trazo}" stroke="#ffffff" stroke-width="1.2" />
+      </g>
+    `;
+
+    // 6. Etiqueta flotante del ángulo medido
+    const etiqueta = formatearEtiquetaAngulo(anguloDeg, unidadModo);
+    const labelDist = R - 36;
+    const midRad = rad / 2;
+    let lx = cx + labelDist * Math.cos(midRad);
+    let ly = cy - labelDist * Math.sin(midRad);
+
+    if (Math.abs(anguloDeg) < 25) {
+      lx = cx + 75;
+      ly = anguloDeg >= 0 ? cy - 28 : cy + 34;
+    }
+
+    const anchoCaja = etiqueta.length * 7.6 + 14;
+    html += `
+      <g transform="translate(${lx.toFixed(2)}, ${ly.toFixed(2)})">
+        <rect x="${(-anchoCaja / 2).toFixed(1)}" y="-12" width="${anchoCaja.toFixed(1)}" height="23" rx="5" fill="rgba(255,255,255,0.92)" stroke="${paleta.trazo}" stroke-width="1.2" />
+        <text x="0" y="4" font-size="13" font-weight="800" fill="${paleta.texto}" text-anchor="middle">${etiqueta}</text>
+      </g>
+    `;
+
+    if (ejercicioActual === 0) {
+      html += `
+        <text x="${(fx + 14).toFixed(1)}" y="${(fy - 14).toFixed(1)}" font-size="11.5" font-weight="700" fill="#475569">Arrastra</text>
+        <text x="${(fx + 14).toFixed(1)}" y="${(fy - 1).toFixed(1)}" font-size="11.5" font-weight="700" fill="#475569">la flecha</text>
+      `;
+    }
+
+    capa.innerHTML = html;
+    comprobarObjetivo();
+  }
+
+  function comprobarObjetivo() {
+    const estadoDiv = document.getElementById('a6-estado-objetivo');
+    if (!estadoDiv) return;
+
+    const ej = EJERCICIOS[ejercicioActual];
+    if (!ej || ej.objetivoDeg === null) {
+      estadoDiv.style.color = '#0369a1';
+      estadoDiv.innerHTML = `Ángulo actual: <strong>${Math.round(anguloDeg)}°</strong> (${(anguloDeg / 180).toFixed(2).replace('.', ',')}π rad)`;
+      return;
+    }
+
+    const diff = Math.abs(Math.round(anguloDeg) - ej.objetivoDeg);
+    if (diff <= ej.tolerancia) {
+      completados[ejercicioActual] = true;
+      actualizarBotonesNav();
+      estadoDiv.style.color = '#15803d';
+      estadoDiv.innerHTML = `&#10004; ¡Objetivo conseguido! Has dibujado correctamente el ángulo.`;
+    } else {
+      estadoDiv.style.color = '#0369a1';
+      const faltan = ej.objetivoDeg - Math.round(anguloDeg);
+      const direccion = faltan > 0 ? 'en sentido antihorario (+)' : 'en sentido horario (−)';
+      estadoDiv.innerHTML = `Sigue arrastrando ${direccion} hasta alcanzar el ángulo pedido.`;
+    }
+  }
+
+  function actualizarBotonesUnidad() {
+    const btnRad = document.getElementById('a6-u-rad');
+    const btnDeg = document.getElementById('a6-u-deg');
+    if (!btnRad || !btnDeg) return;
+
+    if (unidadModo === 'rad') {
+      btnRad.style.backgroundColor = '#1d4ed8';
+      btnRad.style.color = '#ffffff';
+      btnRad.style.border = '1.5px solid #1d4ed8';
+
+      btnDeg.style.backgroundColor = '#ffffff';
+      btnDeg.style.color = '#1e3a8a';
+      btnDeg.style.border = '1.5px solid #93c5fd';
+    } else {
+      btnDeg.style.backgroundColor = '#1d4ed8';
+      btnDeg.style.color = '#ffffff';
+      btnDeg.style.border = '1.5px solid #1d4ed8';
+
+      btnRad.style.backgroundColor = '#ffffff';
+      btnRad.style.color = '#1e3a8a';
+      btnRad.style.border = '1.5px solid #93c5fd';
+    }
+  }
+
+  function actualizarBotonesNav() {
+    const cont = document.getElementById('a6-nav-botones');
+    if (!cont) return;
+
+    cont.innerHTML = '';
+    [1, 2, 3, 4, 5, 6].forEach(num => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display: inline-flex; align-items: center; gap: 2px;';
+
+      const btn = document.createElement('div');
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('tabindex', '0');
+      btn.textContent = num;
+
+      const activo = (ejercicioActual === num);
+      const hecho = completados[num];
+
+      btn.style.cssText = `
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.12s;
+        background-color: ${activo ? '#1d4ed8' : (hecho ? '#dbeafe' : '#ffffff')};
+        color: ${activo ? '#ffffff' : '#1d4ed8'};
+        border: 2px solid ${activo ? '#1e3a8a' : '#3b82f6'};
+        box-shadow: ${activo ? '0 2px 6px rgba(29, 78, 216, 0.35)' : '0 1px 3px rgba(0,0,0,0.08)'};
+      `;
+
+      btn.addEventListener('click', () => seleccionarEjercicio(num));
+      wrap.appendChild(btn);
+
+      if (hecho) {
+        const tick = document.createElement('span');
+        tick.innerHTML = '&#10003;';
+        tick.style.cssText = 'color: #16a34a; font-weight: 900; font-size: 1rem;';
+        wrap.appendChild(tick);
+      }
+
+      cont.appendChild(wrap);
+    });
+  }
+
+  function seleccionarEjercicio(num) {
+    ejercicioActual = num;
+    const ej = EJERCICIOS[num];
+    if (!ej) return;
+
+    unidadModo = ej.unidadPorDefecto;
+    anguloDeg = ej.anguloInicial;
+    ultimoAnguloRaw = ej.anguloInicial;
+
+    const panelTexto = document.getElementById('a6-panel-texto');
+    if (panelTexto) {
+      panelTexto.innerHTML = ej.html;
+      renderMathSafe(panelTexto);
+    }
+
+    const barUnidad = document.getElementById('a6-unidad-bar');
+    if (barUnidad) {
+      barUnidad.style.display = ej.mostrarConmutador ? 'flex' : 'none';
+    }
+
+    actualizarBotonesUnidad();
+    actualizarBotonesNav();
+    dibujarEscena();
+  }
+
+  function obtenerAnguloDesdeEvento(e) {
+    const svg = document.getElementById('a6-svg');
+    const rect = svg.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const svgX = ((clientX - rect.left) / rect.width) * 360;
+    const svgY = ((clientY - rect.top) / rect.height) * 360;
+
+    return Math.atan2(-(svgY - cy), svgX - cx) * (180 / Math.PI);
+  }
+
+  function actualizarArrastre(nuevoRaw) {
+    let delta = nuevoRaw - ultimoAnguloRaw;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+
+    ultimoAnguloRaw = nuevoRaw;
+    anguloDeg = Math.max(-360, Math.min(360, anguloDeg + delta));
+
+    const notables = [0, 45, -50, 72, 90, -90, 120, 135, -135, 180, -180, 216, 270, 360, -360];
+    for (let n of notables) {
+      if (Math.abs(anguloDeg - n) < 1.8) {
+        anguloDeg = n;
+        break;
+      }
+    }
+
+    dibujarEscena();
+  }
+
+  function init() {
+    const svg = document.getElementById('a6-svg');
+    const btnRad = document.getElementById('a6-u-rad');
+    const btnDeg = document.getElementById('a6-u-deg');
+    const btnReset = document.getElementById('a6-btn-reset');
+
+    if (svg) {
+      const empezar = (e) => {
+        arrastrando = true;
+        svg.style.cursor = 'grabbing';
+        const raw = obtenerAnguloDesdeEvento(e);
+        if (Math.abs(anguloDeg) < 2) {
+          anguloDeg = raw;
+          ultimoAnguloRaw = raw;
+          dibujarEscena();
+        } else {
+          ultimoAnguloRaw = raw;
+        }
+      };
+
+      const mover = (e) => {
+        if (!arrastrando) return;
+        e.preventDefault();
+        const raw = obtenerAnguloDesdeEvento(e);
+        actualizarArrastre(raw);
+      };
+
+      const soltar = () => {
+        if (!arrastrando) return;
+        arrastrando = false;
+        svg.style.cursor = 'grab';
+      };
+
+      svg.addEventListener('mousedown', empezar);
+      window.addEventListener('mousemove', mover);
+      window.addEventListener('mouseup', soltar);
+
+      svg.addEventListener('touchstart', empezar, { passive: false });
+      window.addEventListener('touchmove', mover, { passive: false });
+      window.addEventListener('touchend', soltar);
+    }
+
+    if (btnRad) {
+      btnRad.addEventListener('click', () => {
+        unidadModo = 'rad';
+        actualizarBotonesUnidad();
+        dibujarEscena();
+      });
+    }
+    if (btnDeg) {
+      btnDeg.addEventListener('click', () => {
+        unidadModo = 'deg';
+        actualizarBotonesUnidad();
+        dibujarEscena();
+      });
+    }
+    if (btnReset) {
+      btnReset.addEventListener('click', () => {
+        anguloDeg = 0;
+        ultimoAnguloRaw = 0;
+        dibujarEscena();
+      });
+    }
+
+    seleccionarEjercicio(0);
+  }
+
+  setTimeout(init, 100);
+})();
+</script>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/3-resumen-2.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/juego-final.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

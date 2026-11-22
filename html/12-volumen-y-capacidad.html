@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8j7-ej9urh8ch">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>1.2 Volumen y capacidad | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/sort/sort.js"></script><link rel="stylesheet" href="../idevices/sort/sort.css">
+<script src="../libs/jquery-ui/jquery-ui.min.js"> </script>
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8j7-ej9urh8ch" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li class="current-page-parent"> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li class="active"> <a href="../html/12-volumen-y-capacidad.html" class="active no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8j7-ej9urh8ch" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">1.2 Volumen y capacidad</h1></div>
+</header><div id="page-content-page-moskc8j7-ej9urh8ch" class="page-content">
+<article id="20260323172955KBZORE" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737MNBEIR" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737MNBEIR&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">La forma de algunos objetos les permite contener sustancias; esos objetos se llaman recipientes y de ellos se puede medir tanto su capacidad como su volumen.&nbsp;También se puede conocer el volumen de su contenido.</p>
+<table border="0" align="center" cellpadding="10">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737MNBEIR/recipiente.jpg" width="350" height="231" alt="recipiente" title="recipiente"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;">&nbsp;Por ejemplo, una taza vacía tiene un volumen, ocupa un lugar en el espacio y, como es un recipiente, también se puede medir su capacidad y el volumen del líquido que contenga. Tanto las unidades de capacidad como las de volumen, indican de manera diferente cuál es el tamaño de un recipiente.&nbsp;</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955FZIIYT" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Volumen.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737MDKAGJ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737MDKAGJ&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 99.9703%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">
+<p>El&nbsp;<span style="font-weight: bolder;">volumen</span>&nbsp;nos indica el&nbsp;<span style="font-weight: bolder;"><span style="color: #007932;">espacio que ocupa un cuerpo</span>.</span></p>
+<p>La&nbsp;<span style="font-weight: bolder;">unidad</span>&nbsp;de volumen en el Sistema Internacional es el&nbsp;<span style="font-weight: bolder;"><span style="color: #007932;">metro cúbico</span> (<span style="color: #007932;">m<span style="position: relative; font-size: 0.75em; line-height: 0; vertical-align: baseline; top: -0.5em;">3</span></span>).</span></p>
+</td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955DXUZXV" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cambio entre unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737VXIXTW" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737VXIXTW&quot;}">
+<div class="exe-text-template">
+    <p>Para cambiar de una unidad de volumen a un múltiplo o submúltiplo de ella utilizamos la siguiente regla:</p>
+<p><br /></p>
+<p><img src="../content/resources/escalera-metrica-de-unidades-de-volumen.png" style="display: block; margin-left: auto; margin-right: auto;" width="75%" height="50" /></p>
+<p>Puedes observar que desde los submúltiplos, en la parte inferior, hasta los múltiplos, en la parte superior, <strong>cada unidad vale 1000 más que la anterior.</strong></p>
+<p>Por lo tanto, el problema de<em> convertir unas unidades en otras</em> se reduce a<em> multiplicar o dividir por la unidad seguida de tantos tríos de ceros como lugares haya entre ellas</em>.</p>
+</div>
+</div>
+</div>
+</article><article id="block-mwne5nku-3ypd83mrn" class="box caja-naranja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_practica2.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Practica.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795083145373-wqznvcld1" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795083145373-wqznvcld1&quot;}">
+<div class="exe-text-template">
+    <style>
+        /* Blindaje de estilos contra el CSS global de eXeLearning */
+        #tutor-volumen-naranja * { box-sizing: border-box; }
+
+        #tutor-volumen-naranja .vol-header {
+            font-size: 1.4rem !important;
+            font-weight: 800 !important;
+            color: #9a3412 !important;
+            margin-bottom: 18px !important;
+            border-bottom: 2px dashed #fdba74 !important;
+            padding-bottom: 10px !important;
+        }
+
+        #tutor-volumen-naranja .vol-box {
+            background-color: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 10px !important;
+            padding: 22px !important;
+        }
+
+        /* Tarjeta de pregunta */
+        #tutor-volumen-naranja .vol-pregunta-card {
+            background-color: #ffffff !important;
+            border: 2px solid #fdba74 !important;
+            border-radius: 8px !important;
+            padding: 18px 22px !important;
+            font-size: 1.65rem !important;
+            font-weight: 800 !important;
+            color: #431407 !important;
+            text-align: center !important;
+            margin-bottom: 20px !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.06) !important;
+        }
+
+        #tutor-volumen-naranja .vol-destacado {
+            color: #ea580c !important;
+        }
+
+        /* Cuerpo principal en dos columnas (Escalera izquierda + Interacción derecha) */
+        #tutor-volumen-naranja .vol-cuerpo-grid {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 28px !important;
+            align-items: flex-start !important;
+        }
+
+        #tutor-volumen-naranja .vol-col-escalera {
+            flex: 0 0 auto !important;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 8px !important;
+            padding: 14px 18px !important;
+            display: flex !important;
+            justify-content: center !important;
+        }
+
+        #tutor-volumen-naranja .vol-col-trabajo {
+            flex: 1 !important;
+            min-width: 260px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+        }
+
+        #tutor-volumen-naranja .vol-instruccion {
+            font-size: 1rem !important;
+            color: #7c2d12 !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+        }
+
+        /* Zona de entrada */
+        #tutor-volumen-naranja .vol-input-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+        }
+
+        #tutor-volumen-naranja input.vol-input {
+            width: 185px !important;
+            height: 44px !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            border: 2px solid #f97316 !important;
+            border-radius: 6px !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            outline: none !important;
+            padding: 4px 10px !important;
+        }
+        #tutor-volumen-naranja input.vol-input:focus {
+            border-color: #c2410c !important;
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2) !important;
+        }
+
+        /* Botones blindados con DIV */
+        #tutor-volumen-naranja .vol-btn {
+            background-color: #ea580c !important;
+            color: #ffffff !important;
+            padding: 10px 18px !important;
+            font-size: 0.98rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25) !important;
+        }
+        #tutor-volumen-naranja .vol-btn:hover {
+            background-color: #c2410c !important;
+        }
+
+        #tutor-volumen-naranja .vol-btn-sec {
+            background-color: #ffedd5 !important;
+            color: #9a3412 !important;
+            border: 1px solid #fdba74 !important;
+            padding: 9px 16px !important;
+            font-size: 0.95rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+        }
+        #tutor-volumen-naranja .vol-btn-sec:hover {
+            background-color: #fed7aa !important;
+        }
+
+        /* Banner de acierto */
+        #tutor-volumen-naranja .vol-ok-banner {
+            display: none;
+            background-color: #ffedd5 !important;
+            border-left: 5px solid #ea580c !important;
+            color: #9a3412 !important;
+            padding: 14px 18px !important;
+            border-radius: 6px !important;
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+        }
+
+        /* Caja de explicación paso a paso */
+        #tutor-volumen-naranja .vol-explicacion-box {
+            display: none;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-left: 5px solid #ea580c !important;
+            border-radius: 8px !important;
+            padding: 18px !important;
+            color: #431407 !important;
+            font-size: 1.05rem !important;
+            line-height: 1.6 !important;
+        }
+
+        #tutor-volumen-naranja .vol-fraccion-visual {
+            display: inline-flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            margin: 0 6px !important;
+            font-weight: 800 !important;
+            color: #0369a1 !important;
+        }
+
+        #tutor-volumen-naranja .vol-fraccion-num {
+            border-bottom: 2px solid #0369a1 !important;
+            padding: 0 8px 2px 8px !important;
+        }
+
+        #tutor-volumen-naranja .vol-fraccion-den {
+            padding: 2px 8px 0 8px !important;
+        }
+
+        #tutor-volumen-naranja .vol-resultado-final {
+            margin-top: 14px !important;
+            padding-top: 12px !important;
+            border-top: 1px dashed #fdba74 !important;
+            font-size: 1.35rem !important;
+            font-weight: 800 !important;
+            color: #c2410c !important;
+        }
+    </style>
+<div id="tutor-volumen-naranja" style="width: 100%; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; user-select: none;">
+<div class="vol-header">Cambio de unidades de volumen</div>
+<div class="vol-box"><!-- Pregunta principal -->
+<div class="vol-pregunta-card" id="vol-pregunta-texto">¿Cuántos <span class="vol-destacado">dm<sup>3</sup></span> son <span class="vol-destacado">4,5 m<sup>3</sup></span>?</div>
+<div class="vol-cuerpo-grid"><!-- Columna izquierda: Escalera vertical de mano -->
+<div class="vol-col-escalera" id="vol-escalera-svg"><!-- SVG generado por JS --></div>
+<!-- Columna derecha: Entrada y explicación -->
+<div class="vol-col-trabajo">
+<div class="vol-instruccion">Introduce el resultado sin ceros innecesarios y pulsa <strong>Intro</strong> o <strong>Comprobar</strong>:</div>
+<div class="vol-input-row"><input type="text" id="vol-input-sol" class="vol-input" autocomplete="off" placeholder="Ej: 4500" />
+<div role="button" id="vol-btn-comprobar" class="vol-btn" tabindex="0">Comprobar</div>
+<div role="button" id="vol-btn-ver-sol" class="vol-btn-sec" tabindex="0">Ver solución</div>
+</div>
+<!-- Banner de acierto -->
+<div id="vol-ok-banner" class="vol-ok-banner"><span>¡Correcto! Has realizado bien la conversión.</span>
+<div role="button" id="vol-btn-otro-ok" class="vol-btn" tabindex="0">Otro ejercicio</div>
+</div>
+<!-- Desarrollo paso a paso -->
+<div id="vol-explicacion-box" class="vol-explicacion-box">
+<div id="vol-explicacion-contenido"></div>
+<div style="margin-top: 14px;">
+<div role="button" id="vol-btn-otro-exp" class="vol-btn" tabindex="0">Otro ejercicio</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+        const unidades = [
+            { sim: 'km',  nombre: 'kilómetros cúbicos' },
+            { sim: 'hm',  nombre: 'hectómetros cúbicos' },
+            { sim: 'dam', nombre: 'decámetros cúbicos' },
+            { sim: 'm',   nombre: 'metros cúbicos' },
+            { sim: 'dm',  nombre: 'decímetros cúbicos' },
+            { sim: 'cm',  nombre: 'centímetros cúbicos' },
+            { sim: 'mm',  nombre: 'milímetros cúbicos' }
+        ];
+
+        let ejercicioActual = {};
+
+        const elPregunta = document.getElementById('vol-pregunta-texto');
+        const elEscalera = document.getElementById('vol-escalera-svg');
+        const inpSol = document.getElementById('vol-input-sol');
+        const btnComprobar = document.getElementById('vol-btn-comprobar');
+        const btnVerSol = document.getElementById('vol-btn-ver-sol');
+        const okBanner = document.getElementById('vol-ok-banner');
+        const btnOtroOk = document.getElementById('vol-btn-otro-ok');
+        const expBox = document.getElementById('vol-explicacion-box');
+        const expContenido = document.getElementById('vol-explicacion-contenido');
+        const btnOtroExp = document.getElementById('vol-btn-otro-exp');
+
+        function formatearES(num) {
+            let limpio = parseFloat(num.toPrecision(12));
+            let str = limpio.toFixed(12).replace(/\.?0+$/, '');
+            return str.replace('.', ',');
+        }
+
+        function dibujarEscaleraVertical(idxOrig, idxDest) {
+            const svgW = 148;
+            const svgH = 266;
+            const railLeft = 44;
+            const railRight = 128;
+            const topY = 12;
+            const bottomY = 254;
+            const stepH = 33;
+
+            let svg = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">`;
+
+            // Largueros verticales de la escalera en tono naranja oscuro
+            svg += `<line x1="${railLeft}" y1="${topY}" x2="${railLeft}" y2="${bottomY}" stroke="#c2410c" stroke-width="4.5" stroke-linecap="round"/>`;
+            svg += `<line x1="${railRight}" y1="${topY}" x2="${railRight}" y2="${bottomY}" stroke="#c2410c" stroke-width="4.5" stroke-linecap="round"/>`;
+
+            // Peldaños y etiquetas
+            unidades.forEach((u, i) => {
+                let yRung = topY + 34 + i * stepH;
+                let yText = yRung - 8;
+                let esActivo = (i === idxOrig || i === idxDest);
+
+                if (esActivo) {
+                    svg += `<rect x="${railLeft + 3}" y="${yRung - stepH + 3}" width="${railRight - railLeft - 6}" height="${stepH - 5}" fill="#ffedd5" rx="3" />`;
+                }
+
+                svg += `<line x1="${railLeft}" y1="${yRung}" x2="${railRight}" y2="${yRung}" stroke="#f97316" stroke-width="3"/>`;
+
+                let colorTxt = esActivo ? '#c2410c' : '#94a3b8';
+                let weightTxt = esActivo ? '800' : '600';
+                svg += `
+                    <text x="${(railLeft + railRight) / 2}" y="${yText}" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="${weightTxt}" fill="${colorTxt}">
+                        ${u.sim}<tspan dy="-6" font-size="11">3</tspan>
+                    </text>
+                `;
+            });
+
+            // Flecha exterior a la izquierda del larguero izquierdo
+            let arrowX = 20;
+            let yOrigCenter = topY + 18 + idxOrig * stepH;
+            let yDestCenter = topY + 18 + idxDest * stepH;
+
+            svg += `
+                <defs>
+                    <marker id="flecha-vol-vert" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#ea580c" stroke="#431407" stroke-width="0.6"/>
+                    </marker>
+                </defs>
+                <line x1="${arrowX}" y1="${yOrigCenter}" x2="${arrowX}" y2="${yDestCenter}" stroke="#ea580c" stroke-width="4.5" stroke-linecap="round" marker-end="url(#flecha-vol-vert)" />
+            `;
+
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function generarEjercicio() {
+            inpSol.value = '';
+            inpSol.style.borderColor = '#f97316';
+            inpSol.style.backgroundColor = '#ffffff';
+            okBanner.style.setProperty('display', 'none', 'important');
+            expBox.style.setProperty('display', 'none', 'important');
+
+            // Saltos de 1 a 2 escalones (factores de 1000 o 1000000) adecuados a nivel básico
+            let idxOrigen = Math.floor(Math.random() * unidades.length);
+            let salto;
+            do {
+                salto = Math.floor(Math.random() * 5) - 2; // entre -2 y +2
+            } while (salto === 0 || (idxOrigen + salto < 0) || (idxOrigen + salto >= unidades.length));
+
+            let idxDestino = idxOrigen + salto;
+            let numEscalones = Math.abs(salto);
+            let factor = Math.pow(1000, numEscalones);
+
+            // Número origen amigable (entero de 1 o 2 cifras, o con 1 decimal)
+            let tieneDec = Math.random() < 0.45;
+            let base = Math.floor(Math.random() * 35) + 2; // 2 a 36
+            let valorOrigen = tieneDec ? parseFloat((base + (Math.floor(Math.random() * 9) + 1) / 10).toFixed(1)) : base;
+
+            let solucionNum = salto > 0 ? valorOrigen * factor : valorOrigen / factor;
+            solucionNum = parseFloat(solucionNum.toPrecision(12));
+
+            ejercicioActual = {
+                idxOrigen: idxOrigen,
+                idxDestino: idxDestino,
+                salto: salto,
+                numEscalones: numEscalones,
+                valorOrigen: valorOrigen,
+                factor: factor,
+                solucionNum: solucionNum,
+                solucionStr: formatearES(solucionNum)
+            };
+
+            const simOrig = `${unidades[idxOrigen].sim}<sup>3</sup>`;
+            const simDest = `${unidades[idxDestino].sim}<sup>3</sup>`;
+
+            elPregunta.innerHTML = `¿Cuántos <span class="vol-destacado">${simDest}</span> son <span class="vol-destacado">${formatearES(valorOrigen)} ${simOrig}</span>?`;
+            elEscalera.innerHTML = dibujarEscaleraVertical(idxOrigen, idxDestino);
+
+            setTimeout(() => inpSol.focus(), 50);
+        }
+
+        function mostrarExplicacion() {
+            const simOrig = `${unidades[ejercicioActual.idxOrigen].sim}<sup>3</sup>`;
+            const simDest = `${unidades[ejercicioActual.idxDestino].sim}<sup>3</sup>`;
+            const n = ejercicioActual.numEscalones;
+            const baja = ejercicioActual.salto > 0;
+
+            const verboDir = baja ? 'bajar' : 'subir';
+            const verboOp = baja ? 'multiplicar por' : 'dividir entre';
+            const verboOpCap = baja ? 'Multiplicar por' : 'Dividir entre';
+            const txtEscalones = n === 1 ? '1 escalón' : `${n} escalones`;
+            const txtVeces = n === 1 ? '1 vez' : `${n} veces`;
+
+            let operacionHTML = '';
+            if (baja) {
+                operacionHTML = `<span style="color:#0369a1; font-weight:800;">${formatearES(ejercicioActual.valorOrigen)} ${simOrig} = ${formatearES(ejercicioActual.valorOrigen)} · ${ejercicioActual.factor} ${simDest}</span>`;
+            } else {
+                operacionHTML = `
+                    <span style="color:#0369a1; font-weight:800;">${formatearES(ejercicioActual.valorOrigen)} ${simOrig} = </span>
+                    <span class="vol-fraccion-visual">
+                        <span class="vol-fraccion-num">${formatearES(ejercicioActual.valorOrigen)}</span>
+                        <span class="vol-fraccion-den">${ejercicioActual.factor}</span>
+                    </span>
+                    <span style="color:#0369a1; font-weight:800;"> ${simDest}</span>
+                `;
+            }
+
+            let equivalenciaHTML = n > 1 
+                ? `<p style="margin: 8px 0;">${verboOpCap} 1000 ${txtVeces} equivale a ${verboOp} <strong>${ejercicioActual.factor}</strong>. La solución es:</p>`
+                : `<p style="margin: 8px 0;">Al ser 1 escalón, ${verboOp} <strong>1000</strong>. La solución es:</p>`;
+
+            expContenido.innerHTML = `
+                <div>
+                    Para pasar de <strong>${simOrig}</strong> a <strong>${simDest}</strong> hay que <strong>${verboDir} ${txtEscalones}</strong>. 
+                    Hay que ${verboOp} <strong>1000</strong> ${txtVeces}.
+                </div>
+                ${equivalenciaHTML}
+                <div style="margin: 12px 0;">${operacionHTML}</div>
+                <div class="vol-resultado-final">
+                    ${formatearES(ejercicioActual.valorOrigen)} ${simOrig} = ${ejercicioActual.solucionStr} ${simDest}
+                </div>
+            `;
+
+            expBox.style.setProperty('display', 'block', 'important');
+        }
+
+        function comprobarRespuesta() {
+            let raw = inpSol.value.trim().replace(',', '.');
+            if (raw === '' || isNaN(Number(raw))) {
+                inpSol.focus();
+                return;
+            }
+
+            let tieneCerosInnecesarios = false;
+            if (raw.includes('.')) {
+                if (raw.endsWith('0') || raw.endsWith('.')) {
+                    tieneCerosInnecesarios = true;
+                }
+            }
+
+            let valUsuario = parseFloat(raw);
+            let esCorrectoNum = Math.abs(valUsuario - ejercicioActual.solucionNum) < 1e-12;
+
+            if (esCorrectoNum && !tieneCerosInnecesarios) {
+                inpSol.style.borderColor = '#16a34a';
+                inpSol.style.backgroundColor = '#f0fdf4';
+                expBox.style.setProperty('display', 'none', 'important');
+                okBanner.style.setProperty('display', 'flex', 'important');
+            } else {
+                inpSol.style.borderColor = '#dc2626';
+                inpSol.style.backgroundColor = '#fef2f2';
+                okBanner.style.setProperty('display', 'none', 'important');
+                mostrarExplicacion();
+                inpSol.focus();
+                inpSol.select();
+            }
+        }
+
+        btnComprobar.addEventListener('click', comprobarRespuesta);
+        btnVerSol.addEventListener('click', () => {
+            okBanner.style.setProperty('display', 'none', 'important');
+            mostrarExplicacion();
+        });
+        btnOtroOk.addEventListener('click', generarEjercicio);
+        btnOtroExp.addEventListener('click', generarEjercicio);
+
+        inpSol.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                comprobarRespuesta();
+            }
+        });
+
+        setTimeout(generarEjercicio, 100);
+    })();
+    </script>
+</div>
+</div>
+</div>
+</div>
+</article><article id="20260323172955AGRAHY" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Capacidad.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YIKSSE" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YIKSSE&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 100.029%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9119%;">
+<p>Entendemos por&nbsp;<span style="font-weight: bolder;">capacidad</span>&nbsp;el&nbsp;<span style="font-weight: bolder; color: #007932;">espacio vacío de algún objeto que es suficiente para contener a otra u otras cosas</span>.</p>
+<p>Para medir la capacidad, se usa como&nbsp;<span style="font-weight: bolder;">unidad&nbsp;</span>principal el<span style="font-weight: bolder;">&nbsp;<span style="color: #007932;">litro <span style="color: #000000;">(<span style="color: #007932;">l</span>)</span></span></span>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955CVEGHO" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cambio entre unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737FOTSAB" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737FOTSAB&quot;}">
+<div class="exe-text-template">
+    <p>Para transformar una unidad de capacidad en la unidad inmediatamente inferior o superior, <em>multiplicamos o dividimos por 10 respectivamente</em>. Las relaciones entre estas unidades se recogen en la siguiente tabla:</p>
+<p><br /></p>
+<p><img src="../content/resources/conversion-de-unidades-de-capacidad.png" style="display: block; margin-left: auto; margin-right: auto;" width="75%" height="50" /></p>
+</div>
+</div>
+</div>
+</article><article id="20260323172955FOPLPI" class="box sin-copa caja-morada">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_ordena.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Ordena</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="202603221329232374KQ" class="idevice_node sort" data-idevice-path="../idevices/sort/" data-idevice-type="sort">
+<div class="ordena-IDevice"><div class="game-evaluation-ids js-hidden" data-id="202603221329232374KQ" data-evaluationb="false" data-evaluationid="20260319083737TTBZGX"></div><div class="ordena-feedback-game"></div><div class="ordena-instructions"><p>Arrastra cada carta hasta su posición correcta</p></div><div class="ordena-DataGame js-hidden">%E9%B0%E6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%DD%E0%F6%F7%FC%F3%B0%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%B0%A8%B0%AE%E2%AC%D3%E0%E0%F3%E1%E6%E0%F3%B2%F1%F3%F6%F3%B2%F1%F3%E0%E6%F3%B2%FA%F3%E1%E6%F3%B2%E1%E7%B2%E2%FD%E1%FB%F1%FBa%FC%B2%F1%FD%E0%E0%F7%F1%E6%F3%AE%BD%E2%AC%B0%BE%B0%E1%FA%FD%E5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%E1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%FB%E6%FB%FC%F7%E0%F3%E0%EB%B0%A8%E9%B0%E1%FA%FD%E5%D1%FE%E7%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FE%E7%F7%D5%F3%FF%F7%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%D1%FE%E7%F7%B0%A8%A6%A2%BE%B0%E1%FA%FD%E5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%BE%B0%FF%F7%E1%E1%F3%F5%F7%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%EF%BE%B0%E2%FA%E0%F3%E1%F7%E1%D5%F3%FF%F7%B0%A8%C9%E9%B0%F1%F3%E0%F6%E1%B0%A8%C9%E9%B0%FB%F6%B0%A8%A3%A3%AA%AA%AA%AB%A0%A2%A2%A4%A0%A1%A7%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%F0%FD%E6%F7%FE%FE%F3%A7%FE%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A7%B2%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%AA%A2%A6%A5%A0%AB%A6%AA%A0%A4%A4%A4%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%F8%F3%E0%E0%F3%A1%A2%F1%FE%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A0%A2%B2%F6%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%A5%AB%A0%A0%A5%A6%A2%A7%A3%AB%A6%A2%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%F0%FD%E6%F7%FE%FE%FB%FC%A3%A7%A2%FF%FE%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A7%A2%B2%F1%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%A4%A6%A4%A1%A1%AB%A3%A6%A5%A7%A6%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%E4%F3%E1%FD%A0%A7%FF%FE%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A0%A7%B2%FF%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%CF%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%F6%F7%F4%FB%FC%FB%E6%FB%FD%FC%B0%A8%B0%DD%E0%F6%F7%FC%F3%B2%F6%F7%B2%FF%F3%EB%FD%E0%B2%F3%B2%FF%F7%FC%FD%E0%B0%BE%B0%E2%FA%E0%F3%E1%F7%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%D6%F7%F4%FB%FC%FB%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%DA%FB%E6%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%D7%E0%E0%FD%E0%B0%A8%B0%B0%EF%BE%E9%B0%F1%F3%E0%F6%E1%B0%A8%C9%E9%B0%FB%F6%B0%A8%A5%A3%A0%A4%A4%A0%A3%A4%A2%A0%A5%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%F0%FD%E6%F7%FE%FE%FB%FC%A3%A7%A2%FF%FE%CD%A3%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A7%A2%B2%F1%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%A7%A3%AB%A7%A3%A0%A1%A7%A5%AB%A1%A4%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%E2%F7%F1%F7%E0%F3%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A1%A2%A2%A2%B2%FF%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%A3%A0%A3%A2%AA%A0%A1%A7%A0%A7%AA%AB%A0%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%F8%F3%E0%E0%F3%A1%A2%F1%FE%CD%A3%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A6%B2%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%BE%E9%B0%FB%F6%B0%A8%A6%A6%A2%AA%A1%AB%A2%A0%A4%A5%A3%A2%BE%B0%E6%EB%E2%F7%B0%A8%A0%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%BD%BD%E2%FB%E1%F1%FB%FC%F3%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%A3%B2%FA%FE%B0%BE%B0%F1%FD%FE%FD%E0%B0%A8%B0%B1%A2%A2%A2%A2%A2%A2%B0%BE%B0%F0%F3%F1%F9%F1%FD%FE%FD%E0%B0%A8%B0%B1%F4%F4%F4%F4%F4%F4%B0%EF%CF%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%F6%F7%F4%FB%FC%FB%E6%FB%FD%FC%B0%A8%B0%DD%E0%F6%F7%FC%F3%B2%F6%F7%B2%FF%F7%FC%FD%E0%B2%F3%B2%FF%F3%EB%FD%E0%B0%BE%B0%E2%FA%E0%F3%E1%F7%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%D6%F7%F4%FB%FC%FB%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%DA%FB%E6%B0%A8%B0%B0%BE%B0%F3%E7%F6%FB%FD%D7%E0%E0%FD%E0%B0%A8%B0%B0%EF%CF%BE%B0%FB%E1%C1%F1%FD%E0%FF%B0%A8%A2%BE%B0%E6%F7%EA%E6%D0%E7%E6%E6%FD%FC%C1%F1%FD%E0%FF%B0%A8%B0%D5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%E0%F7%E2%F7%F3%E6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%E6%E0%E7%F7%BE%B0%E5%F7%FB%F5%FA%E6%F7%F6%B0%A8%A3%A2%A2%BE%B0%E6%F7%EA%E6%D4%F7%F7%F6%D0%F3%F1%F9%B0%A8%B0%B0%BE%B0%E6%F7%EA%E6%D3%F4%E6%F7%E0%B0%A8%B0%B0%BE%B0%F1%F3%E1%F7%C1%F7%FC%E1%FB%E6%FB%E4%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%F4%F7%F7%F6%D0%F3%F1%F9%B0%A8%F4%F3%FE%E1%F7%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%D4%D0%B0%A8%A3%A2%A2%BE%B0%F1%E7%E1%E6%FD%FF%DF%F7%E1%E1%F3%F5%F7%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%A3%A2%A2%BE%B0%E6%FB%FF%F7%C1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%A1%BE%B0%E6%FB%FF%F7%B0%A8%A2%BE%B0%E4%F7%E0%E1%FB%FD%FC%B0%A8%A3%BC%A7%BE%B0%FF%F3%EA%C5%FB%F6%E6%FA%B0%A8%E6%E0%E7%F7%BE%B0%F1%F3%E0%F6%DA%F7%FB%F5%FA%E6%B0%A8%A0%A2%A2%BE%B0%E1%E6%F3%E0%E6%D3%E7%E6%FD%FF%F3%E6%FB%F1%F3%FE%FE%EB%B0%A8%F4%F3%FE%E1%F7%BE%B0%FD%E0%F6%F7%E0%F7%F6%D1%FD%FE%E7%FF%FC%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%F5%F3%FF%F7%D1%FD%FE%E7%FF%FC%E1%B0%A8%A2%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%DB%D6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%C6%C6%D0%C8%D5%CA%B0%BE%B0%E5%FD%E0%F6%D0%FD%E0%F6%F7%E0%B0%A8%E6%E0%E7%F7%BE%B0%FB%F6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A0%A0%A3%A1%A0%AB%A0%A1%A0%A1%A5%A6%D9%C3%B0%BE%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%FF%E1%F5%E1%B0%A8%E9%B0%FF%E1%F5%C1%E7%F0%FF%FB%E6%B0%A8%B0%D7%FC%E4%FB%F3%E0%B0%BE%B0%FF%E1%F5%D1%FE%E7%F7%B0%A8%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%E2%FB%E1%E6%F3%B2%F7%E1%A8%B0%BE%B0%FF%E1%F5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%D1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%D3%F5%F3%FB%FC%B0%A8%B0%DD%E6%E0%F3%B2%E4%F7%E8%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%E6%F3%E0%E6%B0%A8%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F7%FF%E2%F7%E8%F3%E0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%E1%B0%A8%B0%D7%E0%E0%FD%E0%F7%E1%B0%BE%B0%FF%E1%F5%DA%FB%E6%E1%B0%A8%B0%D3%F1%FB%F7%E0%E6%FD%E1%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%C5%F7%FB%F5%FA%E6%B0%A8%B0%C2%F7%E1%FD%B0%BE%B0%FF%E1%F5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%B0%DF%FB%FC%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%DF%F3%EA%FB%FF%FB%E8%F7%B0%A8%B0%DF%F3%EA%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%DE%FB%E4%F7%B0%A8%B0%C4%FB%F6%F3%B0%BE%B0%FF%E1%F5%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C2%F3%FC%E6%F3%FE%FE%F3%B2%D1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%D7%EA%FB%E6%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C1%F3%FE%FB%E0%B2%F6%F7%FE%B2%FF%FD%F6%FD%B2%E2%F3%FC%E6%F3%FE%FE%F3%B2%F1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%DC%E7%FF%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B0%DCh%FF%F7%E0%FD%B2%F6%F7%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B0%BE%B0%FF%E1%F5%DC%FD%DB%FF%F3%F5%F7%B0%A8%B0%C2%E0%F7%F5%E7%FC%E6%F3%B2%E1%FB%FC%B2%FB%FFs%F5%F7%FC%F7%E1%B0%BE%B0%FF%E1%F5%D1%FD%FD%FE%B0%A8%B03%D0%FB%F7%FC%B3%B0%BE%B0%FF%E1%F5%DE%FD%E1%F7%C6%B0%A8%B0%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%A1%A1%A2%B2%E2%E7%FC%E6%FD%E1%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F7%E1%B0%A8%B03%D1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%D7%EA%F1%F7%FE%F7%FC%E6%F7%B3%B2%EE%B23%D5%F7%FC%FB%F3%FE%B3%B2%EE%B23%DF%E7%EB%B2%F0%FB%F7%FC%B3%B2%EE%B23%C2%F7%E0%F4%F7%F1%E6%FD%B3%B0%BE%B0%FF%E1%F5%D4%F3%FB%FE%E7%E0%F7%E1%B0%A8%B03%DC%FD%B2%F7%E0%F3%B2%F7%E1%FD%B3%B2%EE%B23%DB%FC%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DE%FD%B2%E1%F7%FC%E6%FB%FF%FD%E1%B3%B2%EE%B23%D7%E0%E0%FD%E0%B3%B0%BE%B0%FF%E1%F5%C6%E0%EB%D3%F5%F3%FB%FC%B0%A8%B0%DC%F7%F1%F7%E1%FB%E6%F3%E1%B2%F3%FE%B2%FF%F7%FC%FD%E1%B2%B7%E1%B7%B2%F6%F7%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%E2%F3%E0%F3%B2%FD%F0%E6%F7%FC%F7%E0%B2%FE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%BC%B2%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%BC%B0%BE%B0%FF%E1%F5%D7%FC%F6%D5%F3%FF%F7%C1%F1%FD%E0%F7%B0%A8%B0%D3%FC%E6%F7%E1%B2%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F1%FD%FF%FB%F7%FC%F1%F7%B2%FE%F3%B2%E2%F3%E0%E6%FB%F6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%C1%F1%FD%E0%FF%B0%A8%B0%DE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%FC%FD%B2%E1%F7%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E2%FD%E0%E3%E7%F7%B2%F7%E1%E6%F3%B2%E2s%F5%FB%FC%F3%B2%FC%FD%B2%F4%FD%E0%FF%F3%B2%E2%F3%E0%E6%F7%B2%B2%F6%F7%B2%E7%FC%B2%E2%F3%E3%E7%F7%E6%F7%B2%C1%D1%DD%C0%DF%BC%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%C1%F1%FD%E0%F7%B0%A8%B03%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E7%FC%F3%B2%E4%F7%E8%B3%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%B0%A8%B0%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%B0%BE%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B0%DB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%CB%FD%E7%C1%F1%FD%E0%F7%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B2%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F8%E7%F5%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%BC%B0%BE%B0%FF%E1%F5%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F3%E7%E6%FD%FFs%E6%FB%F1%F3%FF%F7%FC%E6%F7%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F7%E4%F7%E0%F3%FE%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E6%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%F1%FD%FF%FD%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%CB%FD%E7%DE%F3%E1%E6%C1%F1%FD%E0%F7%B0%A8%B0%DE%F3%B2h%FE%E6%FB%FF%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F5%E7%F3%E0%F6%F3%F6%F3%B2%F7%E1%B0%BE%B0%FF%E1%F5%D3%F1%E6%FB%E6%EB%D1%FD%FF%E2%FE%EB%B0%A8%B0%CB%F3%B2%FA%F3%B2%E0%F7%F3%FE%FB%E8%F3%F6%FD%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%BC%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%F7%E4%F7%E0%F3%FE%C6%FB%FF%F7%E1%B0%A8%B0%C2%E7%F7%F6%F7%B2%E0%F7%F3%FE%FB%E8%F3%E0%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B2%F1%E7%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%D1%FE%FD%E1%F7%B0%A8%B0%D1%F7%E0%E0%F3%E0%B0%BE%B0%FF%E1%F5%D3%E7%F6%FB%FD%B0%A8%B0%D3%E7%F6%FB%FD%B0%BE%B0%FF%E1%F5%C6%FB%FF%F7%DD%E4%F7%E0%B0%A8%B0%C6%E7%B2%E6%FB%F7%FF%E2%FD%B2%FA%F3%B2%F4%FB%FC%F3%FE%FB%E8%F3%F6%FD%BC%B2%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%B0%BE%B0%FF%E1%F5%D3%FE%FE%D3%E6%E6%F7%FF%E2%E1%B0%A8%B03%DA%F3%E1%B2%F3%F5%FD%E6%F3%F6%FD%B2%E6%FD%F6%FD%E1%B2%FE%FD%E1%B2%FB%FC%E6%F7%FC%E6%FD%E1%B3%B2%C2%E0%E7%F7%F0%F3%B2%F6%F7%B2%FC%E7%F7%E4%FD%B0%BE%B0%FF%F5%E1%D3%FE%FE%C2%FA%E0%F3%E1%F7%E1%B0%A8%B03%DA%F3%E1%B2%FD%E0%F6%F7%FC%F3%F6%FD%B2%E6%FD%F6%F3%E1%B2%FE%F3%E1%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%F7%E1%B3%B0%BE%B0%FF%E1%F5%D3%E6%E6%F7%FF%E2%E6%E1%B0%A8%B0%DB%FC%E6%F7%FC%E6%FD%E1%B0%BE%B0%FF%E1%F5%DC%E7%FF%F0%F7%E0%E1%D3%E6%E6%F7%FF%E2%E1%B0%A8%B0%DCh%FF%F7%E0%FD%B2%F6%F7%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%F7%E1%B2%E2%F7%FC%F6%FB%F7%FC%E6%F7%E1%B0%BE%B0%FF%E1%F5%D3%E7%E6%FA%FD%E0%B0%A8%B0%D3%E7%E6%FD%E0%7F%F3%B0%BE%B0%FF%E1%F5%C0%F7%F0%FD%FD%E6%B0%A8%B0%C0%F7%FB%FC%FB%F1%FB%F3%E0%B0%BE%B0%FF%E1%F5%D3%F1%E6%FB%E4%FB%E6%FB%F7%E1%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%F7%E1%B0%BE%B0%FF%E1%F5%D1%FA%F7%F1%F9%B0%A8%B0%D1%FD%FF%E2%E0%FD%F0%F3%E0%B0%BE%B0%FF%E1%F5%DC%F7%EA%E6%C2%FA%E0%F3%E1%F7%B0%A8%B0%C2%E0a%EA%FB%FF%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B0%BE%B0%FF%E1%F5%D1%FD%FC%E6%FB%FC%E7%F7%B0%A8%B0%D1%FD%FC%E6%FB%FC%E7%F3%E0%B0%BE%B0%FF%E1%F5%C2%FD%E1%FB%E6%FB%FD%FC%E1%B0%A8%B0%C2%FD%E1%FB%F1%FB%FD%FC%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B0%BE%B0%FF%E1%F5%D3%FE%FE%DD%D9%B0%A8%B03%D5%F7%FC%FB%F3%FE%B3%B2%C6%FD%F6%FD%B2%F1%FD%E0%E0%F7%F1%E6%FD%B23%D3%B2%E2%FD%E0%B2%FD%E6%E0%F3%B3%B0%BE%B0%FF%E1%F5%D3%F5%F3%FB%FC%B0%A8%B0%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%B0%BE%B0%FF%E1%F5%C7%FC%F1%FD%FF%E2%FE%F7%E6%F7%F6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%F1%FD%FF%E2%FE%F7%E6%F3%F6%F3%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C7%FC%E1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C2%FA%E0%F3%E1%F7%E1%B0%A8%B0%D4%E0%F3%E1%F7%E1%B0%BE%B0%FF%E1%F5%C6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%DD%E0%F6%F7%FC%F3%B0%EF%EF</div><a href="../content/resources/202603221329232374KQ/botella5l.png" class="js-hidden ordena-LinkImages-0">0</a><a href="../content/resources/202603221329232374KQ/jarra30cl.png" class="js-hidden ordena-LinkImages-0">1</a><a href="../content/resources/202603221329232374KQ/botellin150ml.png" class="js-hidden ordena-LinkImages-0">2</a><a href="../content/resources/202603221329232374KQ/vaso25ml.png" class="js-hidden ordena-LinkImages-0">3</a><a href="../content/resources/202603221329232374KQ/botellin150ml.png" class="js-hidden ordena-LinkImages-1">0</a><a href="../content/resources/202603221329232374KQ/pecera.png" class="js-hidden ordena-LinkImages-1">1</a><a href="../content/resources/202603221329232374KQ/jarra30cl.png" class="js-hidden ordena-LinkImages-1">2</a><a href="../content/resources/202603221329232374KQ/piscina.png" class="js-hidden ordena-LinkImages-1">3</a><div class="ordena-bns js-hidden">Su navegador no es compatible con esta herramienta.</div></div>
+</div>
+</div>
+</article><article id="block-mwnfhydi-3jfph0p09" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Relación entre medidas de capacidad y volumen.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795085398853-1jv8yheda" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795085398853-1jv8yheda&quot;}">
+<div class="exe-text-template">
+    <p><img src="../content/resources/relacion-entre-volumen-y-capacidad.png" width="75%" height="50" alt="" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+</div>
+</div>
+</div>
+</article><article id="block-mwnfroqd-fr1tewv5o" class="box caja-naranja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_practica2.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Practica.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795085852917-58dp3bz78" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795085852917-58dp3bz78&quot;}">
+<div class="exe-text-template">
+    <style>
+        /* Blindaje de estilos contra el CSS global de eXeLearning */
+        #tutor-capvol-naranja * { box-sizing: border-box; }
+
+        #tutor-capvol-naranja .cv-header {
+            font-size: 1.4rem !important;
+            font-weight: 800 !important;
+            color: #9a3412 !important;
+            margin-bottom: 18px !important;
+            border-bottom: 2px dashed #fdba74 !important;
+            padding-bottom: 10px !important;
+        }
+
+        #tutor-capvol-naranja .cv-box {
+            background-color: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 10px !important;
+            padding: 22px !important;
+        }
+
+        /* Tarjeta de pregunta */
+        #tutor-capvol-naranja .cv-pregunta-card {
+            background-color: #ffffff !important;
+            border: 2px solid #fdba74 !important;
+            border-radius: 8px !important;
+            padding: 18px 22px !important;
+            font-size: 1.65rem !important;
+            font-weight: 800 !important;
+            color: #431407 !important;
+            text-align: center !important;
+            margin-bottom: 20px !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.06) !important;
+        }
+
+        #tutor-capvol-naranja .cv-destacado {
+            color: #ea580c !important;
+        }
+
+        /* Cuerpo principal en dos columnas */
+        #tutor-capvol-naranja .cv-cuerpo-grid {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 24px !important;
+            align-items: flex-start !important;
+        }
+
+        /* Tabla puente Volumen <-> Capacidad */
+        #tutor-capvol-naranja .cv-col-puente {
+            flex: 0 0 auto !important;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 8px !important;
+            padding: 16px 18px !important;
+            min-width: 245px !important;
+        }
+
+        #tutor-capvol-naranja .cv-puente-titulo {
+            display: flex !important;
+            justify-content: space-between !important;
+            font-size: 0.85rem !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            color: #9a3412 !important;
+            margin-bottom: 10px !important;
+            padding: 0 6px !important;
+            letter-spacing: 0.5px !important;
+        }
+
+        #tutor-capvol-naranja .cv-fila-nivel {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-bottom: 8px !important;
+            gap: 8px !important;
+        }
+
+        #tutor-capvol-naranja .cv-celda-uni {
+            flex: 1 !important;
+            text-align: center !important;
+            padding: 9px 10px !important;
+            border: 1.5px solid #fdba74 !important;
+            border-radius: 6px !important;
+            background-color: #ffffff !important;
+            color: #64748b !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+            transition: all 0.2s !important;
+        }
+
+        #tutor-capvol-naranja .cv-celda-uni.activa {
+            background-color: #ffedd5 !important;
+            border: 2.5px solid #ea580c !important;
+            color: #c2410c !important;
+            font-weight: 800 !important;
+        }
+
+        #tutor-capvol-naranja .cv-igual-puente {
+            font-weight: 900 !important;
+            color: #f97316 !important;
+            font-size: 1.2rem !important;
+        }
+
+        #tutor-capvol-naranja .cv-salto-nota {
+            text-align: center !important;
+            font-size: 0.82rem !important;
+            color: #9a3412 !important;
+            font-weight: 700 !important;
+            margin-top: 8px !important;
+            background-color: #fff7ed !important;
+            padding: 5px 8px !important;
+            border-radius: 4px !important;
+        }
+
+        /* Columna de trabajo */
+        #tutor-capvol-naranja .cv-col-trabajo {
+            flex: 1 !important;
+            min-width: 260px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+        }
+
+        #tutor-capvol-naranja .cv-instruccion {
+            font-size: 1rem !important;
+            color: #7c2d12 !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+        }
+
+        #tutor-capvol-naranja .cv-input-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+        }
+
+        #tutor-capvol-naranja input.cv-input {
+            width: 175px !important;
+            height: 44px !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            border: 2px solid #f97316 !important;
+            border-radius: 6px !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            outline: none !important;
+            padding: 4px 10px !important;
+        }
+        #tutor-capvol-naranja input.cv-input:focus {
+            border-color: #c2410c !important;
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2) !important;
+        }
+
+        /* Botones blindados con DIV */
+        #tutor-capvol-naranja .cv-btn {
+            background-color: #ea580c !important;
+            color: #ffffff !important;
+            padding: 10px 18px !important;
+            font-size: 0.98rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25) !important;
+        }
+        #tutor-capvol-naranja .cv-btn:hover {
+            background-color: #c2410c !important;
+        }
+
+        #tutor-capvol-naranja .cv-btn-sec {
+            background-color: #ffedd5 !important;
+            color: #9a3412 !important;
+            border: 1px solid #fdba74 !important;
+            padding: 9px 16px !important;
+            font-size: 0.95rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+        }
+        #tutor-capvol-naranja .cv-btn-sec:hover {
+            background-color: #fed7aa !important;
+        }
+
+        /* Banner de acierto */
+        #tutor-capvol-naranja .cv-ok-banner {
+            display: none;
+            background-color: #ffedd5 !important;
+            border-left: 5px solid #ea580c !important;
+            color: #9a3412 !important;
+            padding: 14px 18px !important;
+            border-radius: 6px !important;
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+        }
+
+        /* Caja de explicación paso a paso */
+        #tutor-capvol-naranja .cv-explicacion-box {
+            display: none;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-left: 5px solid #ea580c !important;
+            border-radius: 8px !important;
+            padding: 18px !important;
+            color: #431407 !important;
+            font-size: 1.05rem !important;
+            line-height: 1.6 !important;
+        }
+
+        #tutor-capvol-naranja .cv-fraccion-visual {
+            display: inline-flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            margin: 0 6px !important;
+            font-weight: 800 !important;
+            color: #0369a1 !important;
+        }
+
+        #tutor-capvol-naranja .cv-fraccion-num {
+            border-bottom: 2px solid #0369a1 !important;
+            padding: 0 8px 2px 8px !important;
+        }
+
+        #tutor-capvol-naranja .cv-fraccion-den {
+            padding: 2px 8px 0 8px !important;
+        }
+
+        #tutor-capvol-naranja .cv-resultado-final {
+            margin-top: 14px !important;
+            padding-top: 12px !important;
+            border-top: 1px dashed #fdba74 !important;
+            font-size: 1.35rem !important;
+            font-weight: 800 !important;
+            color: #c2410c !important;
+        }
+    </style>
+<div id="tutor-capvol-naranja" style="width: 100%; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; user-select: none;">
+<div class="cv-header">Relación entre capacidad y volumen</div>
+<div class="cv-box"><!-- Pregunta principal -->
+<div class="cv-pregunta-card" id="cv-pregunta-texto">¿Cuántos <span class="cv-destacado">l</span> son <span class="cv-destacado">3,5 m<sup>3</sup></span>?</div>
+<div class="cv-cuerpo-grid"><!-- Columna izquierda: Tabla puente Volumen <-> Capacidad -->
+<div class="cv-col-puente">
+<div class="cv-puente-titulo"><span>Volumen</span> <span>Capacidad</span></div>
+<!-- Nivel 0 -->
+<div class="cv-fila-nivel">
+<div class="cv-celda-uni" id="cv-cell-vol-0">1 m<sup>3</sup></div>
+<div class="cv-igual-puente">=</div>
+<div class="cv-celda-uni" id="cv-cell-cap-0">1 kl</div>
+</div>
+<!-- Nivel 1 -->
+<div class="cv-fila-nivel">
+<div class="cv-celda-uni" id="cv-cell-vol-1">1 dm<sup>3</sup></div>
+<div class="cv-igual-puente">=</div>
+<div class="cv-celda-uni" id="cv-cell-cap-1">1 l</div>
+</div>
+<!-- Nivel 2 -->
+<div class="cv-fila-nivel" style="margin-bottom: 0 !important;">
+<div class="cv-celda-uni" id="cv-cell-vol-2">1 cm<sup>3</sup></div>
+<div class="cv-igual-puente">=</div>
+<div class="cv-celda-uni" id="cv-cell-cap-2">1 ml</div>
+</div>
+<div class="cv-salto-nota">↕ Cada nivel cambia de 1000 en 1000</div>
+</div>
+<!-- Columna derecha: Entrada y explicación -->
+<div class="cv-col-trabajo">
+<div class="cv-instruccion">Introduce el resultado sin ceros innecesarios y pulsa <strong>Intro</strong> o <strong>Comprobar</strong>:</div>
+<div class="cv-input-row"><input type="text" id="cv-input-sol" class="cv-input" autocomplete="off" placeholder="Ej: 3500" />
+<div role="button" id="cv-btn-comprobar" class="cv-btn" tabindex="0">Comprobar</div>
+<div role="button" id="cv-btn-ver-sol" class="cv-btn-sec" tabindex="0">Ver solución</div>
+</div>
+<!-- Banner de acierto -->
+<div id="cv-ok-banner" class="cv-ok-banner"><span>¡Correcto! Has realizado bien la conversión.</span>
+<div role="button" id="cv-btn-otro-ok" class="cv-btn" tabindex="0">Otro ejercicio</div>
+</div>
+<!-- Desarrollo paso a paso -->
+<div id="cv-explicacion-box" class="cv-explicacion-box">
+<div id="cv-explicacion-contenido"></div>
+<div style="margin-top: 14px;">
+<div role="button" id="cv-btn-otro-exp" class="cv-btn" tabindex="0">Otro ejercicio</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+        // Niveles emparejados 1 a 1: 0 (m3 <-> kl), 1 (dm3 <-> l), 2 (cm3 <-> ml)
+        const niveles = [
+            { volHTML: 'm<sup>3</sup>',  volNombre: 'metros cúbicos',      capHTML: 'kl', capNombre: 'kilolitros' },
+            { volHTML: 'dm<sup>3</sup>', volNombre: 'decímetros cúbicos',  capHTML: 'l',  capNombre: 'litros' },
+            { volHTML: 'cm<sup>3</sup>', volNombre: 'centímetros cúbicos', capHTML: 'ml', capNombre: 'mililitros' }
+        ];
+
+        let ejercicioActual = {};
+
+        const elPregunta = document.getElementById('cv-pregunta-texto');
+        const inpSol = document.getElementById('cv-input-sol');
+        const btnComprobar = document.getElementById('cv-btn-comprobar');
+        const btnVerSol = document.getElementById('cv-btn-ver-sol');
+        const okBanner = document.getElementById('cv-ok-banner');
+        const btnOtroOk = document.getElementById('cv-btn-otro-ok');
+        const expBox = document.getElementById('cv-explicacion-box');
+        const expContenido = document.getElementById('cv-explicacion-contenido');
+        const btnOtroExp = document.getElementById('cv-btn-otro-exp');
+
+        function formatearES(num) {
+            let limpio = parseFloat(num.toPrecision(12));
+            let str = limpio.toFixed(10).replace(/\.?0+$/, '');
+            return str.replace('.', ',');
+        }
+
+        function actualizarCeldasActivas(tipoOrig, nivelOrig, tipoDest, nivelDest) {
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`cv-cell-vol-${i}`).classList.remove('activa');
+                document.getElementById(`cv-cell-cap-${i}`).classList.remove('activa');
+            }
+            document.getElementById(`cv-cell-${tipoOrig}-${nivelOrig}`).classList.add('activa');
+            document.getElementById(`cv-cell-${tipoDest}-${nivelDest}`).classList.add('activa');
+        }
+
+        function generarEjercicio() {
+            inpSol.value = '';
+            inpSol.style.borderColor = '#f97316';
+            inpSol.style.backgroundColor = '#ffffff';
+            okBanner.style.setProperty('display', 'none', 'important');
+            expBox.style.setProperty('display', 'none', 'important');
+
+            // Elegir sentido: 'vol2cap' o 'cap2vol'
+            let deVolACap = Math.random() < 0.5;
+            let tipoOrig = deVolACap ? 'vol' : 'cap';
+            let tipoDest = deVolACap ? 'cap' : 'vol';
+
+            // Elegir nivel origen (0, 1 o 2) y nivel destino (0, 1 o 2)
+            // Prohibir salto entre extremos (0 <-> 2)
+            let nivelOrig = Math.floor(Math.random() * 3);
+            let nivelDest;
+            do {
+                nivelDest = Math.floor(Math.random() * 3);
+            } while (Math.abs(nivelOrig - nivelDest) === 2);
+
+            let salto = nivelDest - nivelOrig; // -1 (sube), 0 (mismo nivel), +1 (baja)
+
+            // Generar valor origen amigable
+            let tieneDec = Math.random() < 0.45;
+            let base = Math.floor(Math.random() * 45) + 2; // 2 a 46
+            let valorOrigen = tieneDec ? parseFloat((base + (Math.floor(Math.random() * 9) + 1) / 10).toFixed(1)) : base;
+
+            let solucionNum;
+            if (salto === 0) {
+                solucionNum = valorOrigen;
+            } else if (salto === 1) {
+                solucionNum = valorOrigen * 1000;
+            } else {
+                solucionNum = valorOrigen / 1000;
+            }
+            solucionNum = parseFloat(solucionNum.toPrecision(12));
+
+            let simOrig = deVolACap ? niveles[nivelOrig].volHTML : niveles[nivelOrig].capHTML;
+            let simDest = deVolACap ? niveles[nivelDest].capHTML : niveles[nivelDest].volHTML;
+
+            ejercicioActual = {
+                deVolACap: deVolACap,
+                tipoOrig: tipoOrig,
+                tipoDest: tipoDest,
+                nivelOrig: nivelOrig,
+                nivelDest: nivelDest,
+                salto: salto,
+                simOrig: simOrig,
+                simDest: simDest,
+                valorOrigen: valorOrigen,
+                solucionNum: solucionNum,
+                solucionStr: formatearES(solucionNum)
+            };
+
+            elPregunta.innerHTML = `¿Cuántos <span class="cv-destacado">${simDest}</span> son <span class="cv-destacado">${formatearES(valorOrigen)} ${simOrig}</span>?`;
+            actualizarCeldasActivas(tipoOrig, nivelOrig, tipoDest, nivelDest);
+
+            setTimeout(() => inpSol.focus(), 50);
+        }
+
+        function mostrarExplicacion() {
+            const ej = ejercicioActual;
+            const nOrig = niveles[ej.nivelOrig];
+            const nDest = niveles[ej.nivelDest];
+
+            // Unidad puente en la magnitud de destino al mismo nivel que el origen
+            const puenteDestHTML = ej.deVolACap ? nOrig.capHTML : nOrig.volHTML;
+
+            let paso1HTML = `<div><strong>1. Equivalencia directa:</strong> Sabemos que <strong style="color:#c2410c;">1 ${ej.simOrig} = 1 ${puenteDestHTML}</strong>, así que ${formatearES(ej.valorOrigen)} ${ej.simOrig} = <strong>${formatearES(ej.valorOrigen)} ${puenteDestHTML}</strong>.</div>`;
+
+            let paso2HTML = '';
+            let operacionHTML = '';
+
+            if (ej.salto === 0) {
+                paso2HTML = `<p style="margin: 8px 0;"><strong>2. Resultado directo:</strong> Como ambas unidades están en el mismo nivel, el valor numérico no cambia.</p>`;
+                operacionHTML = `<span style="color:#0369a1; font-weight:800;">${formatearES(ej.valorOrigen)} ${ej.simOrig} = ${ej.solucionStr} ${ej.simDest}</span>`;
+            } else if (ej.salto === 1) {
+                paso2HTML = `<p style="margin: 8px 0;"><strong>2. Bajamos 1 nivel:</strong> Para pasar de <strong>${puenteDestHTML}</strong> a <strong>${ej.simDest}</strong> multiplicamos por <strong>1000</strong>.</p>`;
+                operacionHTML = `<span style="color:#0369a1; font-weight:800;">${formatearES(ej.valorOrigen)} · 1000 = ${ej.solucionStr} ${ej.simDest}</span>`;
+            } else {
+                paso2HTML = `<p style="margin: 8px 0;"><strong>2. Subimos 1 nivel:</strong> Para pasar de <strong>${puenteDestHTML}</strong> a <strong>${ej.simDest}</strong> dividimos entre <strong>1000</strong>.</p>`;
+                operacionHTML = `
+                    <span class="cv-fraccion-visual">
+                        <span class="cv-fraccion-num">${formatearES(ej.valorOrigen)}</span>
+                        <span class="cv-fraccion-den">1000</span>
+                    </span>
+                    <span style="color:#0369a1; font-weight:800;"> = ${ej.solucionStr} ${ej.simDest}</span>
+                `;
+            }
+
+            expContenido.innerHTML = `
+                ${paso1HTML}
+                ${paso2HTML}
+                <div style="margin: 10px 0;">${operacionHTML}</div>
+                <div class="cv-resultado-final">
+                    ${formatearES(ej.valorOrigen)} ${ej.simOrig} = ${ej.solucionStr} ${ej.simDest}
+                </div>
+            `;
+
+            expBox.style.setProperty('display', 'block', 'important');
+        }
+
+        function comprobarRespuesta() {
+            let raw = inpSol.value.trim().replace(',', '.');
+            if (raw === '' || isNaN(Number(raw))) {
+                inpSol.focus();
+                return;
+            }
+
+            let tieneCerosInnecesarios = false;
+            if (raw.includes('.')) {
+                if (raw.endsWith('0') || raw.endsWith('.')) {
+                    tieneCerosInnecesarios = true;
+                }
+            }
+
+            let valUsuario = parseFloat(raw);
+            let esCorrectoNum = Math.abs(valUsuario - ejercicioActual.solucionNum) < 1e-11;
+
+            if (esCorrectoNum && !tieneCerosInnecesarios) {
+                inpSol.style.borderColor = '#16a34a';
+                inpSol.style.backgroundColor = '#f0fdf4';
+                expBox.style.setProperty('display', 'none', 'important');
+                okBanner.style.setProperty('display', 'flex', 'important');
+            } else {
+                inpSol.style.borderColor = '#dc2626';
+                inpSol.style.backgroundColor = '#fef2f2';
+                okBanner.style.setProperty('display', 'none', 'important');
+                mostrarExplicacion();
+                inpSol.focus();
+                inpSol.select();
+            }
+        }
+
+        btnComprobar.addEventListener('click', comprobarRespuesta);
+        btnVerSol.addEventListener('click', () => {
+            okBanner.style.setProperty('display', 'none', 'important');
+            mostrarExplicacion();
+        });
+        btnOtroOk.addEventListener('click', generarEjercicio);
+        btnOtroExp.addEventListener('click', generarEjercicio);
+
+        inpSol.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                comprobarRespuesta();
+            }
+        });
+
+        setTimeout(generarEjercicio, 100);
+    })();
+    </script>
+</div>
+</div>
+</div>
+</div>
+</article><article id="20260323172955AQOIPA" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Instrumentos para medir volúmenes.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737UMUKXF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737UMUKXF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">En química general el dispositivo de uso más frecuente para medir volúmenes es la <strong>probeta</strong>. Cuando se necesita más exactitud se usan <em>pipetas o buretas.</em> Las probetas son recipientes de vidrio graduados que sirven para medir el volumen de líquidos (leyendo la división correspondiente al nivel alcanzado por el líquido) y sólidos (midiendo el volumen del líquido desplazado por el sólido, es decir, la diferencia entre el nivel alcanzado por el líquido solo y con el sólido sumergido).</p>
+<p style="text-align: justify;">En matemáticas, si queremos medir el volumen de un sólido y es de una determinada forma (cilindro, prisma...) tenemos fórmulas matemáticas que nos dan ese volumen en función de las medidas de alguno de sus elementos.</p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737UMUKXF/science-1336663-640.jpg" width="320" height="213"></td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955JBWMGC" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Otras unidades fuera del Sistema Internacional.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737RUBJVY" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737RUBJVY&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><div style="border: 2px solid #007932; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 70%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff;">
+<thead>
+<tr style="background-color: #007932; color: #ffffff; text-align: center;">
+<th style="padding: 15px; border-right: 1px solid #ffffff;">Medida</th>
+<th style="padding: 15px; border-right: 1px solid #ffffff;">Equivalencia</th>
+<th style="padding: 15px;">Uso</th>
+</tr>
+</thead>
+<tbody style="color: #333333;">
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">pinta (Gran Bretaña)</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">0,568 litros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Sistema anglosajón de unidades. Es frecuente escuchar hablar de una pinta de cerveza.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">pinta (EEUU)</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">0,473 litros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Medida usada en Estados Unidos.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-right: 1px solid #007932;">barril</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">159 litros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Sistema anglosajón de unidades.</td>
+</tr>
+</tbody>
+</table>
+</div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955GIIRCV" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">Curiosidad</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737SMPCNB" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737SMPCNB&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">El Brent es un tipo de petróleo que se extrae principalmente del mar del Norte. Marca la referencia en los mercados europeos. En las noticias se suele hablar del barril de Brent, relacionándolo con el precio de la gasolina. Quizás nunca te planteaste que barril no hacía alusión al recipiente sino a una medida.</p>
+<p style="text-align: center;"><img src="../content/resources/20260319083737SMPCNB/titular.png" width="753" height="203" alt="titular del barril de brent" title="titular del barril de brent"></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/11-superficie.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/13-densidad.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

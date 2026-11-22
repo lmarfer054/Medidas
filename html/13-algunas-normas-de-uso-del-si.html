@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8ik-xbhjab5v3">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>1.3. Algunas normas de uso del SI | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8ik-xbhjab5v3" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li class="current-page-parent"> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li class="active"> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="active no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8ik-xbhjab5v3" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">1.3. Algunas normas de uso del SI</h1></div>
+</header><div id="page-content-page-moskc8ik-xbhjab5v3" class="page-content">
+<article id="20260323172955DNWEMM" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737OMAKDB" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737OMAKDB&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">A estas alturas del tema, ya te habrás dado cuenta de que en el Sistema Internacional de Unidades no se deja nada al azar, hasta tal punto que todo debe escribirse tal y como está establecido, sin ninguna modificación.</p>
+<p style="text-align: justify;">En ocasiones, cuando resolvemos un problema estamos acostumbrados a dar las unidades de distintas formas. Por ejemplo, &nbsp;mts al referirnos a metros, o usar Kg para hablar de kilogramos. Pues bien, tanto una forma como la otra no estarían admitidas por el Sistema Internacional de Unidades.</p>
+<p style="text-align: justify;">Los símbolos de las unidades son entidades matemáticas y no abreviaturas. Por tanto, no van seguidos de un punto, salvo al final de una frase, ni se usa el plural, ni se pueden mezclar símbolos de unidades con nombres de unidades en una misma expresión, pues los nombres no son entidades matemáticas.</p>
+<p><img src="../content/resources/20260319083737OMAKDB/3.jpg" width="1200" height="670" alt="" style="display: block; margin-left: auto; margin-right: auto;"></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955HSLBKF" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Reglas de uso.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737XVSFQH" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737XVSFQH&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>En la siguiente presentación puedes ver las reglas referidas al uso de los símbolos de las unidades.</p>
+<p style="text-align: center;"><video width="100%" height="360" controls="controls">
+<source src="../content/resources/20260319083737XVSFQH/rigor-en-el-sistema-internacional.mp4" type="video/mp4"></video></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955CFCJOZ" class="box caja-morada ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_ejerciciorellenar.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Busca los errores.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737OLPJMV" class="idevice_node text caja-morada ejercicio-custom" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737OLPJMV&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><span>En el siguiente texto hay varios errores relacionados con las normas ortográficas del SI. Detéctalos y corrígelos.</span></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div><div id="20260319083737JAHOXZ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737JAHOXZ&quot;}">
+<div class="exe-text-template">
+    <div class="exe-text-activity"><p style="text-align: justify;">Hoy que las técnicas envejecen con celeridad, resulta paradójico que las medidas de la masa dependan de un artefacto de 117 años de antigüedad guardado en las cámaras acorazadas de la Oficina Internacional de Pesas y Medidas. Según el sistema internacional de unidades (SI), el KG es igual a la masa de este prototipo internacional de Kg, un cilindro de una aleación de platino e iridio, fabricado con gran precisión, de 39 mili-metros de altura e igual diámetro. El SI está administrado por la Conferencia Internacional de Pesas y Medidas. En los últimos decenios, la Conferencia ha redefinido otras unidades fundamentales del SI para mejorar su precisión y mantenerlas acordes con el adelanto del conocimiento científico y técnico. Los patrones de m. y sg. se basan ahora en fenómenos naturales. Hoy en día, el kilogramo es la última unidad del SI que continúa dependiendo de un objeto manufacturado y único. Por eso, los metrólogos se proponen definir la masa mediante técnicas que dependan solo de las características inmutables de la naturaleza.</p><div class="iDevice_buttons feedback-button js-required"><input type="button" class="feedbacktooglebutton" value="Mostrar retroalimentación" data-text-a="Mostrar retroalimentación" data-text-b="Mostrar retroalimentación"></div><div class="feedback js-feedback js-hidden" style="display: none;"><p style="text-align: justify;"><span>Hoy que las técnicas envejecen con celeridad, resulta paradójico que las medidas de la masa dependan de un artefacto de 117 años de antigüedad guardado en las cámaras acorazadas de la Oficina Internacional de Pesas y Medidas. Según el sistema internacional de unidades (SI), el <strong>kilogramo (kg)</strong> es igual a la masa de este prototipo internacional de <strong>kilogramo (kg)</strong>, un cilindro de una aleación de platino e iridio, fabricado con gran precisión, de 39 <strong>milímetros (mm)</strong> de altura e igual diámetro. El SI está administrado por la Conferencia Internacional de Pesas y Medidas. En los últimos decenios, la Conferencia ha redefinido otras unidades fundamentales del SI para mejorar su precisión y mantenerlas acordes con el adelanto del conocimiento científico y técnico. Los patrones de <strong>metro (m)</strong> y <strong>segundo(s)</strong> se basan ahora en fenómenos naturales. Hoy en día, el kilogramo es la última unidad del SI que continúa dependiendo de un objeto manufacturado y único. Por eso, los metrólogos se proponen definir la masa mediante técnicas que dependan solo de las características inmutables de la naturaleza.</span><span></span></p></div></div>
+</div>
+</div>
+</div>
+</article><article id="20260323172955YBCYFU" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">&lt;br&gt;</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737UJWTXE" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737UJWTXE&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">Una comisión Comité Internacional de Pesas y Medidas (CIPM) propuso revisar las definiciones formales de las unidades básicas del SI por la 26ª CGPM, en 2018. Los cambios propuestos fueron:</p>
+<p style="text-align: justify;">"<em>Seguirá habiendo las mismas siete unidades básicas (metro, segundo, kilogramo, amperio, kelvin, mol y candela). De éstos, el kilogramo, el amperio, el kelvin y el mol se redefinirán de acuerdo al cálculo de los valores numéricos exactos de la constante de Planck, de la carga eléctrica elemental, de la constante de Boltzmann y de la constante de Avogadro, respectivamente. El segundo, el metro y la candela ya están definidas por constantes físicas y sólo es necesario reeditar sus definiciones actuales. Las nuevas definiciones mejorarán el SI sin cambiar el tamaño de las unidades, asegurando así la continuidad con las mediciones actuales.</em>"</p>
+<p style="text-align: justify;">Como ves las definiciones no tienden a simplificarse desde un punto de vista coloquial.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955VOKHMH" class="box caja-naranja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/buho.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Para saber más. Algo de legislación.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737XSWYJS" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737XSWYJS&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Te recomendamos que para poner colofón final a este apartado, eches una ojeada al siguiente pdf. En él encontrarás el Real Decreto 2032/2009, de 30 de diciembre, por el que se establecen las unidades legales de medida. Descubrirás que es algo más extenso que lo que has estudiado, pero que toda la información de este apartado está contenida en él.</p>
+<p style="text-align: center;"><a href="https://www.boe.es/boe/dias/2010/01/21/pdfs/BOE-A-2010-927.pdf" target="_blank" rel="noopener"><img src="../content/resources/20260319083737XSWYJS/medida10.jpg" width="190" height="270" alt="boe" title="boe"></a></p>
+<p>Por cierto, un Real Decreto se sitúa en el orden de prelación de las normas jurídicas inmediatamente después de las normas con rango de Ley y antes de la Orden Ministerial.</p>
+<p>En base a esto, dos reflexiones:</p>
+<p>1) Quizás que haya un Real Decreto que legisle las medidas que tenemos que utilizar y cómo debemos expresarlas, te haga entender la importancia de este apartado.</p>
+<p>2) Que con una formación adecuada podemos llegar a manejar textos legislativos como este.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/12-sistema-internacional-de-unidades-si.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/2-unidades-basicas-del-si.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

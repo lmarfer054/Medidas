@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8if-ngmdwnk7w">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>1.1. Medir: valores, magnitudes y unidades. | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8if-ngmdwnk7w" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li class="current-page-parent"> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li class="active"> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="active no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8if-ngmdwnk7w" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">1.1. Medir: valores, magnitudes y unidades.</h1></div>
+</header><div id="page-content-page-moskc8if-ngmdwnk7w" class="page-content">
+<article id="20260323172955FZRYKT" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737SILQEC" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737SILQEC&quot;}">
+<div class="exe-text-template">
+    <p style="text-align: justify;">Aunque no nos damos cuenta, vivimos en un mundo de mediciones. Tenemos relojes para medir el tiempo, un cuentakilómetros en el coche para conocer las distancias recorridas, termómetros para saber nuestra temperatura...</p>
+<p style="text-align: justify;">El viaje de la medida y sus instrumentos ha sido largo, pero aún está en continua evolución.</p>
+<p style="text-align: justify;">Desde tiempos inmemoriales el hombre ha empleado sistemas de medida para cuantificar. Muchos de estos sistemas de medidas estaban basados en partes del cuerpo o en objetos cotidianos (una vara, un pie...) El problema de este tipo de unidades es que no eliminaban la ambigüedad, y fomentaba el uso de diferentes medidas en los distintos pueblos, lo que provocaba dificultades en la comunicación entre ellos.</p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="border: 1px solid #ffffff;"><span style="font-size: 8pt;"><img src="../content/resources/20260319083737SILQEC/medida1.jpg" width="320" height="213" alt="Báscula" title="báscula" /></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article><article id="20260323172955SVRKMN" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Magnitud. Unidad de medida.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YYAMXG" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YYAMXG&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 100.029%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9119%; text-align: justify;">Las cualidades de los objetos que se pueden medir se denominan&nbsp;<span style="font-weight: bolder; color: #007932;">magnitudes</span><span style="color: #007932;">.</span> Para medir una cantidad de una magnitud, la comparamos con otra cantidad fija a la que denominamos&nbsp;<span style="color: #007932;"><span style="font-weight: bolder;">unidad de medida</span>.</span></td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955ZWHUVX" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Tipos de magnitudes.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737KELSCL" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737KELSCL&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">El resultado de la medición de una cualidad (magnitud) se expresa mediante un número (valor) que indica el número de veces que hemos repetido la unidad, y el nombre de esta. Por ejemplo, si hablamos de nuestra estatura (magnitud longitud) y decimos que medimos 1,78 metros, hemos dado el valor y la unidad correspondiente.</p>
+<p>Hemos dicho que una magnitud es cualquier cualidad de un objeto que se puede medir.&nbsp;</p>
+<table border="0" cellpadding="15" style="width: 100.03%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.91%; text-align: justify;">De ahora en adelante utilizaremos el término magnitud para referirnos a&nbsp;<span style="font-weight: bolder; color: #007932;">magnitud física</span>&nbsp;que es la asociada a una propiedad física o cualidad medible de un sistema físico. Por ejemplo, la longitud, la masa...</td>
+</tr>
+</tbody>
+</table>
+<p>Hay otras magnitudes fuera de la física, como por ejemplo el dinero que responde a utilidades económicas y de intercambio.</p>
+<table border="0" cellpadding="15" style="width: 100.03%; background-color: #edfcfc;">
+<tbody>
+<tr>
+<td style="width: 99.91%;">Las magnitudes que quedan perfectamente definidas con el valor y la unidad se llaman&nbsp;<span style="color: #0066cc;"><span style="font-weight: bolder;">magnitudes escalares</span>.</span> Hay otras magnitudes que requieren una "información extra" como la aceleración o la velocidad, en las que tendríamos que dar la dirección y el sentido. A estas magnitudes se las llama&nbsp;<span style="color: #0066cc;"><span style="font-weight: bolder;">vectoriales</span>.</span></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="0" cellpadding="15" style="width: 100.03%; background-color: #ECCAFA;">
+<tbody>
+<tr>
+<td style="width: 99.91%; text-align: justify;">Las&nbsp;<span style="font-weight: bolder; color: #843fa1;">magnitudes fundamentales</span>&nbsp;son aquellas magnitudes físicas elegidas por convención que permiten expresar cualquier magnitud física en términos de ellas. Gracias a su combinación, las magnitudes fundamentales dan origen a las&nbsp;<span style="color: #843fa1;"><span style="font-weight: bolder;">magnitudes derivadas</span>.</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955MTLLFX" class="box caja-azul ejercicio-custom">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_pensar.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Reflexiona</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737DHBMPT" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737DHBMPT&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Cuando compramos un litro de leche, ¿Qué medidas crees que tenemos en cuenta? ¿Cuáles son las magnitudes asociadas y de qué tipo son?</p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center; border: 1px solid #ffffff;"><img src="../content/resources/20260319083737DHBMPT/medida2.jpg" width="320" height="253" alt="jarra de leche" title="jarra de leche"></td>
+</tr>
+</tbody>
+</table>
+            <div class="iDevice_buttons feedback-button js-required">
+                <input type="button" class="feedbacktooglebutton" value="Mostrar retroalimentación">
+            </div>
+            <div class="feedback js-feedback js-hidden"><p>Elegimos un envase que efectivamente tenga un litro, hablamos de la capacidad, que es una magnitud física escalar.</p>
+<p>Además, podemos mirar su fecha de caducidad, es decir, el tiempo, que sería otra magnitud física escalar.</p>
+<p>Y por último, podemos fijarnos en el dinero, que no es una magnitud física.</p></div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955GUQDZZ" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Exactitud. Precisión.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737HKSKVK" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737HKSKVK&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">Medir consiste en obtener la magnitud (valor numérico) de algún objeto físico, mediante su comparación con otro de la misma naturaleza que tomamos como patrón. Esta comparación con un patrón, que constituye el acto de medir, está sujeta a una incertidumbre, que puede tener diversos orígenes. Nunca lograremos obtener el verdadero valor de la magnitud, siempre vamos a obtener un valor aproximado de la misma y necesitamos pues indicar lo buena que es esta aproximación.</p>
+<p style="text-align: justify;">Aquí es cuando aparecen los conceptos de: exactitud y precisión.</p>
+<table cellpadding="15" style="width: 99.9703%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;"><span style="text-align: justify;">La <strong><span style="color: #007932;">exactitud</span></strong> es lo cerca que el resultado de una medición está del valor verdadero. La <strong><span style="color: #007932;">precisión</span></strong> es lo cerca que los valores medidos están unos de otros.</span></td>
+</tr>
+</tbody>
+</table>
+<p>Así que si estás jugando al fútbol y siempre le das al poste izquierdo en lugar de marcar gol, ¡entonces no eres exacto, pero eres preciso!</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955SGMWUS" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">&lt;br&gt;</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737ZNOWRF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737ZNOWRF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><span style="text-decoration: underline; color: #0066cc;"><strong>Centros de metrología:</strong></span></p>
+<p style="text-align: justify;">Podrías pensar que al hablar de mediciones, ya está todo dicho o como se dice coloquialmente todo inventando. Sin embargo, nada más lejos de la realidad. La metrología es una ciencia cuyo objetivo fundamental es la obtención y expresión del valor de las magnitudes empleando para ello instrumentos, métodos y medios apropiados, con la exactitud requerida en cada caso. Para velar por tales fines tenemos el centro español y el andaluz de metrología, que entre otras labores, ofrece a las industrias y empresas laboratorios equipados con instrumental de alta tecnología y medios de última generación para llevar a cabo mediciones. Pincha en las imágenes si quieres conocer algo más de ellos:</p>
+<p><a href="https://www.cem.es" target="_blank" rel="noopener" id="link_0" title=""><img src="../content/resources/20260319083737ZNOWRF/centro-espanol-metrologia.jpg" width="663" height="163" alt="centro español de metrología" title="centro español de metrología" style="display: block; margin-left: auto; margin-right: auto;"></a></p>
+<p><br></p>
+<p><br></p>
+<p><a href="https://www.cam.us.es/" target="_blank" rel="noopener" id="link_1"><img src="../content/resources/20260319083737ZNOWRF/centro-andaluz-metrologia.jpg" width="576" height="63" alt="centro andaluz metrología" title="centro andaluz metrología" style="display: block; margin-left: auto; margin-right: auto;"></a></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955KOPAVT" class="box caja-roja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/bidio.gif" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Para saber más</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737JXMRGK" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737JXMRGK&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p style="text-align: justify;">A continuación te ofrecemos una lista de reproducción con dos vídeos documentales sobre la historia de las medidas y qué es medir. Son algo más largos que los vídeos que venimos ofreciendo, pero precisamente en esos minutos de más es dónde está la diferencia, ya que explica con total nitidez y de una forma atractiva, de dónde nacen las actuales unidades de medida, a qué problemas vienen a dar solución. 100 % recomendable y otros conceptos que se introducirán en este y otros temas.</p>
+<p><br></p>
+<p><iframe width="560" height="315" style="display: block; margin-left: auto; margin-right: auto;" src="https://www.youtube.com/embed/srAzK4jqZPE?list=PLs4lpFZkmuXXJ_PFpT27RWt82MyO7nlxF" frameborder="0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/1-que-medimos.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/12-sistema-internacional-de-unidades-si.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

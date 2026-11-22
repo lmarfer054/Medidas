@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8in-bajd7naa2">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>2.1. Longitud | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/quick-questions-multiple-choice/quick-questions-multiple-choice.js"></script><link rel="stylesheet" href="../idevices/quick-questions-multiple-choice/quick-questions-multiple-choice.css">
+<script src="../libs/exe_lightbox/exe_lightbox.js"> </script>
+<link rel="stylesheet" href="../libs/exe_lightbox/exe_lightbox.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8in-bajd7naa2" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li class="current-page-parent"> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li class="active"> <a href="../html/21-longitud.html" class="active no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/juego-final.html" class="no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8in-bajd7naa2" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">2.1. Longitud</h1></div>
+</header><div id="page-content-page-moskc8in-bajd7naa2" class="page-content">
+<article id="20260323172955DSLTEC" class="box no-header sin-nada">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737XTKMXU" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737XTKMXU&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Todos tenemos claro más o menos lo que se entiende por longitud, es un concepto claramente ligado a la distancia.</p>
+<p>En atletismo hablamos de una prueba llamada salto de longitud:</p>
+<table border="0" align="center" width="387" height="262">
+<tbody>
+<tr>
+<td style="border: 1px solid #ffffff; width: 377px;"><img src="../content/resources/20260319083737XTKMXU/medida4.jpg" width="280" height="210" alt="salto de longitud" title="salto de longitud"></td>
+</tr>
+</tbody>
+</table>
+<p>El salto de longitud o salto largo es una prueba actual del atletismo que consiste en recorrer la máxima distancia posible en el plano horizontal a partir de un salto tras una carrera.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955OOULMW" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Unidades de longitud.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YIFBIS" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YIFBIS&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><table border="0" cellpadding="15" style="width: 99.9703%; background-color: #d3fada;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">La<span style="font-weight: bolder;">&nbsp;unidad fundamental</span>&nbsp;es el&nbsp;<span style="font-weight: bolder; color: #007932;">metro</span>&nbsp;que se representa con el símbolo&nbsp;<span style="color: #007932;"><span style="font-weight: bolder;">m</span>.</span></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="0" cellpadding="15" style="width: 99.9703%; background-color: #edfcfc;">
+<tbody>
+<tr>
+<td style="width: 99.9703%;">
+<p>Sus<span style="color: #0066cc;"><strong> múltiplos</strong></span> son: decámetro (dam), hectómetro (hm) y kilómetro (km).</p>
+<p>Sus <span style="color: #0066cc;"><strong>submúltiplos</strong></span> son: decímetro (dm), centímetro (cm) y milímetro (mm).</p>
+</td>
+</tr>
+</tbody>
+</table><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955GFKSTV" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Cambio entre unidades.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737WYSPGW" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737WYSPGW&quot;}">
+<div class="exe-text-template">
+    <p>Para cambiar de una unidad a otra, se multiplica o divide sucesivamente por 10.</p>
+<p><br /></p>
+<p><img src="../content/resources/conversion-de-unidades-de-longitud.png" style="display: block; margin-left: auto; margin-right: auto;" width="75%" height="58" /></p>
+</div>
+</div>
+</div>
+</article><article id="block-mwmlu3b1-xjaahzrvj" class="box caja-naranja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_practica2.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Practica.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1795035576637-x7dfvi7jv" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1795035576637-x7dfvi7jv&quot;}">
+<div class="exe-text-template">
+    <style>
+        /* Blindaje de estilos contra el CSS global de eXeLearning */
+        #tutor-longitud-naranja * { box-sizing: border-box; }
+
+        #tutor-longitud-naranja .lng-header {
+            font-size: 1.4rem !important;
+            font-weight: 800 !important;
+            color: #9a3412 !important;
+            margin-bottom: 18px !important;
+            border-bottom: 2px dashed #fdba74 !important;
+            padding-bottom: 10px !important;
+        }
+
+        #tutor-longitud-naranja .lng-box {
+            background-color: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 10px !important;
+            padding: 22px !important;
+        }
+
+        /* Tarjeta de enunciado */
+        #tutor-longitud-naranja .lng-enunciado-card {
+            background-color: #ffffff !important;
+            border: 2px solid #fdba74 !important;
+            border-radius: 8px !important;
+            padding: 18px 22px !important;
+            font-size: 1.75rem !important;
+            font-weight: 800 !important;
+            color: #431407 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 12px !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.06) !important;
+        }
+
+        #tutor-longitud-naranja .lng-unidad-destacada {
+            color: #ea580c !important;
+        }
+
+        #tutor-longitud-naranja .lng-instruccion {
+            font-size: 0.98rem !important;
+            color: #7c2d12 !important;
+            margin-bottom: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Zona de respuesta */
+        #tutor-longitud-naranja .lng-input-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 20px !important;
+        }
+
+        #tutor-longitud-naranja .lng-label-sol {
+            background-color: #ffedd5 !important;
+            color: #9a3412 !important;
+            border: 1px solid #fdba74 !important;
+            padding: 8px 14px !important;
+            border-radius: 6px !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+        }
+
+        #tutor-longitud-naranja input.lng-input {
+            width: 150px !important;
+            height: 42px !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            border: 2px solid #f97316 !important;
+            border-radius: 6px !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            outline: none !important;
+            padding: 4px 10px !important;
+        }
+        #tutor-longitud-naranja input.lng-input:focus {
+            border-color: #c2410c !important;
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2) !important;
+        }
+
+        /* Botones blindados con DIV */
+        #tutor-longitud-naranja .lng-btn {
+            background-color: #ea580c !important;
+            color: #ffffff !important;
+            padding: 9px 20px !important;
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            transition: background-color 0.2s !important;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25) !important;
+        }
+        #tutor-longitud-naranja .lng-btn:hover {
+            background-color: #c2410c !important;
+        }
+
+        /* Mensaje de acierto */
+        #tutor-longitud-naranja .lng-ok-banner {
+            display: none;
+            background-color: #ffedd5 !important;
+            border-left: 5px solid #ea580c !important;
+            color: #9a3412 !important;
+            padding: 14px 18px !important;
+            border-radius: 6px !important;
+            font-size: 1.15rem !important;
+            font-weight: 700 !important;
+            margin-top: 15px !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+        }
+
+        /* Panel de ayuda con escalera (cuando falla) */
+        #tutor-longitud-naranja .lng-ayuda-panel {
+            display: none;
+            background-color: #ffffff !important;
+            border: 1px solid #fed7aa !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+            margin-top: 15px !important;
+        }
+
+        #tutor-longitud-naranja .lng-ayuda-grid {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 24px !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+
+        #tutor-longitud-naranja .lng-ayuda-texto {
+            flex: 1 !important;
+            min-width: 240px !important;
+        }
+
+        #tutor-longitud-naranja .lng-sol-titulo {
+            font-size: 1.25rem !important;
+            font-weight: 800 !important;
+            color: #c2410c !important;
+            margin-bottom: 6px !important;
+        }
+
+        #tutor-longitud-naranja .lng-sol-operacion {
+            font-size: 1.45rem !important;
+            font-weight: 800 !important;
+            color: #0369a1 !important;
+            margin-bottom: 8px !important;
+        }
+
+        #tutor-longitud-naranja .lng-sol-sub {
+            font-size: 0.95rem !important;
+            color: #475569 !important;
+            margin-bottom: 16px !important;
+            font-style: italic !important;
+        }
+
+        #tutor-longitud-naranja .lng-explicacion-pasos {
+            background-color: #fff7ed !important;
+            border-left: 4px solid #f97316 !important;
+            padding: 10px 14px !important;
+            border-radius: 4px !important;
+            font-size: 1.05rem !important;
+            color: #431407 !important;
+            line-height: 1.5 !important;
+        }
+
+        #tutor-longitud-naranja .lng-ayuda-svg {
+            flex: 0 0 auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            overflow-x: auto !important;
+        }
+    </style>
+<div id="tutor-longitud-naranja" style="width: 100%; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; user-select: none;">
+<div class="lng-header">Cambio de unidades de longitud</div>
+<div class="lng-box"><!-- Enunciado -->
+<div class="lng-enunciado-card"><span id="lng-val-origen">77,8</span> <span id="lng-uni-origen" class="lng-unidad-destacada">dam</span> <span>=</span> <span style="display: inline-block; min-width: 70px; border-bottom: 2px dashed #fdba74; text-align: center; color: #ea580c;" id="lng-hueco-preview">?</span> <span id="lng-uni-destino" class="lng-unidad-destacada">cm</span></div>
+<div class="lng-instruccion">Escribe la solución sin ceros innecesarios y pulsa Intro (o haz clic en Comprobar).</div>
+<!-- Entrada de solución -->
+<div class="lng-input-row"><span class="lng-label-sol">Solución</span> <input type="text" id="lng-input-sol" class="lng-input" autocomplete="off" placeholder="Ej: 854" />
+<div role="button" id="lng-btn-comprobar" class="lng-btn" tabindex="0">Comprobar</div>
+</div>
+<!-- Banner de acierto -->
+<div id="lng-ok-banner" class="lng-ok-banner"><span>¡Correcto! Has realizado bien la conversión.</span>
+<div role="button" id="lng-btn-siguiente-ok" class="lng-btn" tabindex="0">Otro ejercicio</div>
+</div>
+<!-- Panel de ayuda visual con escalera -->
+<div id="lng-ayuda-panel" class="lng-ayuda-panel">
+<div class="lng-ayuda-grid">
+<div class="lng-ayuda-texto">
+<div class="lng-sol-titulo">Solución:</div>
+<div id="lng-sol-operacion" class="lng-sol-operacion"></div>
+<div class="lng-sol-sub">Introduce la solución correcta arriba para continuar, o pasa al siguiente ejercicio.</div>
+<div id="lng-explicacion-pasos" class="lng-explicacion-pasos"></div>
+</div>
+<div class="lng-ayuda-svg" id="lng-escalera-container"><!-- SVG generado por JS --></div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+        const unidades = [
+            { sim: 'km', nombre: 'kilómetros' },
+            { sim: 'hm', nombre: 'hectómetros' },
+            { sim: 'dam', nombre: 'decámetros' },
+            { sim: 'm', nombre: 'metros' },
+            { sim: 'dm', nombre: 'decímetros' },
+            { sim: 'cm', nombre: 'centímetros' },
+            { sim: 'mm', nombre: 'milímetros' }
+        ];
+
+        let ejercicioActual = {};
+
+        const elValOrigen = document.getElementById('lng-val-origen');
+        const elUniOrigen = document.getElementById('lng-uni-origen');
+        const elUniDestino = document.getElementById('lng-uni-destino');
+        const elHuecoPreview = document.getElementById('lng-hueco-preview');
+        const inpSol = document.getElementById('lng-input-sol');
+        const btnComprobar = document.getElementById('lng-btn-comprobar');
+        const okBanner = document.getElementById('lng-ok-banner');
+        const btnSiguienteOk = document.getElementById('lng-btn-siguiente-ok');
+        const ayudaPanel = document.getElementById('lng-ayuda-panel');
+        const elSolOperacion = document.getElementById('lng-sol-operacion');
+        const elExplicacion = document.getElementById('lng-explicacion-pasos');
+        const elEscalera = document.getElementById('lng-escalera-container');
+
+        function formatearES(num) {
+            let limpio = parseFloat(num.toPrecision(12));
+            return limpio.toString().replace('.', ',');
+        }
+
+        function generarEjercicio() {
+            inpSol.value = '';
+            inpSol.style.borderColor = '#f97316';
+            inpSol.style.backgroundColor = '#ffffff';
+            elHuecoPreview.innerText = '?';
+            okBanner.style.setProperty('display', 'none', 'important');
+            ayudaPanel.style.setProperty('display', 'none', 'important');
+
+            let idxOrigen = Math.floor(Math.random() * unidades.length);
+            let salto;
+            do {
+                salto = Math.floor(Math.random() * 7) - 3;
+            } while (salto === 0 || (idxOrigen + salto < 0) || (idxOrigen + salto >= unidades.length));
+
+            let idxDestino = idxOrigen + salto;
+
+            let tieneDecimal = Math.random() < 0.65;
+            let base = Math.floor(Math.random() * 89) + 2;
+            let valorOrigen = tieneDecimal ? parseFloat((base + (Math.floor(Math.random() * 9) + 1) / 10).toFixed(1)) : base;
+
+            let factor = Math.pow(10, Math.abs(salto));
+            let solucionNum = salto > 0 ? valorOrigen * factor : valorOrigen / factor;
+            solucionNum = parseFloat(solucionNum.toPrecision(12));
+
+            ejercicioActual = {
+                idxOrigen: idxOrigen,
+                idxDestino: idxDestino,
+                salto: salto,
+                valorOrigen: valorOrigen,
+                factor: factor,
+                solucionNum: solucionNum,
+                solucionStr: formatearES(solucionNum)
+            };
+
+            elValOrigen.innerText = formatearES(valorOrigen);
+            elUniOrigen.innerText = unidades[idxOrigen].sim;
+            elUniDestino.innerText = unidades[idxDestino].sim;
+
+            setTimeout(() => inpSol.focus(), 50);
+        }
+
+        function dibujarEscaleraSVG(idxOrig, idxDest, salto, factor) {
+            const wStep = 56;
+            const hStep = 30;
+            // Márgenes amplios para alojar la flecha exterior sin recortes
+            const startX = 28;
+            const startY = 26;
+            const svgW = startX + unidades.length * wStep + 34;
+            const svgH = startY + unidades.length * hStep + 34;
+
+            let svg = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">`;
+
+            unidades.forEach((u, i) => {
+                let x = startX + i * wStep;
+                let y = startY + i * hStep;
+                let esActivo = (i === idxOrig || i === idxDest);
+                let strokeColor = esActivo ? '#ea580c' : '#fdba74';
+                let strokeW = esActivo ? '3' : '1.5';
+                let fillColor = esActivo ? '#ffedd5' : '#ffffff';
+                let textColor = esActivo ? '#c2410c' : '#334155';
+                let fontWeight = esActivo ? '800' : '600';
+
+                svg += `<rect x="${x}" y="${y}" width="${wStep}" height="${hStep}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="${strokeW}" rx="2" />`;
+                svg += `<text x="${x + 12}" y="${y + 21}" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="${fontWeight}" fill="${textColor}">${u.sim}</text>`;
+            });
+
+            // Coordenadas de la flecha completamente POR FUERA de los peldaños
+            let x1, y1, x2, y2;
+            if (salto > 0) {
+                // Bajada (multiplicar) -> Paralela por ARRIBA-DERECHA de la escalera
+                x1 = startX + idxOrig * wStep + wStep + 14;
+                y1 = startY + idxOrig * hStep - 4;
+                x2 = startX + idxDest * wStep + wStep + 14;
+                y2 = startY + idxDest * hStep - 4;
+            } else {
+                // Subida (dividir) -> Paralela por ABAJO-IZQUIERDA de la escalera
+                x1 = startX + idxOrig * wStep - 14;
+                y1 = startY + idxOrig * hStep + hStep + 4;
+                x2 = startX + idxDest * wStep - 14;
+                y2 = startY + idxDest * hStep + hStep + 4;
+            }
+
+            svg += `
+                <defs>
+                    <marker id="flecha-naranja-ext" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#ea580c" stroke="#431407" stroke-width="0.6"/>
+                    </marker>
+                </defs>
+                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ea580c" stroke-width="4" stroke-linecap="round" marker-end="url(#flecha-naranja-ext)" />
+            `;
+
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function mostrarAyuda() {
+            const uOrig = unidades[ejercicioActual.idxOrigen].nombre;
+            const uDest = unidades[ejercicioActual.idxDestino].nombre;
+            const opSimbolo = ejercicioActual.salto > 0 ? '·' : ':';
+            const opVerbo = ejercicioActual.salto > 0 ? 'Bajamos' : 'Subimos';
+            const numSaltos = Math.abs(ejercicioActual.salto);
+            const textoEscalones = numSaltos === 1 ? '1 escalón' : `${numSaltos} escalones`;
+
+            elSolOperacion.innerText = `${formatearES(ejercicioActual.valorOrigen)} ${opSimbolo} ${ejercicioActual.factor} = ${ejercicioActual.solucionStr}`;
+            
+            elExplicacion.innerHTML = `
+                Desde <strong>${uOrig}</strong> hasta <strong>${uDest}</strong>:<br>
+                ${opVerbo} <strong>${textoEscalones}</strong> &rarr; <strong style="color:#ea580c; font-size:1.2rem;">${opSimbolo} ${ejercicioActual.factor}</strong>
+            `;
+
+            elEscalera.innerHTML = dibujarEscaleraSVG(
+                ejercicioActual.idxOrigen,
+                ejercicioActual.idxDestino,
+                ejercicioActual.salto,
+                ejercicioActual.factor
+            );
+
+            ayudaPanel.style.setProperty('display', 'block', 'important');
+        }
+
+        function comprobarRespuesta() {
+            let raw = inpSol.value.trim().replace(',', '.');
+            if (raw === '' || isNaN(Number(raw))) {
+                inpSol.focus();
+                return;
+            }
+
+            let tieneCerosInnecesarios = false;
+            if (raw.includes('.')) {
+                if (raw.endsWith('0') || raw.endsWith('.')) {
+                    tieneCerosInnecesarios = true;
+                }
+            }
+
+            let valUsuario = parseFloat(raw);
+            let esCorrectoNum = Math.abs(valUsuario - ejercicioActual.solucionNum) < 1e-9;
+
+            if (esCorrectoNum && !tieneCerosInnecesarios) {
+                inpSol.style.borderColor = '#16a34a';
+                inpSol.style.backgroundColor = '#f0fdf4';
+                elHuecoPreview.innerText = ejercicioActual.solucionStr;
+                ayudaPanel.style.setProperty('display', 'none', 'important');
+                okBanner.style.setProperty('display', 'flex', 'important');
+            } else {
+                inpSol.style.borderColor = '#dc2626';
+                inpSol.style.backgroundColor = '#fef2f2';
+                mostrarAyuda();
+                inpSol.focus();
+                inpSol.select();
+            }
+        }
+
+        btnComprobar.addEventListener('click', comprobarRespuesta);
+        btnSiguienteOk.addEventListener('click', generarEjercicio);
+        inpSol.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                comprobarRespuesta();
+            }
+        });
+
+        setTimeout(generarEjercicio, 100);
+    })();
+    </script>
+</div>
+</div>
+</div>
+</div>
+</article><article id="20260323172955FNEPBD" class="box caja-morada">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_selecciona.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Selecciona</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260320101932326AH1" class="idevice_node quick-questions-multiple-choice" data-idevice-path="../idevices/quick-questions-multiple-choice/" data-idevice-type="quick-questions-multiple-choice">
+<div class="selecciona-IDevice"><div class="game-evaluation-ids js-hidden" data-id="20260320101932326AH1" data-evaluationb="false" data-evaluationid="20260319083737TTBZGX"></div><div class="selecciona-instructions SLCNP-instructions"><p>Selecciona siempre el camino más corto.</p>
+<p>Si respondes antes de que se agote el tiempo, pulsa el <em>check</em> (✔️) de abajo a la derecha.</p></div><div class="selecciona-version js-hidden">undefined</div><div class="selecciona-feedback-game"></div><div class="selecciona-DataGame js-hidden">%E9%B0%F3%E1%FB%F5%FC%F3%E6%E7%E0%F3%B0%A8%B0%B0%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%E7%E6%FA%FD%E0%C4%FB%F6%F7%FD%B0%A8%B0%B0%BE%B0%E6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B0%BE%B0%F7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%FB%F6%C4%FB%F6%F7%FD%B0%A8%B0%B0%BE%B0%E1%E6%F3%E0%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%D7%EA%F7%B0%A8%B0%B7%A1%D1%E2%B7%A1%D7%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B7%A0%A2%E1%FB%F7%FF%E2%E0%F7%B7%A0%A2%F7%FE%B7%A0%A2%F1%F3%FF%FB%FC%FD%B7%A0%A2%FF%B7%D7%A3%E1%B7%A0%A2%F1%FD%E0%E6%FD%BC%B7%A1%D1%BD%E2%B7%A1%D7%B7%A2%D3%B7%A1%D1%E2%B7%A1%D7%C1%FB%B7%A0%A2%E0%F7%E1%E2%FD%FC%F6%F7%E1%B7%A0%A2%F3%FC%E6%F7%E1%B7%A0%A2%F6%F7%B7%A0%A2%E3%E7%F7%B7%A0%A2%E1%F7%B7%A0%A2%F3%F5%FD%E6%F7%B7%A0%A2%F7%FE%B7%A0%A2%E6%FB%F7%FF%E2%FD%B7%A0%D1%B7%A0%A2%E2%E7%FE%E1%F3%B7%A0%A2%F7%FE%B7%A0%A2%B7%A1%D1%F7%FF%B7%A1%D7%F1%FA%F7%F1%F9%B7%A1%D1%BD%F7%FF%B7%A1%D7%B7%A0%A2%B7%A0%AA%B7%E7%A0%A5%A3%A6%B7%E7%D4%D7%A2%D4%B7%A0%AB%B7%A0%A2%F6%F7%B7%A0%A2%F3%F0%F3%F8%FD%B7%A0%A2%F3%B7%A0%A2%FE%F3%B7%A0%A2%F6%F7%E0%F7%F1%FA%F3%BC%B7%A1%D1%BD%E2%B7%A1%D7%B0%BE%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%B0%A8%B0%D7%FE%FB%F5%F7%B2%FE%F3%E1%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%EB%B2%FA%F3%E8%B2%F1%FE%FB%F1%B2%F7%FC%B2%F7%FE%B2%F0%FD%E6a%FC%B2%E2%F3%E0%F3%B2%F1%FD%FF%E2%E0%FD%F0%F3%E0%FE%F3%E1%BC%B2%B0%BE%B0%E1%FA%FD%E5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%FD%E2%E6%FB%FD%FC%E1%C0%F3%FF%F6%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%F3%FC%E1%E5%F7%E0%E1%C0%F3%FF%F6%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%E1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%E6%FB%FF%F7%C1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%A1%BE%B0%E7%E1%F7%DE%FB%E4%F7%E1%B0%A8%E6%E0%E7%F7%BE%B0%FC%E7%FF%F0%F7%E0%DE%FB%E4%F7%E1%B0%A8%A0%BE%B0%FB%E6%FB%FC%F7%E0%F3%E0%EB%B0%A8%E9%B0%E1%FA%FD%E5%D1%FE%E7%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FE%E7%F7%D5%F3%FF%F7%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%D1%FE%E7%F7%B0%A8%A6%A2%BE%B0%E1%FA%FD%E5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%F1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%BE%B0%FF%F7%E1%E1%F3%F5%F7%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%B0%EF%BE%B0%E1%F7%FE%F7%F1%E6%E1%D5%F3%FF%F7%B0%A8%C9%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A3%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A3%A2%B2%FF%B0%BE%B0%A3%A2%A2%B2%F6%F3%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D3%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A0%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A7%A2%B2%F9%FF%B0%BE%B0%A7%A2%A2%B2%F6%F3%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D0%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A1%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A0%A2%B2%FA%FF%B0%BE%B0%A1%B2%F9%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D3%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A7%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A6%A2%A2%B2%F1%FF%B0%BE%B0%A1%B2%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D0%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A4%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A4%A2%A2%A2%A2%B2%FF%B0%BE%B0%A4%A2%B2%FA%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D0%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%A5%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A4%A2%A2%A2%B2%F6%FF%B0%BE%B0%A4%B2%F6%F3%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D0%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%AA%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%A7%A2%A2%B2%F1%FF%B0%BE%B0%A4%B2%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D3%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%BE%E9%B0%E6%EB%E2%F7%B0%A8%A3%BE%B0%E6%FB%FF%F7%B0%A8%A7%BE%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%A0%BE%B0%E6%EB%E2%F7%C1%F7%FE%F7%F1%E6%B0%A8%A2%BE%B0%EA%B0%A8%A2%BE%B0%EB%B0%A8%A2%BE%B0%F3%E7%E6%FA%FD%E0%B0%A8%B0%B0%BE%B0%F3%FE%E6%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%A3%BE%B0%E7%E0%FE%B0%A8%B0%F4%FB%FE%F7%E1%BD%E6%FF%E2%BD%A0%A2%A0%A4%BD%A2%A1%BD%A3%AB%BD%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%D7%DE%D7%DA%C2%C0%BD%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%BD%BD%DB%FF%F3%F5%F7%FC%AB%BC%E2%FC%F5%B0%BE%B0%F3%E7%F6%FB%FD%B0%A8%B0%B0%BE%B0%FA%FB%E6%B0%A8%BF%A3%BE%B0%F7%E0%E0%FD%E0%B0%A8%BF%A3%BE%B0%FF%E1%F5%DA%FB%E6%B0%A8%B0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B0%B0%BE%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%A3%BE%B0%FB%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F4%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%A2%BE%B0%F7%C6%F7%EA%E6%B0%A8%B0%B0%BE%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B2%F7%FE%B2%F1%F3%FF%FB%FC%FD%B2%FFs%E1%B2%F1%FD%E0%E6%FD%BC%B0%BE%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%C9%B0%AA%A2%A2%A2%B2%F1%FF%B0%BE%B0%AA%A2%B2%F6%F3%FF%B0%BE%B0%B0%BE%B0%B0%CF%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B0%D3%B0%BE%B0%E1%FD%FE%E7%E6%FB%FD%FC%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%B0%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%C1%FA%FD%E5%B0%A8%A1%A7%EF%CF%BE%B0%FB%E1%C1%F1%FD%E0%FF%B0%A8%A2%BE%B0%E6%F7%EA%E6%D0%E7%E6%E6%FD%FC%C1%F1%FD%E0%FF%B0%A8%B0%D5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%E0%F7%E2%F7%F3%E6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%E6%E0%E7%F7%BE%B0%E5%F7%FB%F5%FA%E6%F7%F6%B0%A8%A3%A2%A2%BE%B0%E6%FB%E6%FE%F7%B0%A8%B0%B0%BE%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%F4%F3%FE%E1%F7%BE%B0%E6%F7%EA%E6%D3%F4%E6%F7%E0%B0%A8%B0%B0%BE%B0%E6%F7%EA%E6%D4%F7%F7%F6%D0%F3%F1%F9%B0%A8%B0%B0%BE%B0%F5%F3%FF%F7%DF%FD%F6%F7%B0%A8%A2%BE%B0%F4%F7%F7%F6%D0%F3%F1%F9%B0%A8%F4%F3%FE%E1%F7%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%D4%D0%B0%A8%A3%A2%A2%BE%B0%FD%E0%F6%F7%E0%B0%A8%A3%BE%B0%F1%E7%E1%E6%FD%FF%DF%F7%E1%E1%F3%F5%F7%E1%B0%A8%F4%F3%FE%E1%F7%BE%B0%E4%F7%E0%E1%FB%FD%FC%B0%A8%A1%BC%A3%BE%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%A3%A2%A2%BE%B0%F3%E7%F6%FB%FD%D4%F7%F7%F6%D0%F3%F1%FA%B0%A8%F4%F3%FE%E1%F7%BE%B0%FF%FD%F6%F7%D0%FD%F3%E0%F6%B0%A8%F4%F3%FE%E1%F7%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%B0%A8%F4%F3%FE%E1%F7%BE%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%DB%D6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A3%AB%A2%AA%A1%A5%A1%A5%C6%C6%D0%C8%D5%CA%B0%BE%B0%FB%F6%B0%A8%B0%A0%A2%A0%A4%A2%A1%A0%A2%A3%A2%A3%AB%A1%A0%A1%A0%A4%D3%DA%A3%B0%BE%B0%F5%FE%FD%F0%F3%FE%C6%FB%FF%F7%B0%A8%A7%BE%B0%FF%E1%F5%E1%B0%A8%E9%B0%FF%E1%F5%C0%F7%F3%F6%EB%B0%A8%B0-%C2%E0%F7%E2%F3%E0%F3%F6%FD%AD%B0%BE%B0%FF%E1%F5%C1%E6%F3%E0%E6%D5%F3%FF%F7%B0%A8%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F7%FF%E2%F7%E8%F3%E0%B0%BE%B0%FF%E1%F5%C1%E7%F0%FF%FB%E6%B0%A8%B0%D7%FC%E4%FB%F3%E0%B0%BE%B0%FF%E1%F5%D7%FC%E6%F7%E0%D1%FD%F6%F7%B0%A8%B0%DB%FC%E6%E0%FD%F6%E7%E8%F1%F3%B2%F7%FE%B2%F1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%D1%FD%F6%F7%B0%A8%B0%D7%FE%B2%F1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B2%FC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B0%BE%B0%FF%E1%F5%D5%F3%FF%F7%DD%E4%F7%E0%B0%A8%B03%D4%FB%FC%B2%F6%F7%B2%FE%F3%B2%E2%F3%E0%E6%FB%F6%F3%B3%B0%BE%B0%FF%E1%F5%D1%FE%E7%F7%B0%A8%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%E2%FB%E1%E6%F3%B2%F7%E1%A8%B0%BE%B0%FF%E1%F5%DC%F7%E5%D5%F3%FF%F7%B0%A8%B0%C2%E7%FE%E1%F7%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F7%FF%E2%F7%E8%F3%E0%B2%FD%E6%E0%F3%B2%E2%F3%E0%E6%FB%F6%F3%B0%BE%B0%FF%E1%F5%CB%FD%E7%DA%F3%E1%B0%A8%B0%C6%FB%F7%FC%F7%B2%B7%A3%B2%F3%F1%FB%F7%E0%E6%FD%E1%B2%EB%B2%B7%A0%B2%F4%F3%FE%FE%FD%E1%B0%BE%B0%FF%E1%F5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B0%D1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%D3%F5%F3%FB%FC%B0%A8%B0%D8%E7%F5%F3%E0%B2%FD%E6%E0%F3%B2%E4%F7%E8%B0%BE%B0%FF%E1%F5%C0%F7%E3%E7%FB%E0%F7%F6%D3%F1%F1%F7%E1%E1%D9%F7%EB%B0%A8%B0%D7%E1%B2%FC%F7%F1%F7%E1%F3%E0%FB%FD%B2%F7%FE%B2%F1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%DE%FD%FD%F9%FB%FC%F5%B0%A8%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B2%E3%E7%F7%B2%F7%E1%E6%F3%F0%F3%B2%F0%E7%E1%F1%F3%FC%F6%FD%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%E6%F3%E0%E6%B0%A8%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F8%E7%F5%F3%E0%B0%BE%B0%FF%E1%F5%D7%E0%E0%FD%E0%E1%B0%A8%B0%D7%E0%E0%FD%E0%F7%E1%B0%BE%B0%FF%E1%F5%DA%FB%E6%E1%B0%A8%B0%D3%F1%FB%F7%E0%E6%FD%E1%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%C5%F7%FB%F5%FA%E6%B0%A8%B0%C2%F7%E1%FD%B0%BE%B0%FF%E1%F5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%B0%DF%FB%FC%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%DF%F3%EA%FB%FF%FB%E8%F7%B0%A8%B0%DF%F3%EA%FB%FF%FB%E8%F3%E0%B0%BE%B0%FF%E1%F5%C6%FB%FF%F7%B0%A8%B0%C6%FB%F7%FF%E2%FD%B2%E2%FD%E0%B2%E2%E0%F7%F5%E7%FC%E6%F3%B0%BE%B0%FF%E1%F5%DE%FB%E4%F7%B0%A8%B0%C4%FB%F6%F3%B0%BE%B0%FF%E1%F5%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C2%F3%FC%E6%F3%FE%FE%F3%B2%D1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%D7%EA%FB%E6%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B0%C1%F3%FE%FB%E0%B2%F6%F7%FE%B2%FF%FD%F6%FD%B2%E2%F3%FC%E6%F3%FE%FE%F3%B2%F1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B0%FF%E1%F5%DC%E7%FF%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B0%DCh%FF%F7%E0%FD%B2%F6%F7%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B0%BE%B0%FF%E1%F5%DC%FD%DB%FF%F3%F5%F7%B0%A8%B0%C2%E0%F7%F5%E7%FC%E6%F3%B2%E1%FB%FC%B2%FB%FFs%F5%F7%FC%F7%E1%B0%BE%B0%FF%E1%F5%D1%FD%FD%FE%B0%A8%B03%D0%FB%F7%FC%B3%B0%BE%B0%FF%E1%F5%DE%FD%E1%F7%C6%B0%A8%B0%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%A1%A1%A2%B2%E2%E7%FC%E6%FD%E1%B0%BE%B0%FF%E1%F5%DE%FD%E1%F7%DE%FB%E4%F7%B0%A8%B0%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%E7%FC%F3%B2%E4%FB%F6%F3%B0%BE%B0%FF%E1%F5%DE%FD%E1%E6%DE%FB%E4%F7%E1%B0%A8%B03%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%E6%FD%F6%F3%E1%B2%E1%E7%E1%B2%E4%FB%F6%F3%E1%B3%B0%BE%B0%FF%E1%F5%D3%FE%FE%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B03%D1%FD%FF%E2%FE%F7%E6%F3%F6%F3%E1%B2%FE%F3%E1%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B3%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F7%E1%B0%A8%B03%D1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%D7%EA%F1%F7%FE%F7%FC%E6%F7%B3%B2%EE%B23%D5%F7%FC%FB%F3%FE%B3%B2%EE%B23%DF%E7%EB%B2%F0%FB%F7%FC%B3%B2%EE%B23%C2%F7%E0%F4%F7%F1%E6%FD%B3%B0%BE%B0%FF%E1%F5%D4%F3%FB%FE%E7%E0%F7%E1%B0%A8%B03%DC%FD%B2%F7%E0%F3%B2%F7%E1%FD%B3%B2%EE%B23%DB%FC%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DE%FD%B2%E1%F7%FC%E6%FB%FF%FD%E1%B3%B2%EE%B23%D7%E0%E0%FD%E0%B3%B0%BE%B0%FF%E1%F5%DC%FD%E6%DC%F7%E6%E5%FD%E0%F9%B0%A8%B0%D3%B2%F7%E1%E6%F7%B2%F8%E7%F7%F5%FD%B2%E1%FD%FE%FD%B2%E1%F7%B2%E2%E7%F7%F6%F7%B2%F8%E7%F5%F3%E0%B2%F1%FD%FC%B2%F1%FD%FC%F7%EA%FBa%FC%B2%F3%B2%FB%FC%E6%F7%E0%FC%F7%E6%BC%B0%BE%B0%FF%E1%F5%D7%FC%F6%D5%F3%FF%F7%C1%F1%FD%E0%F7%B0%A8%B0%D3%FC%E6%F7%E1%B2%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F1%FD%FF%FB%F7%FC%F1%F7%B2%FE%F3%B2%E2%F3%E0%E6%FB%F6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F1%FD%E0%F7%C1%F1%FD%E0%FF%B0%A8%B0%DE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%FC%FD%B2%E1%F7%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E2%FD%E0%E3%E7%F7%B2%F7%E1%E6%F3%B2%E2s%F5%FB%FC%F3%B2%FC%FD%B2%F4%FD%E0%FF%F3%B2%E2%F3%E0%E6%F7%B2%B2%F6%F7%B2%E7%FC%B2%E2%F3%E3%E7%F7%E6%F7%B2%C1%D1%DD%C0%DF%BC%B0%BE%B0%FF%E1%F5%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B0%C2%E0%F7%F5%E7%FC%E6%F3%B0%BE%B0%FF%E1%F5%D3%FC%E1%E5%F7%E0%B0%A8%B0%D1%FD%FF%E2%E0%FD%F0%F3%E0%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%C1%F1%FD%E0%F7%B0%A8%B03%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E7%FC%F3%B2%E4%F7%E8%B3%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%B0%A8%B0%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%B0%BE%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B0%DB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%CB%FD%E7%C1%F1%FD%E0%F7%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B0%FF%E1%F5%D3%E7%E6%FA%FD%E0%B0%A8%B0%D3%E7%E6%FD%E0%7F%F3%B0%BE%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B2%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F8%E7%F5%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%BC%B0%BE%B0%FF%E1%F5%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F3%E7%E6%FD%FFs%E6%FB%F1%F3%FF%F7%FC%E6%F7%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B0%BE%B0%FF%E1%F5%C1%F7%E4%F7%E0%F3%FE%C1%F1%FD%E0%F7%B0%A8%B0%C2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E6%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%F1%FD%FF%FD%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%CB%FD%E7%DE%F3%E1%E6%C1%F1%FD%E0%F7%B0%A8%B0%DE%F3%B2h%FE%E6%FB%FF%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F5%E7%F3%E0%F6%F3%F6%F3%B2%F7%E1%B0%BE%B0%FF%E1%F5%D3%F1%E6%FB%E6%EB%D1%FD%FF%E2%FE%EB%B0%A8%B0%CB%F3%B2%FA%F3%B2%E0%F7%F3%FE%FB%E8%F3%F6%FD%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%BC%B0%BE%B0%FF%E1%F5%C2%FE%F3%EB%C1%F7%E4%F7%E0%F3%FE%C6%FB%FF%F7%E1%B0%A8%B0%C2%E7%F7%F6%F7%B2%E0%F7%F3%FE%FB%E8%F3%E0%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B2%F1%E7%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%E3%E7%FB%F7%E0%F3%B0%BE%B0%FF%E1%F5%C6%E0%EB%D3%F5%F3%FB%FC%B0%A8%B0%DC%F7%F1%F7%E1%FB%E6%F3%E1%B2%F3%FE%B2%FF%F7%FC%FD%E1%B2%B7%E1%B7%B2%F6%F7%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%E2%F3%E0%F3%B2%FD%F0%E6%F7%FC%F7%E0%B2%FE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%BC%B2%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%BC%B0%BE%B0%FF%E1%F5%C4%FB%F6%F7%FD%DB%FC%E6%E0%FD%B0%A8%B0%C4%7F%F6%F7%FD%B2%F6%F7%B2%FB%FC%E6%E0%FD%F6%E7%F1%F1%FBa%FC%B0%BE%B0%FF%E1%F5%D1%FE%FD%E1%F7%B0%A8%B0%D1%F7%E0%E0%F3%E0%B0%BE%B0%FF%E1%F5%DD%E2%E6%FB%FD%FC%B0%A8%B0%DD%E2%F1%FBa%FC%B0%BE%B0%FF%E1%F5%C0%FB%F1%F9%C6%F7%EA%E6%B0%A8%B0%C6%F7%EA%E6%FD%B2%F7%FC%E0%FB%E3%E7%F7%F1%FB%F6%FD%B0%BE%B0%FF%E1%F5%C7%E1%F7%D4%E7%FE%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B0%F7%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B2%E3%E7%F7%B2%E1%F7%E0s%B2%FF%E7%EB%B2h%E6%FB%FE%B0%BE%B0%FF%E1%F5%DE%FD%F3%F6%FB%FC%F5%B0%A8%B0%D1%F3%E0%F5%F3%FC%F6%FD%BC%B2%D7%E1%E2%F7%E0%F7%BE%B2%E2%FD%E0%B2%F4%F3%E4%FD%E0%BC%BC%BC%B0%BE%B0%FF%E1%F5%DD%E0%F6%F7%E0%E1%B0%A8%B0%DD%E0%F6%F7%FC%F3%B2%E6%FD%F6%F3%E1%B2%FE%F3%E1%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B0%BE%B0%FF%E1%F5%DB%FC%F6%FB%F1%F3%E6%F7%C5%FD%E0%F6%B0%A8%B0%C2%E0%FD%E2%FD%E0%F1%FB%FD%FC%F7%B2%E7%FC%F3%B2%E2%F3%FE%F3%F0%E0%F3%B2%FD%B2%F7%EA%E2%E0%F7%E1%FBa%FC%B0%BE%B0%FF%E1%F5%DF%FD%E4%F7%DD%FC%F7%B0%A8%B0%C2%F3%E1%F3%E0%B0%BE%B0%FF%E1%F5%C2%FD%FB%FC%E6%E1%B0%A8%B0%E2%E7%FC%E6%FD%E1%B0%BE%B0%FF%E1%F5%D3%E7%F6%FB%FD%B0%A8%B0%D3%E7%F6%FB%FD%B0%BE%B0%FF%E1%F5%D1%FD%E0%E0%F7%F1%E6%B0%A8%B0%D1%FD%E0%E0%F7%F1%E6%FD%B0%BE%B0%FF%E1%F5%DB%FC%F1%FD%E0%E0%F7%F1%E6%B0%A8%B0%DB%FC%F1%FD%E0%E0%F7%F1%E6%FD%B0%BE%B0%FF%E1%F5%C7%FC%F1%FD%FF%E2%FE%F7%E6%F7%F6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%F1%FD%FF%E2%FE%F7%E6%F3%F6%F3%B0%BE%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C7%FC%E1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B0%FF%E1%F5%C6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B0%C1%F7%FE%F7%F1%F1%FB%FD%FC%F3%B0%EF%EF</div><a href="../content/resources/20260320101932326AH1/imagen1.jpg" class="js-hidden selecciona-LinkImages">0</a><a href="../content/resources/20260320101932326AH1/imagen2.jpg" class="js-hidden selecciona-LinkImages">1</a><a href="../content/resources/20260320101932326AH1/imagen3.jpg" class="js-hidden selecciona-LinkImages">2</a><a href="../content/resources/20260320101932326AH1/imagen5.jpg" class="js-hidden selecciona-LinkImages">3</a><a href="../content/resources/20260320101932326AH1/imagen6.jpg" class="js-hidden selecciona-LinkImages">4</a><a href="../content/resources/20260320101932326AH1/imagen7.jpg" class="js-hidden selecciona-LinkImages">5</a><a href="../content/resources/20260320101932326AH1/imagen8.jpg" class="js-hidden selecciona-LinkImages">6</a><a href="../content/resources/20260320101932326AH1/imagen9.jpg" class="js-hidden selecciona-LinkImages">7</a><div class="selecciona-bns js-hidden">Su navegador no es compatible con esta herramienta.</div></div>
+</div>
+</div>
+</article><article id="20260323172955CXNLDA" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Instrumentos para medir la longitud.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737UVQBBY" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737UVQBBY&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Son el metro y las reglas graduadas, que se han construido en distintos materiales según las profesiones.&nbsp;</p>
+<p>Para pequeñas longitudes usamos el<a href="../content/resources/20260319083737UVQBBY/piederey-1.jpg" title="Pie de rey" rel="lightbox noopener" target="_blank" size="159.43 KB" id="link_2"> calibrador o pie de rey</a>, <a href="../content/resources/20260319083737UVQBBY/micrmetro.jpg" title="Micrómetro" target="_blank" size="33.72 KB" rel="lightbox noopener" id="link_3">micrómetro</a>...</p>
+<p>Para grandes longitudes la cinta métrica de <a href="../content/resources/20260319083737UVQBBY/plastic-tape-measure.jpg" title="Cinta métrica de tela" rel="lightbox noopener" target="_blank" size="290.72 KB" id="link_1">tela</a> o de <a href="../content/resources/20260319083737UVQBBY/cintametricametal.jpg" target="_blank" rel="lightbox noopener" title="Cinta métrica de metal" size="238.96 KB" id="link_4">metal</a>, <a href="../content/resources/20260319083737UVQBBY/odometer2.jpg" target="_blank" rel="lightbox noopener" title="Odómetro" size="92.63 KB" id="link_5">odómetro</a>, <a href="../content/resources/20260319083737UVQBBY/military-laser-rangefinder-lrb20000.jpg" target="_blank" rel="lightbox noopener" title="Telémetro láser" size="224.77 KB" id="link_6">telémetro láser.</a>..</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955ZWEHWX" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/icon_definicion.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Otras unidades fuera del Sistema Internacional.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737UKNPHE" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737UKNPHE&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><strong></strong>Es frecuente encontrarnos con otras medidas de longitud que no estén dentro del sistema internacional como por ejemplo, la pulgada, la milla o la legua.</p>
+<div style="border: 2px solid #007932; border-radius: 15px; overflow: hidden; margin: 20px auto; width: 85%; box-shadow: 2px 2px 10px rgba(0,0,0,0.05);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #ffffff;">
+<thead>
+<tr style="background-color: #007932; color: #ffffff; text-align: center;">
+<th style="padding: 15px; border-right: 1px solid #ffffff;">Medida</th>
+<th style="padding: 15px; border-right: 1px solid #ffffff;">Equivalencia</th>
+<th style="padding: 15px;">Uso</th>
+</tr>
+</thead>
+<tbody style="color: #333333;">
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">Pulgada</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">0,0254 metros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Aunque forma parte del Sistema Anglosajón de Unidades, también es de uso común en nuestro país (pulgadas de un televisor, llantas de las ruedas).</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">Yarda</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">0,9144 metros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Se usa en países anglosajones.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">Milla terrestre</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">1.609,34 metros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Se usa en países anglosajones.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">Milla marítima</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">1.852 metros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Se usa en Navegación.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-bottom: 2px solid #ffffff; border-right: 1px solid #007932;">Años luz</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">9,5 billones de kilómetros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Se usa en Astronomía.</td>
+</tr>
+<tr>
+<td style="padding: 15px; background-color: #d3fada; color: #007932; font-weight: bold; text-align: center; border-right: 1px solid #007932;">Legua</td>
+<td style="padding: 15px; border: 1px solid #007932; text-align: center;">4.828,032 metros</td>
+<td style="padding: 15px; border: 1px solid #007932;">Es la unidad más grande del Sistema Anglosajón de Unidades.</td>
+</tr>
+</tbody>
+</table>
+</div><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955NMVWDG" class="box nota-azul">
+<header class="box-head no-icon">
+<h1 class="box-title">Curiosidad</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737YOAVHF" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737YOAVHF&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p><span style="color: #0066cc;"><strong>¿Cómo se define un metro?</strong></span></p>
+<p>Ya hemos visto que es el Comité internacional de Pesos y medidas el encargado de decir qué es un metro, pues recientemente se acordó que&nbsp;<strong>el metro es la longitud del trayecto recorrido en el vacío por la luz durante un tiempo de 1/299.792.458 de segundo</strong>.</p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article><article id="20260323172955PTDPFY" class="box caja-roja">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/bidio.gif" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Para saber más.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="20260319083737ILUINQ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;20260319083737ILUINQ&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Otro vídeo relacionado con la serie anterior, y centro en el metro: su historia y la evolución.</p>
+<p style="text-align: center;"><br></p>
+<p style="text-align: left;"><iframe width="560" height="315" style="display: block; margin-left: auto; margin-right: auto;" src="https://www.youtube.com/embed/dasGBnQBHPA?rel=0" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></p><p class="clearfix"></p></div>
+            </div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/2-unidades-basicas-del-si.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/22-masa.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>

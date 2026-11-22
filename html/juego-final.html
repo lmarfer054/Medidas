@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-moskc8ji-wgf9t08rg">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exe-pass-score" content="5">
+<title>Juego final | Medidas</title>
+<link rel="icon" type="image/x-icon" href="../theme/img/favicon.ico">
+<meta name="description" content="Enseñanza y Nivel: ESPAD I
+Nombre asignatura: Ámbito Científico Tecnológico">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/z-custom-effects.js"> </script><link rel="stylesheet" href="../theme/colores.css"><link rel="stylesheet" href="../theme/comic.css"><link rel="stylesheet" href="../theme/ejercicio.css"><link rel="stylesheet" href="../theme/libreta.css"><link rel="stylesheet" href="../theme/navegacion.css"><link rel="stylesheet" href="../theme/nota-azul.css"><link rel="stylesheet" href="../theme/retroalimentacion.css"><link rel="stylesheet" href="../theme/style.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script>
+// =========================================
+// MOTOR LÓGICO DEL ESCAPE ROOM
+// =========================================
+
+function comprobarCandado(idInput, respuestaCorrecta, idPremio) {
+    // 1. Capturamos el input y el error
+    var inputElement = document.getElementById(idInput);
+    var divError = document.getElementById(idError = idInput.replace("respuesta", "error"));
+    
+    // 2. Limpiamos la respuesta del usuario (evita que fallen por tildes o espacios extra)
+    var respuestaUsuario = inputElement.value.trim().toLowerCase();
+    respuestaUsuario = respuestaUsuario.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Quita tildes
+    
+    // 3. Limpiamos también la respuesta correcta por seguridad
+    var solucion = respuestaCorrecta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // 4. Comprobamos
+    if (respuestaUsuario === solucion) {
+        // ¡ACIERTO!
+        divError.style.display = "none";
+        
+        // Ocultamos el panel de control
+        inputElement.parentElement.style.display = "none";
+        
+        // Mostramos el premio (la clase secreta)
+        var premioElement = document.getElementById(idPremio);
+        if(premioElement) {
+            premioElement.style.display = "block";
+        }
+    } else {
+        // ¡FALLO!
+        divError.style.display = "block";
+        
+        // Un pequeño efecto de temblor en el input para indicar error
+        inputElement.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputElement.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputElement.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputElement.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+<script>
+// =========================================
+// MOTOR LÓGICO MULTI-SALA (ESCAPE ROOM)
+// =========================================
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos la respuesta del usuario (evita fallos tontos por espacios o mayúsculas)
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    
+    if (respLimpia === solucionReal.toLowerCase()) {
+        // ACIERTO: Ocultamos el error si estaba visible
+        divError.style.display = "none";
+        
+        // Transición mágica entre salas
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        // Efecto rústico de "pantalla apagándose y encendiéndose"
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            // Forzamos un reflow para que la animación CSS funcione (truco pro)
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+        }, 400); // 400ms de transición
+        
+    } else {
+        // FALLO: Mostramos el error
+        divError.style.display = "block";
+        
+        // Efecto temblor en el input para indicar error
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-moskc8ji-wgf9t08rg" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Medidas</a>
+</li>
+<li> <a href="../html/sistema-internacional-de-unidades.html" class="daddy">Sistema Internacional de Unidades</a>
+<ul class="other-section">
+<li> <a href="../html/1-que-medimos.html" class="daddy">1. Qué medimos</a>
+<ul class="other-section">
+<li> <a href="../html/11-medir-valores-magnitudes-y-unidades.html" class="no-ch">1.1. Medir: valores, magnitudes y unidades.</a>
+</li>
+<li> <a href="../html/12-sistema-internacional-de-unidades-si.html" class="no-ch">1.2. Sistema internacional de unidades (SI)</a>
+</li>
+<li> <a href="../html/13-algunas-normas-de-uso-del-si.html" class="no-ch">1.3. Algunas normas de uso del SI</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-basicas-del-si.html" class="daddy">2. Unidades básicas del SI</a>
+<ul class="other-section">
+<li> <a href="../html/21-longitud.html" class="no-ch">2.1. Longitud</a>
+</li>
+<li> <a href="../html/22-masa.html" class="no-ch">2.2. Masa</a>
+</li>
+<li> <a href="../html/23-tiempo.html" class="no-ch">2.3. Tiempo</a>
+</li>
+<li> <a href="../html/24-temperatura.html" class="no-ch">2.4. Temperatura</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/unidades-derivadas-del-sistema-internacional.html" class="daddy">Unidades derivadas del Sistema Internacional</a>
+<ul class="other-section">
+<li> <a href="../html/1-unidades-derivadas-expresadas-en-funcion-de-unid.html" class="daddy">1. Unidades derivadas expresadas en función de unidades básicas </a>
+<ul class="other-section">
+<li> <a href="../html/11-superficie.html" class="no-ch">1.1 Superficie</a>
+</li>
+<li> <a href="../html/12-volumen-y-capacidad.html" class="no-ch">1.2 Volumen y capacidad</a>
+</li>
+<li> <a href="../html/13-densidad.html" class="no-ch">1.3 Densidad</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/2-unidades-con-nombres-y-simbolos-especiales.html" class="daddy">2. Unidades con nombres y símbolos especiales</a>
+<ul class="other-section">
+<li> <a href="../html/21-presion.html" class="no-ch">2.1 Presión</a>
+</li>
+<li> <a href="../html/22-angulos.html" class="no-ch">2.2 Ángulos</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/3-resumen-2.html" class="no-ch">3. Resumen</a>
+</li>
+<li> <a href="../html/4-ejercicios-2.html" class="no-ch">4. Ejercicios</a>
+</li>
+</ul>
+</li>
+<li class="active"> <a href="../html/juego-final.html" class="active no-ch">Juego final</a>
+</li>
+</ul>
+</nav><main id="page-moskc8ji-wgf9t08rg" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Medidas</p>
+<p class="package-subtitle">Sistema Internacional de Unidades</p></div>
+<div class="page-header"><h1 class="page-title">Juego final</h1></div>
+</header><div id="page-content-page-moskc8ji-wgf9t08rg" class="page-content">
+<article id="block-1777926973202-smn8j6xo8" class="box sin-nada">
+<header class="box-head no-icon">
+<h1 class="box-title">Texto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1777926973200-jqtpj9rg2" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1777926973200-jqtpj9rg2&quot;}">
+<div class="exe-text-template">
+    <style>
+/* =========================================
+   BOMBA DE HUMO: Ocultar Título de Página
+   ========================================= */
+#nodeDecoration, 
+.nodeTitle, 
+.page-title {
+    display: none !important;
+}
+</style>
+<style>
+/* =========================================
+   ESCAPE ROOM: OPERACIÓN PEÑÓN A FLOTE
+   Paleta Aventura Submarina, Audio & Botones Blindados
+   ========================================= */
+body .exe-content .bunker-escape {
+    position: relative !important; /* Vital para el botón Mute */
+    background-color: #102a43 !important; /* Azul abisal profundo */
+    border: 3px solid #d32f2f !important; /* Rojo alerta de la portada */
+    border-radius: 12px !important;
+    padding: 30px !important;
+    margin: 40px auto !important;
+    color: #f0f4f8 !important; /* Texto gris muy clarito, casi blanco */
+    font-family: 'Atkinson Hyperlegible', 'Fira Sans', sans-serif !important; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+    max-width: 800px !important;
+}
+
+/* =========================================
+   El Botón Mute (Comunicaciones) - BLINDADO
+   ========================================= */
+body.exe-web-site .exe-content .bunker-escape button.btn-mute,
+body .exe-content .bunker-escape button.btn-mute {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    background-color: transparent !important; /* Matamos el verde sólido */
+    background-image: none !important; /* Matamos el gradiente verde de eXe */
+    border: 2px solid #f0f4f8 !important;
+    border-radius: 50% !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    color: #f0f4f8 !important;
+    z-index: 100 !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    padding: 0 !important;
+    box-shadow: none !important; /* Quitamos sombras extrañas de eXe */
+}
+
+body.exe-web-site .exe-content .bunker-escape button.btn-mute:hover,
+body .exe-content .bunker-escape button.btn-mute:hover {
+    border-color: #f1c40f !important; /* Se vuelve dorado al pasar el ratón */
+    color: #f1c40f !important;
+    transform: scale(1.1) !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    background-image: none !important;
+}
+
+/* Forzamos el texto justificado para el informe */
+body .exe-content .bunker-escape p {
+    text-align: justify !important;
+    line-height: 1.6 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 15px !important;
+}
+
+/* Centrado automático de todas las imágenes */
+body .exe-content .bunker-escape img {
+    display: block !important;
+    margin: 0 auto 20px auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+}
+
+body .exe-content .bunker-escape .titulo-sala {
+    color: #f1c40f !important; /* Amarillo/Dorado aventura */
+    text-align: center !important;
+    border-bottom: 2px dashed #d32f2f !important;
+    padding-bottom: 10px !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+}
+
+/* El Panel de Control */
+body .exe-content .bunker-escape .panel-control {
+    background-color: rgba(0,0,0,0.3) !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    margin-top: 25px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+body .exe-content .bunker-escape .input-hacker {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    border: 2px solid #d32f2f !important;
+    padding: 12px 15px !important;
+    border-radius: 6px !important;
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    text-transform: lowercase !important;
+    flex-grow: 1 !important;
+    min-width: 200px !important;
+}
+
+body .exe-content .bunker-escape .input-hacker:focus {
+    outline: none !important;
+    border-color: #f1c40f !important;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.5) !important;
+}
+
+/* =========================================
+   BLINDAJE ABSOLUTO DE BOTONES CONTRA EL VERDE GLOBAL
+   ========================================= */
+body.exe-web-site .exe-content .bunker-escape button.btn-desbloquear,
+body .exe-content .bunker-escape button.btn-desbloquear {
+    background-color: #d32f2f !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px 25px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    font-size: 1.1em !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2) !important;
+}
+
+body.exe-web-site .exe-content .bunker-escape button.btn-desbloquear:hover,
+body .exe-content .bunker-escape button.btn-desbloquear:hover {
+    background-color: #9c1515 !important; /* Rojo ultra-oscuro al pasar el ratón */
+    border-color: #9c1515 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+    color: #ffffff !important;
+}
+
+body .exe-content .bunker-escape .mensaje-alerta {
+    color: #ff4d4d !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+body .exe-content .bunker-escape .sala-victoria {
+    border-color: #f1c40f !important; /* Borde dorado al ganar */
+}
+</style>
+<div class="bunker-escape"><!-- BOTÓN DE COMUNICACIONES (MUTE) --> <button id="btn-mute" onclick="toggleMute()" class="btn-mute" title="Silenciar / Activar Sonido">🔊</button> <!-- ================= PORTADA ================= -->
+<div id="portada" class="sala-activa"><img src="../content/resources/portada-1.jpg" alt="Portada Operación Peñón" class="img-cabecera" width="704" height="384" />
+<h3 class="titulo-sala">Operación: Peñón a Flote</h3>
+<p>Una fisura submarina ha empezado a inundar la Cueva de San Miguel. Si no actuamos rápido, el agua hará tanta presión que el Peñón de Gibraltar se soltará y acabará flotando a la deriva por el Estrecho.</p>
+<p>Los macacos ya están usando flotadores de flamencos. ¡Eres el ingeniero jefe y solo tú puedes detener este desastre usando tus conocimientos del Sistema Internacional de Medidas (SI)!</p>
+<div class="panel-control"><button onclick="iniciarMision()" class="btn-desbloquear">Iniciar Misión</button></div>
+</div>
+<!-- ================= RETO 1 ================= -->
+<div id="reto1" style="display: none;"><img src="../content/resources/e1b.jpg" alt="Sala de control" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 1: El código de anulación</h3>
+<p>Llegas a la sala de control empapado. El sistema principal se ha colgado y pide un código de anulación. En la pantalla parpadean cuatro iconos y el teclado solo tiene letras.</p>
+<p>Debes introducir los símbolos oficiales del Sistema Internacional correspondientes a lo que miden esos cuatro dibujos, en ese mismo orden y sin espacios.</p>
+<img src="../content/resources/t2.jpg" alt="Iconos parpadeando" class="img-explicativa" />
+<div class="panel-control"><input type="text" id="pass1" class="input-hacker" placeholder="Símbolos..." autocomplete="off" /> <button onclick="verificarSala('pass1', 'skmkg', 'reto1', 'reto2')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass1" class="mensaje-alerta" style="display: none;">CÓDIGO ERRÓNEO.</div>
+</div>
+</div>
+<!-- ================= RETO 2 ================= -->
+<div id="reto2" style="display: none;"><img src="../content/resources/e2b.jpg" alt="Motores sobrecalentados" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 2: La sala de control</h3>
+<p>El ordenador arranca, pero saltan chispas. Los motores están sobrecalentados a "350" y debes cambiarlo a la unidad oficial del Sistema Internacional para que el sistema lo reconozca.</p>
+<p>¿Cuál es la unidad básica del Sistema Internacional para medir la temperatura? (Escribe el nombre de la unidad).</p>
+<div class="panel-control"><input type="text" id="pass2" class="input-hacker" placeholder="Unidad..." autocomplete="off" /> <button onclick="verificarSala('pass2', 'kelvin', 'reto2', 'reto3')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass2" class="mensaje-alerta" style="display: none;">UNIDAD NO RECONOCIDA.</div>
+</div>
+</div>
+<!-- ================= RETO 3 ================= -->
+<div id="reto3" style="display: none;"><img src="../content/resources/e3b.png" alt="Flujo de agua" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 3: Calculando el desastre</h3>
+<p>¡Panel desbloqueado! Ahora puedes ver el flujo de agua. Entran unos 5000 litros por minuto. Para configurar la barrera de contención, la máquina te pide que conviertas esa cantidad a la unidad del SI para el volumen.</p>
+<p><em>Recuerda que 1000 litros equivalen exactamente a 1 de esta unidad.</em> ¿A cuántos metros cúbicos equivalen 5000 litros? (Escribe solo el número).</p>
+<div class="panel-control"><input type="text" id="pass3" class="input-hacker" placeholder="Número..." autocomplete="off" /> <button onclick="verificarSala('pass3', '5', 'reto3', 'reto4')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass3" class="mensaje-alerta" style="display: none;">CÁLCULO INCORRECTO.</div>
+</div>
+</div>
+<!-- ================= RETO 4 ================= -->
+<div id="reto4" style="display: none;"><img src="../content/resources/e4b.png" alt="Plano de la grieta" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 4: El plano de la grieta</h3>
+<p>El ingeniero de La Línea te pasa por WhatsApp el croquis de la grieta. Para fabricar el parche de metal, necesitas calcular la superficie exacta de la fisura. ¡Pero cuidado! El que hizo el plano mezcló unidades.</p>
+<p>Calcula la superficie de la grieta en metros cuadrados. <em>Recuerda pasar todo a metros antes de multiplicar la base por la altura.</em> (Escribe solo el número).</p>
+<img src="../content/resources/plano2.png" alt="Croquis con medidas" class="img-explicativa" />
+<div class="panel-control"><input type="text" id="pass4" class="input-hacker" placeholder="Número..." autocomplete="off" /> <button onclick="verificarSala('pass4', '8', 'reto4', 'reto5')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass4" class="mensaje-alerta" style="display: none;">ÁREA INCORRECTA.</div>
+</div>
+</div>
+<!-- ================= RETO 5 ================= -->
+<div id="reto5" style="display: none;"><img src="../content/resources/e5b.png" alt="Dron submarino" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 5: Sellando la grieta</h3>
+<p>Las bombas funcionan, pero hay que tapar el agujero. Tienes que enviar un dron submarino cargado con un cemento especial de secado ultrarrápido. El ingeniero británico te grita por radio: "¡Necesitamos 4000 gramos de cemento!".</p>
+<p>Sin embargo, el dron ha sido fabricado en La Línea y su software exige que introduzcas la masa en la unidad fundamental del SI. Si necesitas 4000 gramos, ¿qué número debes teclear en kilogramos? (Escribe solo el número).</p>
+<div class="panel-control"><input type="text" id="pass5" class="input-hacker" placeholder="Número..." autocomplete="off" /> <button onclick="verificarSala('pass5', '4', 'reto5', 'reto6')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass5" class="mensaje-alerta" style="display: none;">MASA INCORRECTA.</div>
+</div>
+</div>
+<!-- ================= RETO 6 ================= -->
+<div id="reto6" style="display: none;"><img src="../content/resources/e6b.png" alt="Alerta presión" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 6: Peligro de estallido</h3>
+<p>El dron ha colocado el cemento, pero el agua empuja con fuerza mientras se seca. La pantalla parpadea en rojo: ¡Alerta! La fuerza del agua sobre la superficie del cemento es crítica. Necesitas abrir una válvula de alivio.</p>
+<p>La pantalla te hace una pregunta de seguridad para confirmar que eres personal autorizado: <em>La presión es la fuerza aplicada sobre una superficie. ¿Cómo se llama la unidad de medida de la presión en el SI?</em> (Pista: Empieza por P).</p>
+<div class="panel-control"><input type="text" id="pass6" class="input-hacker" placeholder="Unidad..." autocomplete="off" /> <button onclick="verificarSala('pass6', 'pascal', 'reto6', 'reto7')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass6" class="mensaje-alerta" style="display: none;">ACCESO DENEGADO.</div>
+</div>
+</div>
+<!-- ================= RETO 7 ================= -->
+<div id="reto7" style="display: none;"><img src="../content/resources/e7b.png" alt="Macaco robando llaves" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 7: El rescate de las llaves</h3>
+<p>¡La grieta está sellada! Pero cuando vas a huir, un macaco te roba las llaves de la lancha y salta al agua abrazado a un material del almacén. Usando la tabla de densidades, debes adivinar qué material agarró para saber si flotará.</p>
+<img src="../content/resources/i7.png" alt="Tabla de densidades" class="img-explicativa" />
+<div class="panel-control"><input type="text" id="pass7" class="input-hacker" placeholder="Letra del material..." autocomplete="off" /> <button onclick="verificarSala('pass7', 'b', 'reto7', 'reto8')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass7" class="mensaje-alerta" style="display: none;">MATERIAL INCORRECTO.</div>
+</div>
+</div>
+<!-- ================= RETO 8 ================= -->
+<div id="reto8" style="display: none;"><img src="../content/resources/e8b.png" alt="Evacuación final" class="img-cabecera" />
+<h3 class="titulo-sala">Reto 8: Evacuación final</h3>
+<p>¡El cemento ha aguantado! El Peñón vuelve a estar seguro, anclado en su sitio, y los macacos te aplauden. Pero la cueva sigue inundada y tienes que salir de ahí pitando en una lancha de rescate.</p>
+<p>El GPS indica que la salida a la bahía está a 2,5 kilómetros, pero está desconfigurado y te pide la distancia en la unidad básica de longitud del SI. ¿A cuántos metros equivalen 2,5 kilómetros? (Escribe solo el número, sin puntos ni comas).</p>
+<div class="panel-control"><input type="text" id="pass8" class="input-hacker" placeholder="Número..." autocomplete="off" /> <button onclick="verificarSala('pass8', '2500', 'reto8', 'final')" class="btn-desbloquear">Desbloquear</button>
+<div id="error-pass8" class="mensaje-alerta" style="display: none;">DISTANCIA ERRÓNEA. CHOCARÁS.</div>
+</div>
+</div>
+<!-- ================= FINAL (ÉXITO) ================= -->
+<div id="final" style="display: none;" class="sala-victoria"><img src="../content/resources/trofeo.gif" alt="Misión Cumplida" class="img-cabecera" />
+<h3 class="titulo-sala">¡ENHORABUENA! 🏆</h3>
+<p>Has salvado el Campo de Gibraltar de tener un Peñón a la deriva por el puerto de Algeciras. Tu dominio del Sistema Internacional de Medidas ha evitado una catástrofe histórica.</p>
+<p><strong>¡Eres un héroe! Misión Cumplida.</strong></p>
+</div>
+<!-- ================= ARCHIVOS DE AUDIO ================= --> <!-- ¡CAMBIA LOS "src" POR LA RUTA REAL DE TUS AUDIOS! --> <audio id="audio-reto3" src="../content/resources/arroyo.mp3" loop="loop"></audio> <audio id="audio-reto5" src="../content/resources/sonar.mp3" loop="loop"></audio> <audio id="audio-final" src="../content/resources/aplausos.mp3" loop="loop"></audio></div>
+<p>
+<script>
+// =========================================
+// MOTOR LÓGICO Y DE COMUNICACIONES (ESCAPE ROOM)
+// =========================================
+
+var isMuted = false;
+var salaActualGlobal = 'portada';
+
+// Función para silenciar/activar el sonido
+function toggleMute() {
+    isMuted = !isMuted;
+    var btnMute = document.getElementById("btn-mute");
+    
+    if(isMuted) {
+        btnMute.innerHTML = "🔇";
+        detenerAudios();
+    } else {
+        btnMute.innerHTML = "🔊";
+        reproducirAudioSala(salaActualGlobal); // Reproduce el de la sala actual si toca
+    }
+}
+
+// Detiene todos los audios y los reinicia a 0
+function detenerAudios() {
+    var audios = ['audio-reto3', 'audio-reto5', 'audio-final'];
+    for(var i = 0; i < audios.length; i++) {
+        var a = document.getElementById(audios[i]);
+        if(a) {
+            a.pause();
+            a.currentTime = 0;
+        }
+    }
+}
+
+// Reproduce el audio correspondiente a la sala (si existe y no está silenciado)
+function reproducirAudioSala(idSala) {
+    detenerAudios(); // Apagamos el anterior al entrar en la nueva sala
+    if(isMuted) return;
+
+    var audioAReproducir = null;
+    if(idSala === 'reto3') audioAReproducir = document.getElementById('audio-reto3');
+    if(idSala === 'reto5') audioAReproducir = document.getElementById('audio-reto5');
+    if(idSala === 'final') audioAReproducir = document.getElementById('audio-final');
+
+    if(audioAReproducir) {
+        // El bloque catch evita que el navegador lance un error si corta el Autoplay (aunque al venir de un clic, lo permite)
+        audioAReproducir.play().catch(function(error) {
+            console.log("El navegador ha bloqueado el autoplay.");
+        });
+    }
+}
+
+// Transición simple de Portada a Reto 1
+function iniciarMision() {
+    var portada = document.getElementById("portada");
+    var reto1 = document.getElementById("reto1");
+    
+    portada.style.opacity = 0;
+    setTimeout(function() {
+        portada.style.display = "none";
+        reto1.style.display = "block";
+        void reto1.offsetWidth; 
+        reto1.style.opacity = 1;
+        
+        // Actualizamos estado y audio
+        salaActualGlobal = 'reto1';
+        reproducirAudioSala('reto1');
+    }, 400);
+}
+
+function verificarSala(idInput, solucionReal, idSalaActual, idSalaSiguiente) {
+    var inputUsu = document.getElementById(idInput);
+    var divError = document.getElementById("error-" + idInput);
+    
+    // Limpiamos respuesta: sin espacios, sin tildes, todo a minúsculas
+    var respLimpia = inputUsu.value.trim().toLowerCase();
+    respLimpia = respLimpia.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    var solLimpia = solucionReal.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
+    if (respLimpia === solLimpia) {
+        divError.style.display = "none";
+        var salaActual = document.getElementById(idSalaActual);
+        var salaSig = document.getElementById(idSalaSiguiente);
+        
+        salaActual.style.opacity = 0;
+        setTimeout(function() {
+            salaActual.style.display = "none";
+            salaSig.style.display = "block";
+            void salaSig.offsetWidth; 
+            salaSig.style.opacity = 1;
+            
+            // Actualizamos estado y audio
+            salaActualGlobal = idSalaSiguiente;
+            reproducirAudioSala(idSalaSiguiente);
+        }, 400); 
+    } else {
+        divError.style.display = "block";
+        inputUsu.style.transform = "translateX(5px)";
+        setTimeout(function(){ inputUsu.style.transform = "translateX(-5px)"; }, 50);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(5px)"; }, 100);
+        setTimeout(function(){ inputUsu.style.transform = "translateX(0)"; }, 150);
+    }
+}
+</script>
+</p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/4-ejercicios-2.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<span class="nav-button nav-button-right" aria-hidden="true"><span>Siguiente</span></span>
+</div>
+<footer id="siteFooter" class="siteFooter-empty"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(Ventana nueva)</span></span></a></p>
+</body>
+</html>
